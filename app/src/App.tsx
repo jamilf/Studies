@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { HashRouter, Route, Routes } from 'react-router-dom'
 import { AuthProvider, useAuth } from './auth/AuthContext'
 import Layout from './components/Layout'
 import Dashboard from './pages/Dashboard'
@@ -28,9 +28,9 @@ function Gate() {
 export default function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <HashRouter>
         <Gate />
-      </BrowserRouter>
+      </HashRouter>
     </AuthProvider>
   )
 }

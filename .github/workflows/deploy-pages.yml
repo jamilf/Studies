@@ -1,0 +1,52 @@
+name: Deploy Security+ Trainer to GitHub Pages
+
+on:
+  push:
+    branches: [claude/security-plus-career-path-x0hmxj]
+    paths: [app/**, .github/workflows/deploy-pages.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+      - name: Install dependencies
+        working-directory: app
+        run: npm ci
+      - name: Build
+        working-directory: app
+        # The Supabase anon/publishable key is a public client key, safe to
+        # embed in a static bundle: row-level security enforces per-user
+        # data isolation server-side (see supabase/migrations/*_schema.sql).
+        env:
+          VITE_SUPABASE_URL: https://tbaiekqecfqdgeppxmst.supabase.co
+          VITE_SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRiYWlla3FlY2ZxZGdlcHB4bXN0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExNDA5MjYsImV4cCI6MjA5NjcxNjkyNn0.rrjNERRzTq6M00vC9rBSC6Zz3FNRvMCfn_86UtkRLBc
+        run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: app/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
