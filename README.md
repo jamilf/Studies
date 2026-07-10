@@ -15,22 +15,13 @@ elaborative feedback, adaptive weak-area targeting, and full exam simulation.
 
 ## Quick start
 
-### 1. Connect your Supabase project (one time, ~5 minutes)
-
-1. Create a free project at [supabase.com](https://supabase.com) (any region).
-2. Apply the database schema and study content: open the project's **SQL Editor** and run each
-   file in `supabase/migrations/` **in filename order** (paste + run), or use the CLI:
-   ```bash
-   supabase link --project-ref YOUR_PROJECT_REF
-   supabase db push
-   ```
-3. In **Project Settings → API**, copy the Project URL and the anon/publishable key.
-
-### 2. Run the app
+The Supabase project (`web`, ref `tbaiekqecfqdgeppxmst`) is **already provisioned**: schema,
+row-level security, and all study content are applied, and `.env.example` is pre-filled with
+its URL and public anon key.
 
 ```bash
 cd app
-cp .env.example .env   # paste your Supabase URL + anon key
+cp .env.example .env
 npm install
 npm run dev            # http://localhost:5173
 ```
@@ -38,6 +29,15 @@ npm run dev            # http://localhost:5173
 First run: create your account on the sign-in screen (email + password), then start with
 the **Flashcards** due queue. Your progress lives in Supabase, so any browser on any device
 picks up where you left off.
+
+Notes:
+- If signup says to confirm your email, click the link Supabase sends you — or disable
+  **Confirm email** under *Authentication → Sign In / Providers* in the Supabase dashboard
+  for instant signup (single-user personal project, so this is fine).
+- Recommended one-click hardening: enable **Leaked password protection** under
+  *Authentication → Passwords* (flagged by the Supabase security advisor).
+- To rebuild on a fresh Supabase project instead: run the files in `supabase/migrations/`
+  in filename order via the SQL Editor, then point `app/.env` at the new project.
 
 ## How to study with this (the short version)
 
