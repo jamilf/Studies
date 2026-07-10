@@ -2,11 +2,19 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 import type { Session } from '@supabase/supabase-js'
 import { supabase } from '../lib/supabase'
 
+/**
+ * signUp can "succeed" without creating a session: with email confirmation
+ * enabled the user must click a mail link first, and signing up an
+ * already-registered email returns a stub user (empty identities) with no
+ * error. Both must surface in the UI instead of a silent no-op.
+ */
+export type SignUpResult = { ok: 'session' | 'confirm_email' | 'exists' } | { error: string }
+
 interface AuthValue {
   session: Session | null
   loading: boolean
   signIn: (email: string, password: string) => Promise<string | null>
-  signUp: (email: string, password: string) => Promise<string | null>
+  signUp: (email: string, password: string) => Promise<SignUpResult>
   signOut: () => Promise<void>
 }
 
@@ -33,8 +41,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return error ? error.message : null
     },
     async signUp(email, password) {
-      const { error } = await supabase.auth.signUp({ email, password })
-      return error ? error.message : null
+      const { data, error } = await supabase.auth.signUp({ email, password })
+      if (error) return { error: error.message }
+      if (data.user && data.user.identities?.length === 0) return { ok: 'exists' }
+      if (!data.session) return { ok: 'confirm_email' }
+      return { ok: 'session' }
     },
     async signOut() {
       await supabase.auth.signOut()

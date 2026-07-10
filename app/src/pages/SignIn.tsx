@@ -7,15 +7,39 @@ export default function SignIn() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
+  const [notice, setNotice] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
 
   async function submit(e: FormEvent) {
     e.preventDefault()
     setBusy(true)
     setError(null)
-    const err = mode === 'signin' ? await signIn(email, password) : await signUp(email, password)
-    if (err) setError(err)
-    setBusy(false)
+    setNotice(null)
+    try {
+      if (mode === 'signin') {
+        const err = await signIn(email, password)
+        if (err) setError(err)
+      } else {
+        const res = await signUp(email, password)
+        if ('error' in res) {
+          setError(res.error)
+        } else if (res.ok === 'exists') {
+          setMode('signin')
+          setNotice('An account with this email already exists — sign in below.')
+        } else if (res.ok === 'confirm_email') {
+          setNotice(
+            'Account created, but this Supabase project requires email confirmation. ' +
+              'Check your inbox for the link — or turn off "Confirm email" in the Supabase ' +
+              'dashboard (Authentication → Sign In / Providers → Email) and sign in directly.',
+          )
+        }
+        // ok === 'session': the auth listener signs you in; nothing to do here.
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : String(err))
+    } finally {
+      setBusy(false)
+    }
   }
 
   return (
@@ -43,6 +67,11 @@ export default function SignIn() {
           className="w-full rounded-md bg-slate-800 border border-slate-700 px-3 py-2 text-sm"
         />
         {error && <p className="text-sm text-red-400">{error}</p>}
+        {notice && (
+          <p className="text-sm text-amber-300 border border-amber-700/60 bg-amber-950/40 rounded-md p-3 leading-relaxed">
+            {notice}
+          </p>
+        )}
         <button
           disabled={busy}
           className="w-full rounded-md bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 py-2 text-sm font-semibold"
