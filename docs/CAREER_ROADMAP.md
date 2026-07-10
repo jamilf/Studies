@@ -2,8 +2,8 @@
 
 **Bottom line: go AI security.** OT security is a genuinely lucrative field, but it is the
 wrong *first* specialization for someone entering security at the Security+ stage. Here's the
-full reasoning, an honest look at the OT path, a 12-month plan, and the portfolio projects to
-build the moment you pass SY0-701.
+full reasoning, an honest look at the OT path, a 12-month plan, the portfolio projects to
+build the moment you pass SY0-701, and the certification path (§4) for the years after.
 
 ---
 
@@ -92,9 +92,9 @@ skills compound. OT is a fine *second* specialization, not a first.**
   shipping AI features (you're the person on the security team who "gets" AI); AI red-team
   associate; trust & safety engineering; GRC analyst with AI-governance focus (if you lean
   less technical); application security with LLM scope.
-- **Certs to add, only if needed for resume filters**: CompTIA CySA+ (natural sequel,
-  DoD-recognized) or a cloud security cert (AWS Security Specialty / SC-100-track). AI-security
-  certs are still immature — your portfolio outweighs all of them.
+- **Certs to add, only if needed for resume filters**: see the full certification path in §4
+  below — short version: CySA+ first, then one cloud security cert. AI-security certs are
+  still immature — your portfolio outweighs all of them.
 - Write up every project as a blog post or detailed README. In a field this young, visible
   work is the credential. Engage where practitioners are: OWASP GenAI Slack, AI-security
   CTFs (e.g., prompt-injection challenges like Gandalf, HackAPrompt-style comps).
@@ -135,7 +135,65 @@ skills compound. OT is a fine *second* specialization, not a first.**
 
 ---
 
-## 4. Milestones to hold yourself to
+## 4. Certification path after Security+
+
+Certs are HR filters, not skills — collect the ones that unlock doors on the path above, in
+this order, and no faster than one at a time.
+
+### Tier 1 — Year 1, right after Security+
+- **CompTIA CySA+** — the natural sequel. Blue-team/SOC analytics maps directly to the
+  analyst roles you'll apply for in Phase 3, it's DoD 8140-recognized (opens government and
+  contractor postings), and CompTIA's CE stacking means passing it **automatically renews
+  your Security+** — one exam, two certs maintained.
+- **Skip Network+ and A+.** Once Security+ is passed, they're backwards motion on a resume.
+  If your networking fundamentals feel shaky, fix that free in labs (TryHackMe networking
+  rooms), not with a $370 exam.
+
+### Tier 2 — Year 1–2: one cloud provider, done properly
+Every AI-security role is a cloud role; this tier matters more than Tier 3.
+- **AWS track (matches the roadmap's Phase 1 choice):** AWS **Solutions Architect Associate**
+  first (the vocabulary cert — IAM, VPC, KMS in depth), then AWS **Security – Specialty**
+  (the actual door-opener for cloud security roles).
+- **Azure alternative** if your first job lands you Azure-side: **SC-200** (security
+  operations analyst) or **AZ-500** (security engineering). Don't do both clouds — depth in
+  one beats badges in two.
+
+### Tier 3 — AI-specific certs (clear eyes required)
+The field's certifications are years behind its demand; your portfolio projects remain the
+real credential. Two exceptions worth knowing:
+- **IAPP AIGP (AI Governance Professional)** — only if you lean toward the GRC/AI-governance
+  role in Phase 3. It's the one AI cert showing up in real job filters, because it maps to
+  the NIST AI RMF and EU AI Act vocabulary compliance teams are hiring for.
+- **SANS AI-security courses / ISC2 AI certificates** — take them when an employer pays.
+  Never self-fund SANS ($8k+) at this career stage.
+
+### Tier 4 — Year 2–3: offensive certs, only if you go red-team
+- **TCM PNPT or HTB CPTS** first — practical, respected by practitioners, a fraction of the
+  cost, and better teaching than the brand-name option.
+- **OSCP** when (and only when) an employer pays or a specific posting demands it — it's the
+  HR filter for pentest roles, not the best education.
+
+### Tier 5 — Year 4–5: seniority filters
+- **CISSP** — the gate to senior/management roles and a hard requirement in many postings.
+  It needs ~5 years of experience to fully hold; you can pass the exam earlier and hold
+  "Associate of ISC2" status until the experience accrues.
+- **GICSP** — only if you execute the OT pivot described in §1 at year 3–5. This is where the
+  AI+OT combination becomes a genuinely rare profile.
+
+### Rules of thumb
+- **One cert in flight at a time.** Parallel cert-chasing is how people spend two years
+  studying instead of shipping projects #1–3.
+- **Name the door before you pay.** Every cert should correspond to a real job posting you
+  want that filters on it. If you can't point to one, build a project instead.
+- **Exploit CE stacking.** Each higher CompTIA cert renews everything beneath it — sequence
+  CySA+ near your Security+ three-year mark and you never pay renewal CEU fees.
+- **Let employers fund the expensive ones.** SANS, OSCP, and CISSP training are standard
+  employer-paid benefits; self-funding them early is spending your own money on someone
+  else's obligation.
+
+---
+
+## 5. Milestones to hold yourself to
 
 | When | Milestone |
 |---|---|
