@@ -1,5 +1,6 @@
 import type { ComponentType } from 'react'
 import ArpSpoofing from './secplus/ArpSpoofing'
+import DrSiteSpectrum from './secplus/DrSiteSpectrum'
 import PkiLifecycle from './secplus/PkiLifecycle'
 
 export interface ConceptEntry {
@@ -27,6 +28,14 @@ export const CONCEPTS: ConceptEntry[] = [
     title: 'ARP Spoofing & On-Path Attacks',
     description: 'Watch a poisoned ARP cache redirect a victim\'s traffic through an attacker.',
     Component: ArpSpoofing,
+  },
+  {
+    id: 'secplus-dr-site-spectrum',
+    certId: 'secplus',
+    domain: 3,
+    title: 'Disaster Recovery Site Spectrum',
+    description: 'Slide across cold, pilot light, warm, hot, and multi-site tiers to compare RTO/RPO/cost.',
+    Component: DrSiteSpectrum,
   },
 ]
 
