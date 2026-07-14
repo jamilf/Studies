@@ -9,6 +9,7 @@ import VpcConnectivityScaling from './awssaa/VpcConnectivityScaling'
 import ObjectLockModes from './awsscs/ObjectLockModes'
 import SecurityModelLattice from './cissp/SecurityModelLattice'
 import TroubleshootingMethodology from './aplus1/TroubleshootingMethodology'
+import SubnetVisualizer from './netplus/SubnetVisualizer'
 
 export interface ConceptEntry {
   id: string
@@ -99,6 +100,14 @@ export const CONCEPTS: ConceptEntry[] = [
     title: 'The CompTIA Troubleshooting Methodology',
     description: 'Step through the six-step process (also tested on Core 2) with a worked example at each stage.',
     Component: TroubleshootingMethodology,
+  },
+  {
+    id: 'netplus-subnet-visualizer',
+    certId: 'netplus',
+    domain: 1,
+    title: 'CIDR / Subnetting Visualizer',
+    description: 'Enter a network address and drag the prefix length to see the mask, range, and host count live.',
+    Component: SubnetVisualizer,
   },
 ]
 
