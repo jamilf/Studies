@@ -7,6 +7,7 @@ import RiskCalculator from './secplus/RiskCalculator'
 import PyramidOfPain from './cysa/PyramidOfPain'
 import VpcConnectivityScaling from './awssaa/VpcConnectivityScaling'
 import ObjectLockModes from './awsscs/ObjectLockModes'
+import SecurityModelLattice from './cissp/SecurityModelLattice'
 
 export interface ConceptEntry {
   id: string
@@ -81,6 +82,14 @@ export const CONCEPTS: ConceptEntry[] = [
     title: 'S3 Object Lock: Governance vs Compliance',
     description: 'Pick a retention mode and an actor, then try to delete a locked object to see who can override.',
     Component: ObjectLockModes,
+  },
+  {
+    id: 'cissp-security-model-lattice',
+    certId: 'cissp',
+    domain: 3,
+    title: 'Bell-LaPadula vs. Biba Access Rules',
+    description: 'Pick a model, a clearance level, and an action to see whether the access rule allows or denies it.',
+    Component: SecurityModelLattice,
   },
 ]
 
