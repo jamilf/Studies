@@ -5,6 +5,7 @@ import OrderOfVolatility from './secplus/OrderOfVolatility'
 import PkiLifecycle from './secplus/PkiLifecycle'
 import RiskCalculator from './secplus/RiskCalculator'
 import PyramidOfPain from './cysa/PyramidOfPain'
+import VpcConnectivityScaling from './awssaa/VpcConnectivityScaling'
 
 export interface ConceptEntry {
   id: string
@@ -63,6 +64,14 @@ export const CONCEPTS: ConceptEntry[] = [
     title: 'The Pyramid of Pain',
     description: 'Click each indicator tier to see how costly it is for an attacker to change.',
     Component: PyramidOfPain,
+  },
+  {
+    id: 'awssaa-vpc-connectivity-scaling',
+    certId: 'awssaa',
+    domain: 2,
+    title: 'VPC Peering vs Transit Gateway Scaling',
+    description: 'Drag the VPC count slider to see peering connections grow quadratically vs Transit Gateway linearly.',
+    Component: VpcConnectivityScaling,
   },
 ]
 
