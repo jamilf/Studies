@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useUserId } from '../auth/AuthContext'
+import { useCert } from '../cert/CertContext'
 import { fetchCardStates, fetchFlashcards, gradeCard } from '../lib/data'
 import type { Grade } from '../lib/sm2'
 import type { CardState, Flashcard } from '../lib/types'
-import { DOMAIN_NAMES } from '../lib/types'
 import { shuffle } from '../lib/shuffle'
 
 const NEW_PER_SESSION = 20
@@ -12,6 +12,7 @@ type DeckFilter = 'all' | 'core' | 'acronym'
 
 export default function Flashcards() {
   const userId = useUserId()
+  const { cert } = useCert()
   const [cards, setCards] = useState<Flashcard[] | null>(null)
   const [states, setStates] = useState<Map<string, CardState>>(new Map())
   const [deck, setDeck] = useState<DeckFilter>('all')
@@ -20,12 +21,13 @@ export default function Flashcards() {
   const [done, setDone] = useState(0)
 
   useEffect(() => {
+    setCards(null)
     void (async () => {
-      const [allCards, cardStates] = await Promise.all([fetchFlashcards(), fetchCardStates(userId)])
+      const [allCards, cardStates] = await Promise.all([fetchFlashcards(cert.id), fetchCardStates(userId)])
       setCards(allCards.filter((c) => c.deck !== 'feynman'))
       setStates(cardStates)
     })()
-  }, [userId])
+  }, [userId, cert])
 
   useEffect(() => {
     if (!cards) return
@@ -111,7 +113,7 @@ export default function Flashcards() {
         <div className="bg-slate-900 border border-slate-800 rounded-xl p-8 space-y-6 min-h-64">
           <div className="flex justify-between text-xs text-slate-500">
             <span>
-              D{current.domain} · {DOMAIN_NAMES[current.domain]} · {current.objective}
+              D{current.domain} · {cert.domains[current.domain]} · {current.objective}
             </span>
             <span>{isNew ? 'NEW' : `rep ${states.get(current.id)?.reps ?? 0}`} · {current.deck}</span>
           </div>

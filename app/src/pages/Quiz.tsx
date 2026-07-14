@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useUserId } from '../auth/AuthContext'
+import { useCert } from '../cert/CertContext'
 import QuestionPlayer from '../components/QuestionPlayer'
 import { fetchQuestions, fetchRecentAnswers, objectiveStats, questionWeight, recordAnswer } from '../lib/data'
 import { isCorrect } from '../lib/exam'
 import { shuffle, weightedSample } from '../lib/shuffle'
 import type { Question, QuizKind } from '../lib/types'
-import { DOMAIN_NAMES } from '../lib/types'
 
 const QUIZ_SIZE = 15
 
@@ -13,6 +13,7 @@ type Mode = { kind: QuizKind; domain?: number }
 
 export default function Quiz() {
   const userId = useUserId()
+  const { cert } = useCert()
   const [all, setAll] = useState<Question[] | null>(null)
   const [mode, setMode] = useState<Mode | null>(null)
   const [quiz, setQuiz] = useState<Question[]>([])
@@ -22,8 +23,10 @@ export default function Quiz() {
   const [score, setScore] = useState(0)
 
   useEffect(() => {
-    void fetchQuestions().then(setAll)
-  }, [])
+    setAll(null)
+    setMode(null)
+    void fetchQuestions(cert.id).then(setAll)
+  }, [cert])
 
   async function start(m: Mode) {
     if (!all) return
@@ -80,7 +83,7 @@ export default function Quiz() {
           <div className="rounded-xl border border-slate-800 bg-slate-900 p-4">
             <p className="font-semibold text-slate-200 text-sm mb-2">Single domain (before-exam patching only)</p>
             <div className="flex flex-wrap gap-2">
-              {Object.entries(DOMAIN_NAMES).map(([d, label]) => (
+              {Object.entries(cert.domains).map(([d, label]) => (
                 <button
                   key={d}
                   onClick={() => void start({ kind: 'domain', domain: Number(d) })}

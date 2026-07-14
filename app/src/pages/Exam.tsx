@@ -1,15 +1,17 @@
 import { useEffect, useRef, useState } from 'react'
 import { useUserId } from '../auth/AuthContext'
+import { useCert } from '../cert/CertContext'
 import QuestionPlayer from '../components/QuestionPlayer'
 import { supabase } from '../lib/supabase'
 import { fetchQuestions } from '../lib/data'
-import { EXAM_MINUTES, PASS_SCALED, buildExamForm, isCorrect, scaledScore } from '../lib/exam'
+import { buildExamForm, isCorrect, scaledScore } from '../lib/exam'
 import type { ExamAttempt, Question } from '../lib/types'
 
 type Phase = 'idle' | 'running' | 'review'
 
 export default function Exam() {
   const userId = useUserId()
+  const { cert } = useCert()
   const [all, setAll] = useState<Question[] | null>(null)
   const [attempts, setAttempts] = useState<ExamAttempt[]>([])
   const [phase, setPhase] = useState<Phase>('idle')
@@ -17,21 +19,24 @@ export default function Exam() {
   const [responses, setResponses] = useState<Record<string, unknown>>({})
   const [flags, setFlags] = useState<Set<string>>(new Set())
   const [idx, setIdx] = useState(0)
-  const [secondsLeft, setSecondsLeft] = useState(EXAM_MINUTES * 60)
+  const [secondsLeft, setSecondsLeft] = useState(cert.exam.minutes * 60)
   const [result, setResult] = useState<{ raw: number; scaled: number; passed: boolean } | null>(null)
   const deadline = useRef<number>(0)
   const submitting = useRef(false)
 
   useEffect(() => {
-    void fetchQuestions().then(setAll)
+    setAll(null)
+    setPhase('idle')
+    void fetchQuestions(cert.id).then(setAll)
     void supabase
       .from('exam_attempts')
       .select('*')
       .eq('user_id', userId)
+      .eq('cert', cert.id)
       .order('started_at', { ascending: false })
       .limit(10)
       .then(({ data }) => setAttempts((data ?? []) as ExamAttempt[]))
-  }, [userId])
+  }, [userId, cert])
 
   useEffect(() => {
     if (phase !== 'running') return
@@ -46,13 +51,13 @@ export default function Exam() {
 
   function start() {
     if (!all) return
-    const f = buildExamForm(all)
+    const f = buildExamForm(all, cert)
     setForm(f)
     setResponses({})
     setFlags(new Set())
     setIdx(0)
-    deadline.current = Date.now() + EXAM_MINUTES * 60 * 1000
-    setSecondsLeft(EXAM_MINUTES * 60)
+    deadline.current = Date.now() + cert.exam.minutes * 60 * 1000
+    setSecondsLeft(cert.exam.minutes * 60)
     setResult(null)
     setPhase('running')
   }
@@ -66,14 +71,15 @@ export default function Exam() {
       if (correct) raw += 1
       return { user_id: userId, question_id: q.id, quiz_kind: 'exam', correct, chosen: responses[q.id] ?? null }
     })
-    const scaled = scaledScore(raw, form.length)
-    const passed = scaled >= PASS_SCALED
+    const scaled = scaledScore(raw, form.length, cert)
+    const passed = scaled >= cert.exam.pass
     setResult({ raw, scaled, passed })
     setPhase('review')
     setIdx(0)
     await supabase.from('answer_events').insert(events)
     await supabase.from('exam_attempts').insert({
       user_id: userId,
+      cert: cert.id,
       submitted_at: new Date().toISOString(),
       question_ids: form.map((q) => q.id),
       responses,
@@ -90,12 +96,19 @@ export default function Exam() {
     return (
       <div className="max-w-2xl mx-auto space-y-5">
         <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-3">
-          <h1 className="text-lg font-semibold text-slate-100">Full exam simulation</h1>
+          <h1 className="text-lg font-semibold text-slate-100">
+            {cert.label} exam simulation <span className="text-slate-500 text-sm">({cert.examCode})</span>
+          </h1>
           <ul className="text-sm text-slate-400 space-y-1 list-disc ml-5">
-            <li>90 questions, blueprint-weighted across all five domains</li>
-            <li>Hard 90-minute timer — auto-submits at zero</li>
+            <li>
+              {cert.exam.questions} questions, blueprint-weighted across all {Object.keys(cert.domains).length} domains
+            </li>
+            <li>Hard {cert.exam.minutes}-minute timer — auto-submits at zero</li>
             <li>No feedback until you submit; flag questions to revisit</li>
-            <li>Scaled score 100–900, pass line 750 (approximation of CompTIA equating)</li>
+            <li>
+              Scaled score {cert.exam.scaleMin}–{cert.exam.scaleMax}, pass line {cert.exam.pass} (approximation of the
+              vendor's equating)
+            </li>
           </ul>
           <button onClick={start} className="rounded-lg bg-emerald-600 hover:bg-emerald-500 px-6 py-2.5 text-sm font-semibold">
             Start exam
@@ -135,7 +148,7 @@ export default function Exam() {
             {result.scaled} <span className="text-base font-semibold">{result.passed ? 'PASS' : 'FAIL'}</span>
           </p>
           <p className="text-sm text-slate-300 mt-1">
-            {result.raw}/{form.length} correct · pass line {PASS_SCALED} · review every question below, especially the ones you got right by luck
+            {result.raw}/{form.length} correct · pass line {cert.exam.pass} · review every question below, especially the ones you got right by luck
           </p>
         </div>
       )}

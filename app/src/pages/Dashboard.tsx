@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useUserId } from '../auth/AuthContext'
+import { useCert } from '../cert/CertContext'
 import {
   computeStreak,
   domainAccuracy,
@@ -11,7 +12,7 @@ import {
   fetchStudyDays,
   readinessScore,
 } from '../lib/data'
-import { DOMAIN_NAMES, DOMAIN_WEIGHTS } from '../lib/types'
+import type { CardState } from '../lib/types'
 
 interface Stats {
   dueNow: number
@@ -20,26 +21,33 @@ interface Stats {
   streak: number
   domains: { domain: number; label: string; weight: number; attempts: number; accuracy: number | null }[]
   dueSoon: { day: string; count: number }[]
+  hasContent: boolean
 }
 
 export default function Dashboard() {
   const userId = useUserId()
+  const { cert } = useCert()
   const [stats, setStats] = useState<Stats | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     let cancelled = false
+    setStats(null)
     async function load() {
       try {
-        const [cards, states, questions, answers, days] = await Promise.all([
-          fetchFlashcards(),
+        const [cards, allStates, questions, answers, days] = await Promise.all([
+          fetchFlashcards(cert.id),
           fetchCardStates(userId),
-          fetchQuestions(),
+          fetchQuestions(cert.id),
           fetchRecentAnswers(userId),
           fetchStudyDays(userId),
         ])
         const now = new Date()
         const reviewable = cards.filter((c) => c.deck !== 'feynman')
+        // SRS stats must only count this cert's cards.
+        const certCardIds = new Set(reviewable.map((c) => c.id))
+        const states = new Map<string, CardState>()
+        for (const [id, s] of allStates) if (certCardIds.has(id)) states.set(id, s)
         let dueNow = 0
         let newCards = 0
         for (const c of reviewable) {
@@ -49,13 +57,13 @@ export default function Dashboard() {
         }
         const qMap = new Map(questions.map((q) => [q.id, q]))
         const byDomain = domainAccuracy(answers, qMap)
-        const domains = Object.entries(DOMAIN_NAMES).map(([d, label]) => {
+        const domains = Object.entries(cert.domains).map(([d, label]) => {
           const n = Number(d)
           const acc = byDomain[n]
           return {
             domain: n,
             label,
-            weight: DOMAIN_WEIGHTS[n],
+            weight: cert.weights[n],
             attempts: acc?.attempts ?? 0,
             accuracy: acc && acc.attempts > 0 ? acc.correct / acc.attempts : null,
           }
@@ -78,10 +86,11 @@ export default function Dashboard() {
           setStats({
             dueNow,
             newCards,
-            readiness: readinessScore(answers, qMap, states, reviewable.length),
+            readiness: readinessScore(cert, answers, qMap, states, reviewable.length),
             streak: computeStreak(days),
             domains,
             dueSoon,
+            hasContent: cards.length > 0,
           })
       } catch (e) {
         if (!cancelled) setError(e instanceof Error ? e.message : String(e))
@@ -91,13 +100,25 @@ export default function Dashboard() {
     return () => {
       cancelled = true
     }
-  }, [userId])
+  }, [userId, cert])
 
   if (error) return <p className="text-red-400">{error}</p>
   if (!stats) return <p className="text-slate-400">Loading…</p>
 
   return (
     <div className="space-y-6">
+      <p className="text-sm text-slate-400">
+        Studying: <span className="text-slate-200 font-semibold">{cert.label}</span> ({cert.examCode}) — switch certs in
+        the header.
+      </p>
+
+      {!stats.hasContent && (
+        <div className="rounded-xl border border-amber-700/60 bg-amber-950/40 p-4 text-sm text-amber-200">
+          No study content is loaded for {cert.label} yet. Use the master prompt in docs/MASTER_PROMPT.md to generate
+          and seed a bank for it.
+        </div>
+      )}
+
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <Tile label="Cards due now" value={String(stats.dueNow)} to="/flashcards" accent={stats.dueNow > 0} />
         <Tile label="New cards waiting" value={String(stats.newCards)} to="/flashcards" />

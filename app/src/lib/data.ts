@@ -1,19 +1,19 @@
 import { supabase } from './supabase'
 import type { AnswerEvent, CardState, Flashcard, Question, QuizKind } from './types'
-import { DOMAIN_WEIGHTS } from './types'
+import type { CertConfig } from './certs'
 import type { Grade } from './sm2'
 import { NEW_CARD_STATE, reviewCard } from './sm2'
 
-export async function fetchFlashcards(deck?: string): Promise<Flashcard[]> {
-  let query = supabase.from('flashcards').select('*')
+export async function fetchFlashcards(cert: string, deck?: string): Promise<Flashcard[]> {
+  let query = supabase.from('flashcards').select('*').eq('cert', cert)
   if (deck) query = query.eq('deck', deck)
   const { data, error } = await query
   if (error) throw error
   return data as Flashcard[]
 }
 
-export async function fetchQuestions(): Promise<Question[]> {
-  const { data, error } = await supabase.from('questions').select('*')
+export async function fetchQuestions(cert: string): Promise<Question[]> {
+  const { data, error } = await supabase.from('questions').select('*').eq('cert', cert)
   if (error) throw error
   return data as Question[]
 }
@@ -153,6 +153,7 @@ export function domainAccuracy(events: AnswerEvent[], questions: Map<string, Que
  * Domains without data contribute a 0.35 prior so an empty history reads low, not zero.
  */
 export function readinessScore(
+  cfg: CertConfig,
   events: AnswerEvent[],
   questions: Map<string, Question>,
   cardStates: Map<string, CardState>,
@@ -160,7 +161,7 @@ export function readinessScore(
 ): number {
   const byDomain = domainAccuracy(events, questions)
   let quiz = 0
-  for (const [domain, weight] of Object.entries(DOMAIN_WEIGHTS)) {
+  for (const [domain, weight] of Object.entries(cfg.weights)) {
     const d = byDomain[Number(domain)]
     const acc = d && d.attempts >= 5 ? d.correct / d.attempts : 0.35
     quiz += weight * acc

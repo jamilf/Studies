@@ -49,6 +49,32 @@ CompTIA Security+ SY0-701:
      RTO/RPO/MTTR/MTBF; third-party risk; compliance and privacy; audits and assessments;
      pen testing concepts; security awareness)
 
+## MULTI-CERTIFICATION MODEL
+
+The platform is not Security+-only. It hosts multiple certifications side by side, selected by
+a header dropdown, each with its own content, domains, blueprint weights, and exam-simulator
+parameters. Currently seeded: **A+ Core 1 (220-1101)**, **A+ Core 2 (220-1102)**,
+**Network+ (N10-009)**, **Security+ (SY0-701)**, **CySA+ (CS0-003)**,
+**AWS Solutions Architect Associate (SAA-C03)**, **AWS Security Specialty (SCS-C02)**, and
+**CISSP (ISC2)**.
+
+How it works:
+- Every `flashcards` / `questions` / `exam_attempts` row carries a `cert` text column.
+  The `domain` check allows 1–8 (CISSP has 8 domains).
+- `app/src/lib/certs.ts` is the **cert registry**: each entry defines `id`, `label`,
+  `examCode`, `domains` (number→name), `weights` (blueprint fractions summing to 1), and
+  `exam` params (`questions`, `minutes`, `pass`, `scaleMin`, `scaleMax`). `domainCounts()`
+  apportions an exam form across domains by weight (largest-remainder).
+- `app/src/cert/CertContext.tsx` holds the active cert (persisted in `localStorage`); every
+  page reads `useCert()` and filters all queries by `cert.id`, and the exam simulator uses the
+  per-cert exam params and `scaledScore()`.
+
+**To add another certification:** (1) add a registry entry to `CERTS`/`CERT_ORDER` in
+`certs.ts`; (2) generate a seed migration `supabase/migrations/<ts>_seed_<cert>.sql` following
+the content rules below, tagging every row with the new `cert` id and blueprint-weighted
+domains; (3) apply it to Postgres and verify answer-index integrity; (4) no schema or app
+framework change is needed — the registry drives everything.
+
 **Content ethics rule:** every question and flashcard must be ORIGINAL, written from the
 public exam objectives. Never reproduce real/leaked exam items ("brain dumps"). This is both
 an integrity requirement and a legal one.

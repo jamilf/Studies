@@ -1,5 +1,6 @@
 import { HashRouter, Route, Routes } from 'react-router-dom'
 import { AuthProvider, useAuth } from './auth/AuthContext'
+import { CertProvider } from './cert/CertContext'
 import Layout from './components/Layout'
 import Dashboard from './pages/Dashboard'
 import Exam from './pages/Exam'
@@ -28,9 +29,11 @@ function Gate() {
 export default function App() {
   return (
     <AuthProvider>
-      <HashRouter>
-        <Gate />
-      </HashRouter>
+      <CertProvider>
+        <HashRouter>
+          <Gate />
+        </HashRouter>
+      </CertProvider>
     </AuthProvider>
   )
 }

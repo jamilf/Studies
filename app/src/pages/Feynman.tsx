@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useUserId } from '../auth/AuthContext'
+import { useCert } from '../cert/CertContext'
 import { fetchCardStates, fetchFlashcards, gradeCard } from '../lib/data'
 import type { Grade } from '../lib/sm2'
 import type { CardState, Flashcard } from '../lib/types'
-import { DOMAIN_NAMES } from '../lib/types'
 import { shuffle } from '../lib/shuffle'
 
 /**
@@ -13,6 +13,7 @@ import { shuffle } from '../lib/shuffle'
  */
 export default function Feynman() {
   const userId = useUserId()
+  const { cert } = useCert()
   const [prompts, setPrompts] = useState<Flashcard[] | null>(null)
   const [states, setStates] = useState<Map<string, CardState>>(new Map())
   const [queue, setQueue] = useState<Flashcard[]>([])
@@ -21,8 +22,9 @@ export default function Feynman() {
   const [done, setDone] = useState(0)
 
   useEffect(() => {
+    setPrompts(null)
     void (async () => {
-      const [cards, cardStates] = await Promise.all([fetchFlashcards('feynman'), fetchCardStates(userId)])
+      const [cards, cardStates] = await Promise.all([fetchFlashcards(cert.id, 'feynman'), fetchCardStates(userId)])
       setPrompts(cards)
       setStates(cardStates)
       const now = new Date()
@@ -32,7 +34,7 @@ export default function Feynman() {
       })
       setQueue(shuffle(due))
     })()
-  }, [userId])
+  }, [userId, cert])
 
   const current = queue[0]
 
@@ -66,7 +68,7 @@ export default function Feynman() {
     <div className="max-w-2xl mx-auto space-y-4">
       <div className="flex justify-between text-xs text-slate-400">
         <span>
-          Explain it in your own words · D{current.domain} · {DOMAIN_NAMES[current.domain]}
+          Explain it in your own words · D{current.domain} · {cert.domains[current.domain]}
         </span>
         <span>
           {queue.length} in queue · {done} done
