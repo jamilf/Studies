@@ -9,6 +9,7 @@ const tabs = [
   { to: '/quiz', label: 'Quiz' },
   { to: '/exam', label: 'Exam Sim' },
   { to: '/feynman', label: 'Explain It' },
+  { to: '/concepts', label: 'Visuals' },
 ]
 
 export default function Layout() {

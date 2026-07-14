@@ -2,6 +2,7 @@ import { HashRouter, Route, Routes } from 'react-router-dom'
 import { AuthProvider, useAuth } from './auth/AuthContext'
 import { CertProvider } from './cert/CertContext'
 import Layout from './components/Layout'
+import Concepts from './pages/Concepts'
 import Dashboard from './pages/Dashboard'
 import Exam from './pages/Exam'
 import Feynman from './pages/Feynman'
@@ -21,6 +22,7 @@ function Gate() {
         <Route path="quiz" element={<Quiz />} />
         <Route path="exam" element={<Exam />} />
         <Route path="feynman" element={<Feynman />} />
+        <Route path="concepts" element={<Concepts />} />
       </Route>
     </Routes>
   )
