@@ -6,6 +6,7 @@ import PkiLifecycle from './secplus/PkiLifecycle'
 import RiskCalculator from './secplus/RiskCalculator'
 import PyramidOfPain from './cysa/PyramidOfPain'
 import VpcConnectivityScaling from './awssaa/VpcConnectivityScaling'
+import ObjectLockModes from './awsscs/ObjectLockModes'
 
 export interface ConceptEntry {
   id: string
@@ -72,6 +73,14 @@ export const CONCEPTS: ConceptEntry[] = [
     title: 'VPC Peering vs Transit Gateway Scaling',
     description: 'Drag the VPC count slider to see peering connections grow quadratically vs Transit Gateway linearly.',
     Component: VpcConnectivityScaling,
+  },
+  {
+    id: 'awsscs-object-lock-modes',
+    certId: 'awsscs',
+    domain: 5,
+    title: 'S3 Object Lock: Governance vs Compliance',
+    description: 'Pick a retention mode and an actor, then try to delete a locked object to see who can override.',
+    Component: ObjectLockModes,
   },
 ]
 
