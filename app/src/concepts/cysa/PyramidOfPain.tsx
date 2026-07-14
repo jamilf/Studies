@@ -40,7 +40,9 @@ const TIERS: Tier[] = [
   },
 ]
 
-const PAIN_COLOR = ['bg-slate-600', 'bg-sky-600', 'bg-emerald-600', 'bg-lime-600', 'bg-amber-600', 'bg-red-600']
+// Heat ramp: bottom tier (trivial to change) is pale, top tier (toughest) is deep brick.
+const PAIN_COLOR = ['bg-heat-1', 'bg-heat-2', 'bg-heat-3', 'bg-heat-4', 'bg-heat-5', 'bg-heat-6']
+const PAIN_TEXT = ['text-ink', 'text-ink', 'text-ink', 'text-paper', 'text-paper', 'text-paper']
 
 export default function PyramidOfPain() {
   const [selected, setSelected] = useState(TIERS.length - 1)
@@ -48,8 +50,8 @@ export default function PyramidOfPain() {
   return (
     <div className="space-y-5">
       <div>
-        <h3 className="text-lg font-semibold text-slate-100">The Pyramid of Pain</h3>
-        <p className="text-sm text-slate-400">
+        <h3 className="font-display text-lg text-ink">The Pyramid of Pain</h3>
+        <p className="text-sm text-soft">
           Domain 1.2 — click a tier to see how costly it is for an attacker to change that indicator.
         </p>
       </div>
@@ -63,8 +65,8 @@ export default function PyramidOfPain() {
               key={tier.name}
               onClick={() => setSelected(i)}
               style={{ width: `${widthPct}%` }}
-              className={`transition-all duration-300 rounded-md py-2.5 text-center text-white text-sm font-semibold ${PAIN_COLOR[i]} ${
-                i === selected ? 'ring-2 ring-offset-2 ring-offset-slate-950 ring-white scale-[1.03]' : 'opacity-80 hover:opacity-100'
+              className={`transition-all duration-300 rounded-crisp py-2.5 text-center text-sm font-semibold ${PAIN_COLOR[i]} ${PAIN_TEXT[i]} ${
+                i === selected ? 'ring-2 ring-offset-2 ring-offset-surface ring-ink scale-[1.03]' : 'opacity-80 hover:opacity-100'
               }`}
             >
               {tier.name}
@@ -73,19 +75,21 @@ export default function PyramidOfPain() {
         })}
       </div>
 
-      <div key={selected} className="rounded-xl border border-slate-800 bg-slate-900 p-5 animate-[fadein_0.3s_ease-out]">
+      <div key={selected} className="rounded-crisp bg-wash border-l-2 border-accent px-4 py-3 animate-fadein">
         <div className="flex items-center gap-2 mb-2">
-          <span className={`rounded px-2 py-0.5 text-[11px] font-semibold text-white ${PAIN_COLOR[selected]}`}>
+          <span
+            className={`rounded-crisp px-2 py-0.5 text-[11px] font-semibold ${PAIN_COLOR[selected]} ${PAIN_TEXT[selected]}`}
+          >
             Pain: {TIERS[selected].pain}
           </span>
-          <h4 className="font-semibold text-slate-100">{TIERS[selected].name}</h4>
+          <h4 className="font-semibold text-ink">{TIERS[selected].name}</h4>
         </div>
-        <p className="text-sm text-slate-300 leading-relaxed">{TIERS[selected].detail}</p>
+        <p className="text-sm text-soft leading-relaxed">{TIERS[selected].detail}</p>
       </div>
 
-      <div className="rounded-lg border border-amber-800/50 bg-amber-950/30 p-4 text-sm text-amber-200">
-        <p className="font-semibold mb-1">Why this matters for detection strategy</p>
-        <p className="text-amber-200/80">
+      <div className="rounded-crisp bg-warn-tint border-l-2 border-warn px-4 py-3 text-sm">
+        <p className="font-semibold text-warn mb-1">Why this matters for detection strategy</p>
+        <p className="text-ink">
           Detections built on hashes or IPs (bottom of the pyramid) expire almost as fast as you write them. Building
           detections around TTPs — the top — forces an attacker to change how they fundamentally operate, which is
           slow, expensive, and sometimes impossible for them to do quickly.

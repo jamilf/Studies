@@ -46,6 +46,9 @@ const TIERS: Tier[] = [
   },
 ]
 
+// Cost meter fills with the heat ramp: more cost = hotter.
+const COST_COLOR = ['bg-heat-1', 'bg-heat-2', 'bg-heat-3', 'bg-heat-4', 'bg-heat-5']
+
 export default function DrSiteSpectrum() {
   const [selected, setSelected] = useState(2)
   const t = TIERS[selected]
@@ -53,8 +56,8 @@ export default function DrSiteSpectrum() {
   return (
     <div className="space-y-5">
       <div>
-        <h3 className="text-lg font-semibold text-slate-100">Disaster Recovery Site Spectrum</h3>
-        <p className="text-sm text-slate-400">
+        <h3 className="font-display text-lg text-ink">Disaster Recovery Site Spectrum</h3>
+        <p className="text-sm text-soft">
           Domain 3.4 — drag across the tiers to see how RTO, RPO, and cost trade off.
         </p>
       </div>
@@ -66,14 +69,14 @@ export default function DrSiteSpectrum() {
         step={1}
         value={selected}
         onChange={(e) => setSelected(Number(e.target.value))}
-        className="w-full accent-emerald-500"
+        className="w-full"
       />
-      <div className="flex justify-between text-[10px] text-slate-500 px-0.5 -mt-3">
+      <div className="flex justify-between text-[10px] text-faint px-0.5 -mt-3">
         {TIERS.map((tier, i) => (
           <button
             key={tier.name}
             onClick={() => setSelected(i)}
-            className={`text-center transition-colors ${i === selected ? 'text-emerald-300 font-semibold' : 'hover:text-slate-300'}`}
+            className={`text-center transition-colors ${i === selected ? 'text-accent font-semibold' : 'hover:text-soft'}`}
             style={{ width: `${100 / TIERS.length}%` }}
           >
             {tier.name.split(' ')[0]}
@@ -84,27 +87,27 @@ export default function DrSiteSpectrum() {
       <div className="grid sm:grid-cols-3 gap-3">
         <Stat label="Recovery Time Objective" value={t.rto} />
         <Stat label="Recovery Point Objective" value={t.rpo} />
-        <div className="rounded-lg border border-slate-800 bg-slate-900 p-3">
-          <p className="text-[11px] text-slate-500 mb-1.5">Relative cost</p>
+        <div className="rounded-crisp border border-line bg-wash p-3">
+          <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Relative cost</p>
           <div className="flex gap-1">
             {Array.from({ length: 5 }).map((_, i) => (
               <div
                 key={i}
-                className={`h-3 flex-1 rounded-sm transition-colors ${i < t.cost ? 'bg-emerald-500' : 'bg-slate-800'}`}
+                className={`h-3 flex-1 rounded-xs transition-colors ${i < t.cost ? COST_COLOR[i] : 'bg-line/50'}`}
               />
             ))}
           </div>
         </div>
       </div>
 
-      <div key={t.name} className="rounded-xl border border-slate-800 bg-slate-900 p-5 animate-[fadein_0.3s_ease-out]">
-        <h4 className="font-semibold text-slate-100 mb-2">{t.name}</h4>
-        <p className="text-sm text-slate-300 leading-relaxed">{t.desc}</p>
+      <div key={t.name} className="rounded-crisp bg-wash border-l-2 border-accent px-4 py-3 animate-fadein">
+        <h4 className="font-semibold text-ink mb-2">{t.name}</h4>
+        <p className="text-sm text-soft leading-relaxed">{t.desc}</p>
       </div>
 
-      <div className="rounded-lg border border-amber-800/50 bg-amber-950/30 p-4 text-sm text-amber-200">
-        <p className="font-semibold mb-1">Exam framing</p>
-        <p className="text-amber-200/80">
+      <div className="rounded-crisp bg-warn-tint border-l-2 border-warn px-4 py-3 text-sm">
+        <p className="font-semibold text-warn mb-1">Exam framing</p>
+        <p className="text-ink">
           Pick the CHEAPEST tier that still satisfies the RTO/RPO your BIA (Business Impact Analysis) requires. A
           24-hour MTD doesn't justify a hot site; a 15-minute MTD can't survive on a cold site.
         </p>
@@ -115,9 +118,9 @@ export default function DrSiteSpectrum() {
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-lg border border-slate-800 bg-slate-900 p-3">
-      <p className="text-[11px] text-slate-500 mb-1">{label}</p>
-      <p className="text-sm font-semibold text-slate-100">{value}</p>
+    <div className="rounded-crisp border border-line bg-wash p-3">
+      <p className="text-[11px] uppercase tracking-wider text-faint mb-1">{label}</p>
+      <p className="font-mono text-sm font-semibold text-ink">{value}</p>
     </div>
   )
 }

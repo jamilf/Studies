@@ -102,80 +102,121 @@ export default function Dashboard() {
     }
   }, [userId, cert])
 
-  if (error) return <p className="text-red-400">{error}</p>
-  if (!stats) return <p className="text-slate-400">Loading…</p>
+  if (error) return <p className="text-bad">{error}</p>
+  if (!stats) return <p className="text-soft">Loading…</p>
 
   return (
-    <div className="space-y-6">
-      <p className="text-sm text-slate-400">
-        Studying: <span className="text-slate-200 font-semibold">{cert.label}</span> ({cert.examCode}) — switch certs in
-        the header.
+    <div className="space-y-10">
+      <p className="text-xs uppercase tracking-wider text-faint">
+        Studying · <span className="text-ink font-medium normal-case text-sm tracking-normal">{cert.label}</span>{' '}
+        <span className="font-mono">{cert.examCode}</span>
       </p>
 
       {!stats.hasContent && (
-        <div className="rounded-xl border border-amber-700/60 bg-amber-950/40 p-4 text-sm text-amber-200">
+        <div className="bg-warn-tint border-l-2 border-warn rounded-crisp px-4 py-3 text-sm text-ink">
           No study content is loaded for {cert.label} yet. Use the master prompt in docs/MASTER_PROMPT.md to generate
           and seed a bank for it.
         </div>
       )}
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div className="grid grid-cols-2 md:grid-cols-4 border-y border-line [&>*]:border-line [&>*:nth-child(even)]:border-l md:[&>*:nth-child(n+2)]:border-l max-md:[&>*:nth-child(n+3)]:border-t">
         <Tile label="Cards due now" value={String(stats.dueNow)} to="/flashcards" accent={stats.dueNow > 0} />
         <Tile label="New cards waiting" value={String(stats.newCards)} to="/flashcards" />
         <Tile label="Exam readiness" value={`${stats.readiness}%`} />
         <Tile label="Study streak" value={`${stats.streak}d`} />
       </div>
 
-      <section className="bg-slate-900 border border-slate-800 rounded-xl p-5">
-        <h2 className="font-semibold mb-1 text-slate-200">What to do next</h2>
-        <ol className="text-sm text-slate-400 list-decimal ml-5 space-y-1">
+      <section>
+        <h2 className="font-display text-lg text-ink pb-2 border-b border-line mb-4">What to do next</h2>
+        <ol className="text-sm text-soft list-decimal ml-5 space-y-1.5">
           <li>
-            Clear your <Link className="text-emerald-400 hover:underline" to="/flashcards">due cards</Link> — spaced repetition only works daily.
+            Clear your{' '}
+            <Link className="text-accent underline underline-offset-2 hover:text-accent-deep" to="/flashcards">
+              due cards
+            </Link>{' '}
+            — spaced repetition only works daily.
           </li>
           <li>
-            Take one 15-question <Link className="text-emerald-400 hover:underline" to="/quiz">mixed quiz</Link> (or <em>weak areas</em> if a domain lags).
+            Take one 15-question{' '}
+            <Link className="text-accent underline underline-offset-2 hover:text-accent-deep" to="/quiz">
+              mixed quiz
+            </Link>{' '}
+            (or <em>weak areas</em> if a domain lags).
           </li>
           <li>
-            From week 2: one full <Link className="text-emerald-400 hover:underline" to="/exam">mock exam</Link> weekly. Sustained 85%+ readiness plus a passed mock → book the real exam.
+            From week 2: one full{' '}
+            <Link className="text-accent underline underline-offset-2 hover:text-accent-deep" to="/exam">
+              mock exam
+            </Link>{' '}
+            weekly. Sustained 85%+ readiness plus a passed mock → book the real exam.
           </li>
         </ol>
       </section>
 
-      <section className="bg-slate-900 border border-slate-800 rounded-xl p-5">
-        <h2 className="font-semibold mb-3 text-slate-200">Domain mastery (blueprint-weighted)</h2>
-        <div className="space-y-2.5">
+      <section>
+        <h2 className="font-display text-lg text-ink pb-2 border-b border-line mb-4">
+          Domain mastery <span className="text-sm text-faint font-sans">(blueprint-weighted)</span>
+        </h2>
+        <div className="space-y-3">
           {stats.domains.map((d) => (
             <div key={d.domain}>
-              <div className="flex justify-between text-xs text-slate-400 mb-1">
-                <span>
-                  {d.domain}. {d.label} <span className="text-slate-500">({Math.round(d.weight * 100)}%)</span>
+              <div className="flex justify-between items-baseline text-xs mb-1">
+                <span className="text-soft">
+                  <span className="font-mono text-faint">§{d.domain}</span> {d.label}{' '}
+                  <span className="text-faint">({Math.round(d.weight * 100)}%)</span>
                 </span>
-                <span>{d.accuracy === null ? 'no data' : `${Math.round(d.accuracy * 100)}% of ${d.attempts}`}</span>
+                <span className="font-mono text-soft">
+                  {d.accuracy === null ? '—' : `${Math.round(d.accuracy * 100)}% of ${d.attempts}`}
+                </span>
               </div>
-              <div className="h-2 rounded bg-slate-800 overflow-hidden">
+              <div className="relative h-1.5 rounded-full bg-wash overflow-hidden">
                 <div
-                  className={`h-full ${d.accuracy === null ? 'bg-slate-700' : d.accuracy >= 0.85 ? 'bg-emerald-500' : d.accuracy >= 0.7 ? 'bg-yellow-500' : 'bg-red-500'}`}
+                  className={`h-full rounded-full ${
+                    d.accuracy === null
+                      ? 'bg-line'
+                      : d.accuracy >= 0.85
+                        ? 'bg-good'
+                        : d.accuracy >= 0.7
+                          ? 'bg-warn'
+                          : 'bg-bad'
+                  }`}
                   style={{ width: `${(d.accuracy ?? 0.05) * 100}%` }}
                 />
+                <div className="absolute top-0 h-full w-px bg-line-strong" style={{ left: '85%' }} title="85% target" />
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="bg-slate-900 border border-slate-800 rounded-xl p-5">
-        <h2 className="font-semibold mb-3 text-slate-200">Review forecast (next 7 days)</h2>
-        <div className="flex gap-2 items-end h-20">
+      <section>
+        <h2 className="font-display text-lg text-ink pb-2 border-b border-line mb-4">
+          Review forecast <span className="text-sm text-faint font-sans">(next 7 days)</span>
+        </h2>
+        <div className="flex gap-1.5 items-end h-24 border-b border-line">
           {stats.dueSoon.map((d) => {
             const max = Math.max(...stats.dueSoon.map((x) => x.count), 1)
             return (
-              <div key={d.day} className="flex-1 flex flex-col items-center gap-1">
-                <span className="text-[10px] text-slate-400">{d.count}</span>
-                <div className="w-full bg-emerald-700/60 rounded-t" style={{ height: `${(d.count / max) * 56 + 2}px` }} />
-                <span className="text-[10px] text-slate-500">{d.day}</span>
+              <div
+                key={d.day}
+                className="flex-1 flex flex-col items-center justify-end gap-1 h-full"
+                title={`${d.count} card${d.count === 1 ? '' : 's'} due ${d.day}`}
+              >
+                {d.count > 0 && <span className="font-mono text-[10px] text-faint">{d.count}</span>}
+                <div
+                  className={`w-full max-w-10 mx-auto rounded-t-xs ${d.count > 0 ? 'bg-accent/70' : 'bg-wash'}`}
+                  style={{ height: `${(d.count / max) * 64 + 2}px` }}
+                />
               </div>
             )
           })}
+        </div>
+        <div className="flex gap-1.5 mt-1">
+          {stats.dueSoon.map((d) => (
+            <span key={d.day} className="flex-1 text-center font-mono text-[10px] text-faint">
+              {d.day}
+            </span>
+          ))}
         </div>
       </section>
     </div>
@@ -184,11 +225,12 @@ export default function Dashboard() {
 
 function Tile({ label, value, to, accent }: { label: string; value: string; to?: string; accent?: boolean }) {
   const inner = (
-    <div
-      className={`rounded-xl border p-4 h-full ${accent ? 'border-emerald-600 bg-emerald-950/40' : 'border-slate-800 bg-slate-900'}`}
-    >
-      <p className="text-2xl font-bold text-slate-100">{value}</p>
-      <p className="text-xs text-slate-400 mt-1">{label}</p>
+    <div className={`px-4 py-5 h-full ${to ? 'hover:bg-wash transition-colors' : ''}`}>
+      <p className={`font-display text-3xl ${accent ? 'text-accent' : 'text-ink'}`}>
+        {value}
+        {accent && <span className="align-middle ml-2 inline-block w-2 h-2 rounded-full bg-accent" />}
+      </p>
+      <p className="text-[11px] uppercase tracking-wider text-faint mt-1.5">{label}</p>
     </div>
   )
   return to ? <Link to={to}>{inner}</Link> : inner

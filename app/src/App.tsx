@@ -12,7 +12,7 @@ import SignIn from './pages/SignIn'
 
 function Gate() {
   const { session, loading } = useAuth()
-  if (loading) return <p className="p-8 text-slate-400">Loading…</p>
+  if (loading) return <p className="p-8 text-soft">Loading…</p>
   if (!session) return <SignIn />
   return (
     <Routes>

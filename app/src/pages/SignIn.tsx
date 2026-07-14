@@ -44,48 +44,57 @@ export default function SignIn() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
-      <form onSubmit={submit} className="w-full max-w-sm space-y-4 bg-slate-900 border border-slate-800 rounded-xl p-6">
-        <h1 className="text-xl font-bold text-emerald-400">Security+ Trainer</h1>
-        <p className="text-sm text-slate-400">
-          {mode === 'signin' ? 'Sign in to continue studying.' : 'Create your account (first run only).'}
-        </p>
-        <input
-          type="email"
-          required
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full rounded-md bg-slate-800 border border-slate-700 px-3 py-2 text-sm"
-        />
-        <input
-          type="password"
-          required
-          minLength={8}
-          placeholder="Password (8+ characters)"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full rounded-md bg-slate-800 border border-slate-700 px-3 py-2 text-sm"
-        />
-        {error && <p className="text-sm text-red-400">{error}</p>}
-        {notice && (
-          <p className="text-sm text-amber-300 border border-amber-700/60 bg-amber-950/40 rounded-md p-3 leading-relaxed">
-            {notice}
+      <div className="w-full max-w-sm space-y-6">
+        <div className="text-center">
+          <h1 className="font-display text-3xl font-semibold tracking-tight text-ink">
+            Primer<span className="text-accent">.</span>
+          </h1>
+          <p className="text-sm text-soft mt-2">
+            Spaced repetition and exam simulation for certification study.
           </p>
-        )}
-        <button
-          disabled={busy}
-          className="w-full rounded-md bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 py-2 text-sm font-semibold"
-        >
-          {mode === 'signin' ? 'Sign in' : 'Create account'}
-        </button>
-        <button
-          type="button"
-          onClick={() => setMode(mode === 'signin' ? 'signup' : 'signin')}
-          className="w-full text-xs text-slate-400 hover:text-slate-200"
-        >
-          {mode === 'signin' ? 'First time? Create an account' : 'Already registered? Sign in'}
-        </button>
-      </form>
+        </div>
+        <form onSubmit={submit} className="space-y-4 bg-surface border border-line rounded-soft shadow-card p-6">
+          <p className="text-sm text-soft">
+            {mode === 'signin' ? 'Sign in to continue studying.' : 'Create your account (first run only).'}
+          </p>
+          <input
+            type="email"
+            required
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full rounded-crisp bg-surface border border-line focus:border-accent px-3 py-2 text-sm text-ink placeholder:text-faint outline-none transition-colors"
+          />
+          <input
+            type="password"
+            required
+            minLength={8}
+            placeholder="Password (8+ characters)"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full rounded-crisp bg-surface border border-line focus:border-accent px-3 py-2 text-sm text-ink placeholder:text-faint outline-none transition-colors"
+          />
+          {error && <p className="text-sm text-bad">{error}</p>}
+          {notice && (
+            <p className="text-sm text-ink bg-warn-tint border-l-2 border-warn rounded-crisp px-4 py-3 leading-relaxed">
+              {notice}
+            </p>
+          )}
+          <button
+            disabled={busy}
+            className="w-full rounded-crisp bg-accent hover:bg-accent-deep disabled:opacity-50 text-paper py-2 text-sm font-semibold transition-colors"
+          >
+            {mode === 'signin' ? 'Sign in' : 'Create account'}
+          </button>
+          <button
+            type="button"
+            onClick={() => setMode(mode === 'signin' ? 'signup' : 'signin')}
+            className="w-full text-xs text-soft hover:text-ink transition-colors"
+          >
+            {mode === 'signin' ? 'First time? Create an account' : 'Already registered? Sign in'}
+          </button>
+        </form>
+      </div>
     </div>
   )
 }

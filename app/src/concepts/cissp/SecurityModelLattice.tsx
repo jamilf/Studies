@@ -39,8 +39,8 @@ export default function SecurityModelLattice() {
   return (
     <div className="space-y-5">
       <div>
-        <h3 className="text-lg font-semibold text-slate-100">Bell-LaPadula vs. Biba Access Rules</h3>
-        <p className="text-sm text-slate-400">
+        <h3 className="font-display text-lg text-ink">Bell-LaPadula vs. Biba Access Rules</h3>
+        <p className="text-sm text-soft">
           Domain 3.1 — pick a model, a subject's clearance, an object's classification, and an action to see whether
           it's allowed.
         </p>
@@ -51,10 +51,10 @@ export default function SecurityModelLattice() {
           <button
             key={m}
             onClick={() => setModel(m)}
-            className={`flex-1 rounded-lg border px-3 py-2 text-sm font-medium capitalize transition-colors ${
+            className={`flex-1 rounded-crisp border px-3 py-2 text-sm font-medium capitalize transition-colors ${
               model === m
-                ? 'border-emerald-500 bg-emerald-950/40 text-emerald-300'
-                : 'border-slate-800 bg-slate-900 text-slate-400 hover:border-slate-700'
+                ? 'border-accent bg-accent-tint text-accent'
+                : 'border-line bg-surface text-soft hover:border-line-strong'
             }`}
           >
             {m === 'bell-lapadula' ? 'Bell-LaPadula' : 'Biba'} ({RULE_TEXT[m].focus})
@@ -64,16 +64,16 @@ export default function SecurityModelLattice() {
 
       <div className="grid sm:grid-cols-3 gap-4">
         <div>
-          <p className="text-xs text-slate-400 mb-1">Subject's level</p>
+          <p className="text-xs text-soft mb-1">Subject's level</p>
           <div className="flex flex-col gap-1">
             {LEVELS.map((label, i) => (
               <button
                 key={label}
                 onClick={() => setSubjectLevel(i)}
-                className={`rounded-md border px-2 py-1.5 text-xs text-left transition-colors ${
+                className={`rounded-crisp border px-2 py-1.5 text-xs text-left transition-colors ${
                   subjectLevel === i
-                    ? 'border-sky-500 bg-sky-950/40 text-sky-300'
-                    : 'border-slate-800 bg-slate-900 text-slate-400 hover:border-slate-700'
+                    ? 'border-accent bg-accent-tint text-accent'
+                    : 'border-line bg-surface text-soft hover:border-line-strong'
                 }`}
               >
                 {label}
@@ -83,16 +83,16 @@ export default function SecurityModelLattice() {
         </div>
 
         <div>
-          <p className="text-xs text-slate-400 mb-1">Object's level</p>
+          <p className="text-xs text-soft mb-1">Object's level</p>
           <div className="flex flex-col gap-1">
             {LEVELS.map((label, i) => (
               <button
                 key={label}
                 onClick={() => setObjectLevel(i)}
-                className={`rounded-md border px-2 py-1.5 text-xs text-left transition-colors ${
+                className={`rounded-crisp border px-2 py-1.5 text-xs text-left transition-colors ${
                   objectLevel === i
-                    ? 'border-amber-500 bg-amber-950/40 text-amber-300'
-                    : 'border-slate-800 bg-slate-900 text-slate-400 hover:border-slate-700'
+                    ? 'border-warn bg-warn-tint text-warn'
+                    : 'border-line bg-surface text-soft hover:border-line-strong'
                 }`}
               >
                 {label}
@@ -102,16 +102,16 @@ export default function SecurityModelLattice() {
         </div>
 
         <div>
-          <p className="text-xs text-slate-400 mb-1">Action</p>
+          <p className="text-xs text-soft mb-1">Action</p>
           <div className="flex flex-col gap-1">
             {(['read', 'write'] as Action[]).map((a) => (
               <button
                 key={a}
                 onClick={() => setAction(a)}
-                className={`rounded-md border px-2 py-1.5 text-xs text-left capitalize transition-colors ${
+                className={`rounded-crisp border px-2 py-1.5 text-xs text-left capitalize transition-colors ${
                   action === a
-                    ? 'border-violet-500 bg-violet-950/40 text-violet-300'
-                    : 'border-slate-800 bg-slate-900 text-slate-400 hover:border-slate-700'
+                    ? 'border-ink bg-wash text-ink font-medium'
+                    : 'border-line bg-surface text-soft hover:border-line-strong'
                 }`}
               >
                 {a}
@@ -123,32 +123,32 @@ export default function SecurityModelLattice() {
 
       <div
         key={`${model}-${subjectLevel}-${objectLevel}-${action}`}
-        className={`rounded-xl border p-5 text-center animate-[fadein_0.3s_ease-out] ${
-          allowed ? 'border-emerald-700/50 bg-emerald-950/30' : 'border-red-800/50 bg-red-950/30'
+        className={`rounded-crisp border-l-2 px-5 py-4 text-center animate-fadein ${
+          allowed ? 'border-good bg-good-tint' : 'border-bad bg-bad-tint'
         }`}
       >
-        <p className={`text-2xl font-bold ${allowed ? 'text-emerald-300' : 'text-red-300'}`}>
-          {allowed ? 'ALLOWED' : 'DENIED'}
+        <p className={`font-display text-2xl font-semibold ${allowed ? 'text-good' : 'text-bad'}`}>
+          {allowed ? 'Allowed' : 'Denied'}
         </p>
-        <p className="text-sm text-slate-300 mt-1">
+        <p className="text-sm text-ink mt-1">
           Subject at <span className="font-medium">{LEVELS[subjectLevel]}</span> attempting to{' '}
           <span className="font-medium">{action}</span> an object at{' '}
           <span className="font-medium">{LEVELS[objectLevel]}</span>
         </p>
       </div>
 
-      <div className="rounded-lg border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-400 space-y-1">
+      <div className="rounded-crisp bg-wash border-l-2 border-line-strong px-4 py-3 text-sm text-soft space-y-1">
         <p>
-          <span className="font-semibold text-slate-300">Read rule:</span> {rules.readRule}
+          <span className="font-semibold text-ink">Read rule:</span> {rules.readRule}
         </p>
         <p>
-          <span className="font-semibold text-slate-300">Write rule:</span> {rules.writeRule}
+          <span className="font-semibold text-ink">Write rule:</span> {rules.writeRule}
         </p>
         <p className="pt-1">
-          <span className="font-semibold text-slate-300">Exam tip:</span> Bell-LaPadula protects{' '}
-          <span className="text-sky-300">confidentiality</span> (keep secrets from leaking down). Biba protects{' '}
-          <span className="text-amber-300">integrity</span> (keep low-quality data from corrupting up) — their rules
-          are mirror images of each other.
+          <span className="font-semibold text-ink">Exam tip:</span> Bell-LaPadula protects{' '}
+          <span className="text-accent">confidentiality</span> (keep secrets from leaking down). Biba protects{' '}
+          <span className="text-warn">integrity</span> (keep low-quality data from corrupting up) — their rules are
+          mirror images of each other.
         </p>
       </div>
     </div>

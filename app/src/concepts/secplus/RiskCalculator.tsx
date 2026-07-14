@@ -16,8 +16,8 @@ export default function RiskCalculator() {
   return (
     <div className="space-y-5">
       <div>
-        <h3 className="text-lg font-semibold text-slate-100">Quantitative Risk Calculator</h3>
-        <p className="text-sm text-slate-400">
+        <h3 className="font-display text-lg text-ink">Quantitative Risk Calculator</h3>
+        <p className="text-sm text-soft">
           Domain 5.2 — adjust the inputs to see how SLE and ALE justify (or reject) a control's cost.
         </p>
       </div>
@@ -65,19 +65,19 @@ export default function RiskCalculator() {
         <ResultCard label="SLE (Single Loss Expectancy)" value={fmt(sle)} formula="Asset Value × Exposure Factor" />
         <ResultCard label="ALE (Annualized Loss Expectancy)" value={fmt(ale)} formula="SLE × ARO" accent />
         <div
-          className={`rounded-xl border p-4 ${worthIt ? 'border-emerald-700 bg-emerald-950/30' : 'border-red-800 bg-red-950/30'}`}
+          className={`rounded-crisp border-l-2 px-4 py-3 ${worthIt ? 'border-good bg-good-tint' : 'border-bad bg-bad-tint'}`}
         >
-          <p className="text-[11px] text-slate-400 mb-1">Control cost vs ALE</p>
-          <p className={`text-lg font-bold ${worthIt ? 'text-emerald-300' : 'text-red-300'}`}>
+          <p className="text-[11px] uppercase tracking-wider text-faint mb-1">Control cost vs ALE</p>
+          <p className={`font-display text-lg font-semibold ${worthIt ? 'text-good' : 'text-bad'}`}>
             {worthIt ? 'Justified' : 'Not justified'}
           </p>
-          <p className="text-xs text-slate-500 mt-1">
+          <p className="font-mono text-xs text-soft mt-1">
             {fmt(controlCost)} {worthIt ? '<' : '≥'} {fmt(ale)}
           </p>
         </div>
       </div>
 
-      <div className="rounded-lg border border-slate-800 bg-slate-900/60 p-4 text-sm text-slate-400">
+      <div className="rounded-crisp bg-wash border-l-2 border-line-strong px-4 py-3 text-sm text-soft">
         The rational ceiling for annual security spend on a given risk is its ALE — spending more than the expected
         annual loss to prevent it costs more than simply accepting the risk would. This is the core logic exam
         questions test: compute SLE, then ALE, then compare to the proposed control's cost.
@@ -106,8 +106,8 @@ function Slider({
   return (
     <div>
       <div className="flex justify-between text-xs mb-1">
-        <span className="text-slate-400">{label}</span>
-        <span className="text-slate-200 font-medium">{format(value)}</span>
+        <span className="text-soft">{label}</span>
+        <span className="font-mono text-ink font-medium">{format(value)}</span>
       </div>
       <input
         type="range"
@@ -116,7 +116,7 @@ function Slider({
         step={step}
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="w-full accent-emerald-500"
+        className="w-full"
       />
     </div>
   )
@@ -134,10 +134,12 @@ function ResultCard({
   accent?: boolean
 }) {
   return (
-    <div className={`rounded-xl border p-4 ${accent ? 'border-emerald-700 bg-emerald-950/20' : 'border-slate-800 bg-slate-900'}`}>
-      <p className="text-[11px] text-slate-500 mb-1">{label}</p>
-      <p className="text-xl font-bold text-slate-100">{value}</p>
-      <p className="text-[11px] text-slate-500 mt-1">{formula}</p>
+    <div
+      className={`rounded-crisp border px-4 py-3 ${accent ? 'border-accent-line bg-accent-tint' : 'border-line bg-wash'}`}
+    >
+      <p className="text-[11px] uppercase tracking-wider text-faint mb-1">{label}</p>
+      <p className="font-mono text-xl font-semibold text-ink">{value}</p>
+      <p className="text-[11px] text-faint mt-1">{formula}</p>
     </div>
   )
 }

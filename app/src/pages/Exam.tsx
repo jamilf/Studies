@@ -90,16 +90,16 @@ export default function Exam() {
     submitting.current = false
   }
 
-  if (!all) return <p className="text-slate-400">Loading…</p>
+  if (!all) return <p className="text-soft">Loading…</p>
 
   if (phase === 'idle') {
     return (
-      <div className="max-w-2xl mx-auto space-y-5">
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-3">
-          <h1 className="text-lg font-semibold text-slate-100">
-            {cert.label} exam simulation <span className="text-slate-500 text-sm">({cert.examCode})</span>
+      <div className="max-w-2xl mx-auto space-y-8">
+        <div className="bg-surface border border-line rounded-soft shadow-card p-6 space-y-4">
+          <h1 className="font-display text-2xl text-ink">
+            {cert.label} exam simulation <span className="font-mono text-sm text-faint">{cert.examCode}</span>
           </h1>
-          <ul className="text-sm text-slate-400 space-y-1 list-disc ml-5">
+          <ul className="text-sm text-soft space-y-1.5 list-disc ml-5">
             <li>
               {cert.exam.questions} questions, blueprint-weighted across all {Object.keys(cert.domains).length} domains
             </li>
@@ -110,24 +110,27 @@ export default function Exam() {
               vendor's equating)
             </li>
           </ul>
-          <button onClick={start} className="rounded-lg bg-emerald-600 hover:bg-emerald-500 px-6 py-2.5 text-sm font-semibold">
+          <button
+            onClick={start}
+            className="rounded-crisp bg-accent hover:bg-accent-deep text-paper px-6 py-2.5 text-sm font-semibold transition-colors"
+          >
             Start exam
           </button>
         </div>
         {attempts.length > 0 && (
-          <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
-            <h2 className="text-sm font-semibold text-slate-200 mb-3">Past attempts</h2>
-            <div className="space-y-1.5">
+          <section>
+            <h2 className="font-display text-lg text-ink pb-2 border-b border-line mb-1">Past attempts</h2>
+            <div className="divide-y divide-line">
               {attempts.map((a) => (
-                <div key={a.id} className="flex justify-between text-sm">
-                  <span className="text-slate-400">{new Date(a.started_at).toLocaleDateString()}</span>
-                  <span className={a.passed ? 'text-emerald-400' : 'text-red-400'}>
+                <div key={a.id} className="flex justify-between font-mono text-sm py-2">
+                  <span className="text-soft">{new Date(a.started_at).toLocaleDateString()}</span>
+                  <span className={a.passed ? 'text-good' : 'text-bad'}>
                     {a.scaled_score} {a.passed ? 'PASS' : 'FAIL'} ({a.raw_correct}/{(a.question_ids as string[]).length})
                   </span>
                 </div>
               ))}
             </div>
-          </div>
+          </section>
         )}
       </div>
     )
@@ -142,34 +145,40 @@ export default function Exam() {
     <div className="max-w-3xl mx-auto space-y-4">
       {isReview && result && (
         <div
-          className={`rounded-xl border p-5 text-center ${result.passed ? 'border-emerald-600 bg-emerald-950/40' : 'border-red-700 bg-red-950/30'}`}
+          className={`rounded-crisp border-l-2 px-5 py-4 text-center ${
+            result.passed ? 'border-good bg-good-tint' : 'border-bad bg-bad-tint'
+          }`}
         >
-          <p className="text-3xl font-bold">
-            {result.scaled} <span className="text-base font-semibold">{result.passed ? 'PASS' : 'FAIL'}</span>
+          <p className="font-display text-4xl text-ink">
+            {result.scaled}{' '}
+            <span className={`font-sans text-base font-semibold ${result.passed ? 'text-good' : 'text-bad'}`}>
+              {result.passed ? 'PASS' : 'FAIL'}
+            </span>
           </p>
-          <p className="text-sm text-slate-300 mt-1">
-            {result.raw}/{form.length} correct · pass line {cert.exam.pass} · review every question below, especially the ones you got right by luck
+          <p className="text-sm text-soft mt-1">
+            {result.raw}/{form.length} correct · pass line {cert.exam.pass} · review every question below, especially
+            the ones you got right by luck
           </p>
         </div>
       )}
 
       <div className="flex items-center justify-between">
-        <span className="text-xs text-slate-400">
-          Question {idx + 1}/{form.length}
-          {isReview && ` · D${q.domain} ${q.objective}`}
+        <span className="font-mono text-xs text-faint">
+          {idx + 1}/{form.length}
+          {isReview && ` · §${q.domain} ${q.objective}`}
         </span>
         {!isReview ? (
-          <span className={`font-mono text-sm ${secondsLeft < 600 ? 'text-red-400' : 'text-slate-300'}`}>
+          <span className={`font-mono text-sm tabular-nums ${secondsLeft < 600 ? 'text-bad' : 'text-soft'}`}>
             {mins}:{secs.toString().padStart(2, '0')}
           </span>
         ) : (
-          <span className={`text-xs font-semibold ${isCorrect(q, responses[q.id]) ? 'text-emerald-400' : 'text-red-400'}`}>
+          <span className={`text-xs font-semibold ${isCorrect(q, responses[q.id]) ? 'text-good' : 'text-bad'}`}>
             {isCorrect(q, responses[q.id]) ? 'Correct' : 'Incorrect'}
           </span>
         )}
       </div>
 
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
+      <div className="bg-surface border border-line rounded-soft shadow-card p-6">
         <QuestionPlayer
           key={q.id + (isReview ? '-r' : '')}
           question={q}
@@ -183,14 +192,14 @@ export default function Exam() {
         <button
           disabled={idx === 0}
           onClick={() => setIdx((i) => i - 1)}
-          className="rounded-lg bg-slate-800 hover:bg-slate-700 disabled:opacity-40 px-4 py-2 text-sm"
+          className="rounded-crisp border border-line bg-surface hover:border-line-strong disabled:opacity-40 px-4 py-2 text-sm text-ink transition-colors"
         >
           ← Prev
         </button>
         <button
           disabled={idx === form.length - 1}
           onClick={() => setIdx((i) => i + 1)}
-          className="rounded-lg bg-slate-800 hover:bg-slate-700 disabled:opacity-40 px-4 py-2 text-sm"
+          className="rounded-crisp border border-line bg-surface hover:border-line-strong disabled:opacity-40 px-4 py-2 text-sm text-ink transition-colors"
         >
           Next →
         </button>
@@ -205,7 +214,11 @@ export default function Exam() {
                   return n
                 })
               }
-              className={`rounded-lg px-4 py-2 text-sm ${flags.has(q.id) ? 'bg-yellow-700' : 'bg-slate-800 hover:bg-slate-700'}`}
+              className={`rounded-crisp border px-4 py-2 text-sm transition-colors ${
+                flags.has(q.id)
+                  ? 'bg-warn-tint border-warn-line text-warn'
+                  : 'border-line bg-surface text-ink hover:border-line-strong'
+              }`}
             >
               {flags.has(q.id) ? '⚑ Flagged' : '⚐ Flag'}
             </button>
@@ -214,7 +227,7 @@ export default function Exam() {
               onClick={() => {
                 if (confirm('Submit the exam? Unanswered questions count as wrong.')) void submit()
               }}
-              className="rounded-lg bg-emerald-600 hover:bg-emerald-500 px-5 py-2 text-sm font-semibold"
+              className="rounded-crisp bg-accent hover:bg-accent-deep text-paper px-5 py-2 text-sm font-semibold transition-colors"
             >
               Submit exam
             </button>
@@ -223,7 +236,10 @@ export default function Exam() {
         {isReview && (
           <>
             <div className="flex-1" />
-            <button onClick={() => setPhase('idle')} className="rounded-lg bg-slate-700 hover:bg-slate-600 px-4 py-2 text-sm">
+            <button
+              onClick={() => setPhase('idle')}
+              className="rounded-crisp border border-line bg-surface hover:border-line-strong px-4 py-2 text-sm text-ink transition-colors"
+            >
               Done reviewing
             </button>
           </>
@@ -239,18 +255,18 @@ export default function Exam() {
             <button
               key={fq.id}
               onClick={() => setIdx(i)}
-              className={`w-8 h-7 rounded text-[11px] font-mono ${
-                i === idx
-                  ? 'ring-2 ring-emerald-400 bg-slate-700'
-                  : reviewState === 'ok'
-                    ? 'bg-emerald-800/70'
-                    : reviewState === 'bad'
-                      ? 'bg-red-800/70'
-                      : flagged
-                        ? 'bg-yellow-700'
-                        : answered
-                          ? 'bg-slate-600'
-                          : 'bg-slate-800'
+              className={`w-8 h-7 rounded-crisp text-[11px] font-mono border transition-colors ${
+                i === idx ? 'ring-2 ring-accent ring-offset-2 ring-offset-paper ' : ''
+              }${
+                reviewState === 'ok'
+                  ? 'bg-good-tint border-good-line text-good'
+                  : reviewState === 'bad'
+                    ? 'bg-bad-tint border-bad-line text-bad'
+                    : flagged
+                      ? 'bg-warn-tint border-warn-line text-warn'
+                      : answered
+                        ? 'bg-ink border-ink text-paper'
+                        : 'bg-wash border-line text-faint'
               }`}
             >
               {i + 1}

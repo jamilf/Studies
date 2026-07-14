@@ -50,13 +50,14 @@ export default function Feynman() {
     setDone((d) => d + 1)
   }
 
-  if (!prompts) return <p className="text-slate-400">Loading…</p>
+  if (!prompts) return <p className="text-soft">Loading…</p>
 
   if (!current) {
     return (
-      <div className="max-w-2xl mx-auto bg-slate-900 border border-slate-800 rounded-xl p-10 text-center">
-        <p className="text-lg text-emerald-400 font-semibold">No explain-it prompts due</p>
-        <p className="text-sm text-slate-400 mt-2">
+      <div className="max-w-2xl mx-auto text-center py-16">
+        <p className="text-2xl text-faint mb-4">❦</p>
+        <p className="font-display text-xl text-ink">No explain-it prompts due</p>
+        <p className="text-sm text-soft mt-2">
           You worked through {done > 0 ? `${done} prompt${done === 1 ? '' : 's'} today` : 'the queue'}. They return on
           their spaced schedule.
         </p>
@@ -66,49 +67,62 @@ export default function Feynman() {
 
   return (
     <div className="max-w-2xl mx-auto space-y-4">
-      <div className="flex justify-between text-xs text-slate-400">
+      <div className="flex justify-between text-[11px] uppercase tracking-wider text-faint">
         <span>
-          Explain it in your own words · D{current.domain} · {cert.domains[current.domain]}
+          Explain it in your own words · <span className="font-mono normal-case">§{current.domain}</span>{' '}
+          {cert.domains[current.domain]}
         </span>
-        <span>
+        <span className="font-mono normal-case">
           {queue.length} in queue · {done} done
         </span>
       </div>
-      <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-4">
-        <p className="text-slate-100 leading-relaxed">{current.front}</p>
+      <div className="bg-surface border border-line rounded-soft shadow-card p-6 space-y-4">
+        <p className="font-display text-lg text-ink leading-snug">{current.front}</p>
         <textarea
           value={text}
           onChange={(e) => setText(e.target.value)}
           disabled={revealed}
           rows={6}
           placeholder="Teach it to an imaginary junior colleague. If you can't explain it simply, you don't know it yet — that's the point."
-          className="w-full rounded-lg bg-slate-800 border border-slate-700 px-3 py-2 text-sm leading-relaxed"
+          className="w-full rounded-crisp bg-surface border border-line focus:border-accent px-3 py-2 text-sm text-ink leading-relaxed placeholder:text-faint outline-none transition-colors"
         />
         {!revealed ? (
           <button
             disabled={text.trim().length < 20}
             onClick={() => setRevealed(true)}
-            className="rounded-lg bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 px-5 py-2 text-sm font-semibold"
+            className="rounded-crisp bg-accent hover:bg-accent-deep disabled:opacity-40 text-paper px-5 py-2 text-sm font-semibold transition-colors"
           >
             Compare with model answer
           </button>
         ) : (
           <>
-            <div className="rounded-lg border border-slate-700 bg-slate-950 p-4 text-sm text-slate-200 leading-relaxed whitespace-pre-wrap">
+            <div className="rounded-crisp bg-wash border-l-2 border-accent px-4 py-3 text-sm text-ink leading-relaxed whitespace-pre-wrap">
               {current.back}
             </div>
-            <p className="text-xs text-slate-400">Honestly: how close was your explanation?</p>
+            <p className="text-xs text-faint italic">Honestly: how close was your explanation?</p>
             <div className="grid grid-cols-4 gap-2">
-              <button onClick={() => void grade(0)} className="rounded-lg bg-red-700 hover:bg-red-600 py-2.5 text-sm font-semibold">
+              <button
+                onClick={() => void grade(0)}
+                className="rounded-crisp border bg-bad-tint text-bad border-bad-line hover:border-bad py-2.5 text-sm font-semibold transition-colors"
+              >
                 Missed it
               </button>
-              <button onClick={() => void grade(3)} className="rounded-lg bg-yellow-700 hover:bg-yellow-600 py-2.5 text-sm font-semibold">
+              <button
+                onClick={() => void grade(3)}
+                className="rounded-crisp border bg-warn-tint text-warn border-warn-line hover:border-warn py-2.5 text-sm font-semibold transition-colors"
+              >
                 Partial
               </button>
-              <button onClick={() => void grade(4)} className="rounded-lg bg-emerald-700 hover:bg-emerald-600 py-2.5 text-sm font-semibold">
+              <button
+                onClick={() => void grade(4)}
+                className="rounded-crisp border bg-good-tint text-good border-good-line hover:border-good py-2.5 text-sm font-semibold transition-colors"
+              >
                 Solid
               </button>
-              <button onClick={() => void grade(5)} className="rounded-lg bg-sky-700 hover:bg-sky-600 py-2.5 text-sm font-semibold">
+              <button
+                onClick={() => void grade(5)}
+                className="rounded-crisp border bg-accent-tint text-accent border-accent-line hover:border-accent py-2.5 text-sm font-semibold transition-colors"
+              >
                 Nailed it
               </button>
             </div>

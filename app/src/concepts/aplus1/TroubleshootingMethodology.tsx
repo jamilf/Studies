@@ -60,8 +60,8 @@ export default function TroubleshootingMethodology() {
   return (
     <div className="space-y-5">
       <div>
-        <h3 className="text-lg font-semibold text-slate-100">The CompTIA Troubleshooting Methodology</h3>
-        <p className="text-sm text-slate-400">
+        <h3 className="font-display text-lg text-ink">The CompTIA Troubleshooting Methodology</h3>
+        <p className="text-sm text-soft">
           Domain 5.1 (Core 1) / Domain 3.1 (Core 2) — the six-step process tested throughout both A+ exams.
         </p>
       </div>
@@ -72,7 +72,7 @@ export default function TroubleshootingMethodology() {
             if (step >= STEPS.length - 1) setStep(0)
             setPlaying((p) => !p)
           }}
-          className="rounded-lg bg-emerald-700 hover:bg-emerald-600 text-white text-sm font-semibold px-4 py-2 transition-colors"
+          className="rounded-crisp bg-accent hover:bg-accent-deep text-paper text-sm font-semibold px-4 py-2 transition-colors"
         >
           {playing ? 'Pause' : step >= STEPS.length - 1 ? 'Replay' : 'Play'}
         </button>
@@ -84,26 +84,26 @@ export default function TroubleshootingMethodology() {
                 setPlaying(false)
                 setStep(i)
               }}
-              className={`flex-1 h-2 rounded-full transition-colors ${i <= step ? 'bg-emerald-500' : 'bg-slate-800'}`}
+              className={`flex-1 h-2 rounded-full transition-colors ${i <= step ? 'bg-accent' : 'bg-wash'}`}
               aria-label={`Go to step ${i + 1}`}
             />
           ))}
         </div>
       </div>
 
-      <div key={step} className="rounded-xl border border-slate-800 bg-slate-900 p-5 animate-[fadein_0.3s_ease-out]">
-        <h4 className="font-semibold text-emerald-300 mb-2">{STEPS[step].title}</h4>
-        <p className="text-sm text-slate-300 mb-3">{STEPS[step].detail}</p>
-        <div className="rounded-lg border border-slate-800 bg-slate-950/60 p-3 text-sm text-slate-400">
-          <span className="font-semibold text-slate-300">Example: </span>
+      <div key={step} className="rounded-crisp bg-wash border-l-2 border-accent px-5 py-4 animate-fadein">
+        <h4 className="font-display font-semibold text-accent mb-2">{STEPS[step].title}</h4>
+        <p className="text-sm text-ink mb-3">{STEPS[step].detail}</p>
+        <div className="rounded-crisp border border-line bg-surface p-3 text-sm text-soft">
+          <span className="font-semibold text-ink">Example: </span>
           {STEPS[step].example}
         </div>
       </div>
 
-      <div className="rounded-lg border border-amber-800/50 bg-amber-950/30 p-4 text-sm text-amber-200">
-        <span className="font-semibold">Exam tip:</span> Documentation (step 6) is always last, and testing the
-        theory (step 3) always comes before implementing a fix (step 4) — a frequent trap is jumping straight to a
-        fix before confirming the theory is actually correct.
+      <div className="rounded-crisp bg-warn-tint border-l-2 border-warn px-4 py-3 text-sm text-ink">
+        <span className="font-semibold text-warn">Exam tip:</span> Documentation (step 6) is always last, and testing
+        the theory (step 3) always comes before implementing a fix (step 4) — a frequent trap is jumping straight to
+        a fix before confirming the theory is actually correct.
       </div>
     </div>
   )

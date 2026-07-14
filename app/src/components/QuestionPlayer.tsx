@@ -21,21 +21,21 @@ export default function QuestionPlayer({ question, value, onChange, reveal }: Pr
   const q = question
   return (
     <div className="space-y-4">
-      <p className="text-slate-100 leading-relaxed whitespace-pre-wrap">{q.stem}</p>
+      <p className="text-ink leading-relaxed whitespace-pre-wrap">{q.stem}</p>
       {q.qtype === 'mcq' && <Mcq {...{ q, value, onChange, reveal }} />}
       {q.qtype === 'multi' && <Multi {...{ q, value, onChange, reveal }} />}
       {q.qtype === 'ordering' && <Ordering {...{ q, value, onChange, reveal }} />}
       {q.qtype === 'matching' && <Matching {...{ q, value, onChange, reveal }} />}
       {reveal && (
         <div
-          className={`rounded-lg border p-4 text-sm leading-relaxed ${
-            isCorrect(q, value)
-              ? 'border-emerald-700 bg-emerald-950/40 text-emerald-100'
-              : 'border-red-800 bg-red-950/30 text-red-100'
+          className={`rounded-crisp border-l-2 px-4 py-3 text-sm leading-relaxed ${
+            isCorrect(q, value) ? 'border-good bg-good-tint' : 'border-bad bg-bad-tint'
           }`}
         >
-          <p className="font-semibold mb-1">{isCorrect(q, value) ? 'Correct' : 'Incorrect'}</p>
-          <p className="text-slate-200">{q.explanation}</p>
+          <p className={`font-display font-semibold mb-1 ${isCorrect(q, value) ? 'text-good' : 'text-bad'}`}>
+            {isCorrect(q, value) ? 'Correct' : 'Incorrect'}
+          </p>
+          <p className="text-ink">{q.explanation}</p>
         </div>
       )}
     </div>
@@ -43,6 +43,12 @@ export default function QuestionPlayer({ question, value, onChange, reveal }: Pr
 }
 
 type PartProps = { q: Question; value: unknown; onChange: (r: unknown) => void; reveal: boolean }
+
+const optionBase = 'w-full text-left rounded-crisp border px-4 py-2.5 text-sm text-ink transition'
+const optionIdle = 'border-line bg-surface hover:border-line-strong'
+const optionSelected = 'border-accent bg-accent-tint'
+const optionCorrect = 'border-good-line bg-good-tint'
+const optionWrong = 'border-bad-line bg-bad-tint'
 
 function Mcq({ q, value, onChange, reveal }: PartProps) {
   const choices = q.choices as string[]
@@ -58,14 +64,8 @@ function Mcq({ q, value, onChange, reveal }: PartProps) {
             key={orig}
             disabled={reveal}
             onClick={() => onChange(orig)}
-            className={`w-full text-left rounded-lg border px-4 py-2.5 text-sm transition ${
-              correct
-                ? 'border-emerald-500 bg-emerald-900/40'
-                : wrongPick
-                  ? 'border-red-500 bg-red-900/30'
-                  : selected
-                    ? 'border-emerald-400 bg-slate-800'
-                    : 'border-slate-700 bg-slate-900 hover:border-slate-500'
+            className={`${optionBase} ${
+              correct ? optionCorrect : wrongPick ? optionWrong : selected ? optionSelected : optionIdle
             }`}
           >
             {choices[orig]}
@@ -89,7 +89,7 @@ function Multi({ q, value, onChange, reveal }: PartProps) {
   }
   return (
     <div className="space-y-2">
-      <p className="text-xs text-slate-400">Select all that apply.</p>
+      <p className="text-xs text-faint italic">Select all that apply.</p>
       {perm.map((orig) => {
         const selected = picked.has(orig)
         const correct = reveal && answerSet.has(orig)
@@ -98,15 +98,11 @@ function Multi({ q, value, onChange, reveal }: PartProps) {
             key={orig}
             disabled={reveal}
             onClick={() => toggle(orig)}
-            className={`w-full text-left rounded-lg border px-4 py-2.5 text-sm ${
-              correct
-                ? 'border-emerald-500 bg-emerald-900/40'
-                : selected
-                  ? 'border-emerald-400 bg-slate-800'
-                  : 'border-slate-700 bg-slate-900 hover:border-slate-500'
-            }`}
+            className={`${optionBase} ${correct ? optionCorrect : selected ? optionSelected : optionIdle}`}
           >
-            {selected ? '☑ ' : '☐ '}
+            <span className={`font-mono mr-2 ${selected ? 'text-accent' : 'text-faint'}`}>
+              {selected ? '☑' : '☐'}
+            </span>
             {choices[orig]}
           </button>
         )
@@ -123,33 +119,29 @@ function Ordering({ q, value, onChange, reveal }: PartProps) {
   const correctOrder = q.answer as number[]
   return (
     <div className="space-y-3">
-      <p className="text-xs text-slate-400">Tap items in the correct order. Tap a placed item to remove it.</p>
+      <p className="text-xs text-faint italic">Tap items in the correct order. Tap a placed item to remove it.</p>
       <div className="space-y-1.5">
         {chosen.map((orig, i) => (
           <button
             key={orig}
             disabled={reveal}
             onClick={() => onChange(chosen.filter((c) => c !== orig))}
-            className={`w-full text-left rounded-lg border px-4 py-2 text-sm ${
-              reveal
-                ? correctOrder[i] === orig
-                  ? 'border-emerald-500 bg-emerald-900/40'
-                  : 'border-red-500 bg-red-900/30'
-                : 'border-emerald-400 bg-slate-800'
+            className={`${optionBase} ${
+              reveal ? (correctOrder[i] === orig ? optionCorrect : optionWrong) : optionSelected
             }`}
           >
-            <span className="text-slate-400 mr-2">{i + 1}.</span>
+            <span className="font-mono text-faint mr-2">{i + 1}.</span>
             {items[orig]}
           </button>
         ))}
       </div>
       {remaining.length > 0 && !reveal && (
-        <div className="space-y-1.5 border-t border-slate-800 pt-3">
+        <div className="space-y-1.5 border-t border-line pt-3">
           {remaining.map((orig) => (
             <button
               key={orig}
               onClick={() => onChange([...chosen, orig])}
-              className="w-full text-left rounded-lg border border-slate-700 bg-slate-900 hover:border-slate-500 px-4 py-2 text-sm"
+              className={`${optionBase} ${optionIdle}`}
             >
               {items[orig]}
             </button>
@@ -157,11 +149,11 @@ function Ordering({ q, value, onChange, reveal }: PartProps) {
         </div>
       )}
       {reveal && (
-        <div className="text-xs text-slate-300 space-y-0.5">
-          <p className="font-semibold text-slate-200">Correct order:</p>
+        <div className="text-xs text-soft space-y-0.5">
+          <p className="font-semibold text-ink">Correct order:</p>
           {correctOrder.map((orig, i) => (
             <p key={orig}>
-              {i + 1}. {items[orig]}
+              <span className="font-mono">{i + 1}.</span> {items[orig]}
             </p>
           ))}
         </div>
@@ -182,16 +174,16 @@ function Matching({ q, value, onChange, reveal }: PartProps) {
   }
   return (
     <div className="space-y-2">
-      <p className="text-xs text-slate-400">Match each item on the left to an option on the right.</p>
+      <p className="text-xs text-faint italic">Match each item on the left to an option on the right.</p>
       {left.map((label, i) => (
         <div key={i} className="flex items-center gap-3">
           <span
-            className={`flex-1 rounded-lg border px-3 py-2 text-sm ${
+            className={`flex-1 rounded-crisp border px-3 py-2 text-sm text-ink ${
               reveal
                 ? picks[i] === correct[i]
-                  ? 'border-emerald-500 bg-emerald-900/40'
-                  : 'border-red-500 bg-red-900/30'
-                : 'border-slate-700 bg-slate-900'
+                  ? 'border-good-line bg-good-tint'
+                  : 'border-bad-line bg-bad-tint'
+                : 'border-line bg-surface'
             }`}
           >
             {label}
@@ -200,7 +192,7 @@ function Matching({ q, value, onChange, reveal }: PartProps) {
             disabled={reveal}
             value={picks[i] ?? ''}
             onChange={(e) => setPick(i, e.target.value === '' ? null : Number(e.target.value))}
-            className="flex-1 rounded-lg border border-slate-700 bg-slate-800 px-2 py-2 text-sm"
+            className="flex-1 rounded-crisp border border-line bg-surface px-2 py-2 text-sm text-ink"
           >
             <option value="">— choose —</option>
             {perm.map((orig) => (
@@ -212,11 +204,11 @@ function Matching({ q, value, onChange, reveal }: PartProps) {
         </div>
       ))}
       {reveal && (
-        <div className="text-xs text-slate-300 space-y-0.5 pt-1">
-          <p className="font-semibold text-slate-200">Correct pairs:</p>
+        <div className="text-xs text-soft space-y-0.5 pt-1">
+          <p className="font-semibold text-ink">Correct pairs:</p>
           {left.map((label, i) => (
             <p key={i}>
-              {label} → {right[correct[i]]}
+              {label} <span className="font-mono">→</span> {right[correct[i]]}
             </p>
           ))}
         </div>

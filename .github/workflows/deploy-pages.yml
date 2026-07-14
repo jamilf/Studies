@@ -1,4 +1,4 @@
-name: Deploy Security+ Trainer to GitHub Pages
+name: Deploy Primer to GitHub Pages
 
 on:
   push:
