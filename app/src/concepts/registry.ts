@@ -4,6 +4,7 @@ import DrSiteSpectrum from './secplus/DrSiteSpectrum'
 import OrderOfVolatility from './secplus/OrderOfVolatility'
 import PkiLifecycle from './secplus/PkiLifecycle'
 import RiskCalculator from './secplus/RiskCalculator'
+import PyramidOfPain from './cysa/PyramidOfPain'
 
 export interface ConceptEntry {
   id: string
@@ -54,6 +55,14 @@ export const CONCEPTS: ConceptEntry[] = [
     title: 'Quantitative Risk Calculator',
     description: 'Play with SLE/ARO/ALE inputs to see when a control is financially justified.',
     Component: RiskCalculator,
+  },
+  {
+    id: 'cysa-pyramid-of-pain',
+    certId: 'cysa',
+    domain: 1,
+    title: 'The Pyramid of Pain',
+    description: 'Click each indicator tier to see how costly it is for an attacker to change.',
+    Component: PyramidOfPain,
   },
 ]
 
