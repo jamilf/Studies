@@ -1,6 +1,7 @@
 import type { ComponentType } from 'react'
 import ArpSpoofing from './secplus/ArpSpoofing'
 import DrSiteSpectrum from './secplus/DrSiteSpectrum'
+import OrderOfVolatility from './secplus/OrderOfVolatility'
 import PkiLifecycle from './secplus/PkiLifecycle'
 
 export interface ConceptEntry {
@@ -36,6 +37,14 @@ export const CONCEPTS: ConceptEntry[] = [
     title: 'Disaster Recovery Site Spectrum',
     description: 'Slide across cold, pilot light, warm, hot, and multi-site tiers to compare RTO/RPO/cost.',
     Component: DrSiteSpectrum,
+  },
+  {
+    id: 'secplus-order-of-volatility',
+    certId: 'secplus',
+    domain: 4,
+    title: 'Order of Volatility',
+    description: 'Click through evidence tiers from CPU cache to backups to see why collection order matters.',
+    Component: OrderOfVolatility,
   },
 ]
 
