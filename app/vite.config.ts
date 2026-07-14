@@ -7,4 +7,15 @@ export default defineConfig({
   // GitHub Pages serves this project from /Studies/; CI sets CI=true, local dev does not.
   base: process.env.CI ? '/Studies/' : '/',
   plugins: [react(), tailwindcss()],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return
+          if (id.includes('@supabase')) return 'supabase'
+          if (id.includes('react')) return 'react'
+        },
+      },
+    },
+  },
 })
