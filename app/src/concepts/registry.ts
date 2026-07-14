@@ -3,6 +3,7 @@ import ArpSpoofing from './secplus/ArpSpoofing'
 import DrSiteSpectrum from './secplus/DrSiteSpectrum'
 import OrderOfVolatility from './secplus/OrderOfVolatility'
 import PkiLifecycle from './secplus/PkiLifecycle'
+import RiskCalculator from './secplus/RiskCalculator'
 
 export interface ConceptEntry {
   id: string
@@ -45,6 +46,14 @@ export const CONCEPTS: ConceptEntry[] = [
     title: 'Order of Volatility',
     description: 'Click through evidence tiers from CPU cache to backups to see why collection order matters.',
     Component: OrderOfVolatility,
+  },
+  {
+    id: 'secplus-risk-calculator',
+    certId: 'secplus',
+    domain: 5,
+    title: 'Quantitative Risk Calculator',
+    description: 'Play with SLE/ARO/ALE inputs to see when a control is financially justified.',
+    Component: RiskCalculator,
   },
 ]
 
