@@ -8,6 +8,7 @@ import PyramidOfPain from './cysa/PyramidOfPain'
 import VpcConnectivityScaling from './awssaa/VpcConnectivityScaling'
 import ObjectLockModes from './awsscs/ObjectLockModes'
 import SecurityModelLattice from './cissp/SecurityModelLattice'
+import TroubleshootingMethodology from './aplus1/TroubleshootingMethodology'
 
 export interface ConceptEntry {
   id: string
@@ -90,6 +91,14 @@ export const CONCEPTS: ConceptEntry[] = [
     title: 'Bell-LaPadula vs. Biba Access Rules',
     description: 'Pick a model, a clearance level, and an action to see whether the access rule allows or denies it.',
     Component: SecurityModelLattice,
+  },
+  {
+    id: 'aplus1-troubleshooting-methodology',
+    certId: 'aplus1',
+    domain: 5,
+    title: 'The CompTIA Troubleshooting Methodology',
+    description: 'Step through the six-step process (also tested on Core 2) with a worked example at each stage.',
+    Component: TroubleshootingMethodology,
   },
 ]
 
