@@ -103,6 +103,213 @@ import TroubleshootingMethodologyTimeline from './netplus/TroubleshootingMethodo
 import CableFaultDecisionTree from './netplus/CableFaultDecisionTree'
 import DbLossCalculator from './netplus/DbLossCalculator'
 
+import LaptopBatteryCalculator from './aplus1/LaptopBatteryCalculator'
+import LaptopDisplayTechnologies from './aplus1/LaptopDisplayTechnologies'
+import MobileAccessoriesMatcher from './aplus1/MobileAccessoriesMatcher'
+import MobileSyncDecision from './aplus1/MobileSyncDecision'
+import PacketJourneyThroughSoho from './aplus1/PacketJourneyThroughSoho'
+import NetworkHardwareMatcher from './aplus1/NetworkHardwareMatcher'
+import DhcpLeaseProcess from './aplus1/DhcpLeaseProcess'
+import InternetConnectionTypesRanking from './aplus1/InternetConnectionTypesRanking'
+import NetworkTypeSpectrum from './aplus1/NetworkTypeSpectrum'
+import SohoRouterHardening from './aplus1/SohoRouterHardening'
+import CpuSocketCompatibility from './aplus1/CpuSocketCompatibility'
+import CustomPcBuildAdvisor from './aplus1/CustomPcBuildAdvisor'
+import ExpansionCardMatcher from './aplus1/ExpansionCardMatcher'
+import MotherboardComponentDiagram from './aplus1/MotherboardComponentDiagram'
+import MultifunctionDeviceSetupOrder from './aplus1/MultifunctionDeviceSetupOrder'
+import StorageDeviceSpeedTiers from './aplus1/StorageDeviceSpeedTiers'
+import CloudDeploymentModelSpectrum from './aplus1/CloudDeploymentModelSpectrum'
+import VdiSessionFlow from './aplus1/VdiSessionFlow'
+import VirtualNetworkModePicker from './aplus1/VirtualNetworkModePicker'
+import VmResourceSizingCalculator from './aplus1/VmResourceSizingCalculator'
+import ComponentSwapTestOrder from './aplus1/ComponentSwapTestOrder'
+import DisplaySignalPathDiagram from './aplus1/DisplaySignalPathDiagram'
+import MobileDevicePowerTroubleshootingOrder from './aplus1/MobileDevicePowerTroubleshootingOrder'
+import StorageRaidFailureMatcher from './aplus1/StorageRaidFailureMatcher'
+import WiredConnectivityTroubleshootingTimeline from './aplus1/WiredConnectivityTroubleshootingTimeline'
+import WirelessConnectivityBeforeAfter from './aplus1/WirelessConnectivityBeforeAfter'
+import ControlPanelAppletRouter from './aplus2/ControlPanelAppletRouter'
+import LinuxCommandSequence from './aplus2/LinuxCommandSequence'
+import MacOsToolSpectrum from './aplus2/MacOsToolSpectrum'
+import DiskPartitionStyleComparison from './aplus2/DiskPartitionStyleComparison'
+import WindowsCliToolMatcher from './aplus2/WindowsCliToolMatcher'
+import DomainJoinFlow from './aplus2/DomainJoinFlow'
+import AuthenticationMethodMatcher from './aplus2/AuthenticationMethodMatcher'
+import DataDestructionTimeline from './aplus2/DataDestructionTimeline'
+import MobileDeviceSecurityFlow from './aplus2/MobileDeviceSecurityFlow'
+import PhysicalSecurityLayers from './aplus2/PhysicalSecurityLayers'
+import WindowsSecurityHardeningToggle from './aplus2/WindowsSecurityHardeningToggle'
+import PortSecurityRiskCalculator from './aplus2/PortSecurityRiskCalculator'
+import ApplicationCrashDecisionMatrix from './aplus2/ApplicationCrashDecisionMatrix'
+import MalwareRemovalProcess from './aplus2/MalwareRemovalProcess'
+import TroubleshootingMethodologySequence from './aplus2/TroubleshootingMethodologySequence'
+import MobileSecuritySymptomSpectrum from './aplus2/MobileSecuritySymptomSpectrum'
+import PcSecuritySymptomMatcher from './aplus2/PcSecuritySymptomMatcher'
+import WindowsUpdateFailureFlow from './aplus2/WindowsUpdateFailureFlow'
+import BackupRecoveryCalculator from './aplus2/BackupRecoveryCalculator'
+import CustomerCommunicationToggle from './aplus2/CustomerCommunicationToggle'
+import IncidentResponseSequence from './aplus2/IncidentResponseSequence'
+import RemoteAccessLadder from './aplus2/RemoteAccessLadder'
+import ScriptingLanguageComparison from './aplus2/ScriptingLanguageComparison'
+import EnvironmentalControlsDiagram from './aplus2/EnvironmentalControlsDiagram'
+import Ipv4VsIpv6Addressing from './netplus/Ipv4VsIpv6Addressing'
+import NetworkTopologyDiagram from './netplus/NetworkTopologyDiagram'
+import SdnControlPlaneToggle from './netplus/SdnControlPlaneToggle'
+import TrafficDeliveryStack from './netplus/TrafficDeliveryStack'
+import WanConnectionSpectrum from './netplus/WanConnectionSpectrum'
+import WellKnownPortsMatcher from './netplus/WellKnownPortsMatcher'
+import DhcpLeaseTimeline from './netplus/DhcpLeaseTimeline'
+import DnsRecordMatcher from './netplus/DnsRecordMatcher'
+import NatPatFlowTrace from './netplus/NatPatFlowTrace'
+import RedundantLinkToggle from './netplus/RedundantLinkToggle'
+import RoutingProtocolStack from './netplus/RoutingProtocolStack'
+import WirelessSecuritySpectrum from './netplus/WirelessSecuritySpectrum'
+import MonitoringToolMatrix from './netplus/MonitoringToolMatrix'
+import DrSiteReorder from './netplus/DrSiteReorder'
+import ChangeManagementTimelineNetplus from './netplus/ChangeManagementTimeline'
+import DocumentationTypeComparison from './netplus/DocumentationTypeComparison'
+import DeviceHardeningToggle from './netplus/DeviceHardeningToggle'
+import IdsVsIpsDiagram from './netplus/IdsVsIpsDiagram'
+import PhysicalSecurityControls from './netplus/PhysicalSecurityControls'
+import AaaProtocolComparison from './netplus/AaaProtocolComparison'
+import DnsTroubleshootingFlow from './netplus/DnsTroubleshootingFlow'
+import DuplicateIpConflictTrace from './netplus/DuplicateIpConflictTrace'
+import InterfaceErrorCounters from './netplus/InterfaceErrorCounters'
+import NetworkPerformanceCalculator from './netplus/NetworkPerformanceCalculator'
+import NetworkToolSelector from './netplus/NetworkToolSelector'
+import WirelessSignalSpectrum from './netplus/WirelessSignalSpectrum'
+import ChangeManagementTimelineSecplus from './secplus/ChangeManagementTimeline'
+import DeceptionTechnologyToggle from './secplus/DeceptionTechnologyToggle'
+import DataStateEncryptionSpectrum from './secplus/DataStateEncryptionSpectrum'
+import SecurityControlTypeMatrix from './secplus/SecurityControlTypeMatrix'
+import AttackSurfaceReductionCalculator from './secplus/AttackSurfaceReductionCalculator'
+import PhysicalIntrusionSequence from './secplus/PhysicalIntrusionSequence'
+import SqlInjectionAttackTrace from './secplus/SqlInjectionAttackTrace'
+import ThreatActorSophisticationStack from './secplus/ThreatActorSophisticationStack'
+import ThreatVectorFlipCards from './secplus/ThreatVectorFlipCards'
+import VulnerabilityStackDiagram from './secplus/VulnerabilityStackDiagram'
+import CloudResponsibilityComparison from './secplus/CloudResponsibilityComparison'
+import HighAvailabilityFailoverTrace from './secplus/HighAvailabilityFailoverTrace'
+import IcsCompensatingControlPriority from './secplus/IcsCompensatingControlPriority'
+import ScreenedSubnetDiagram from './secplus/ScreenedSubnetDiagram'
+import MonitoringToolMatcher from './secplus/MonitoringToolMatcher'
+import AssetManagementLifecycle from './secplus/AssetManagementLifecycle'
+import VulnerabilityScanTypes from './secplus/VulnerabilityScanTypes'
+import NetworkDefenseLayers from './secplus/NetworkDefenseLayers'
+import PatchManagementSequence from './secplus/PatchManagementSequence'
+import SecureBaselineToggle from './secplus/SecureBaselineToggle'
+import AuditTypeDecision from './secplus/AuditTypeDecision'
+import BusinessImpactCalculator from './secplus/BusinessImpactCalculator'
+import ComplianceReportingTrace from './secplus/ComplianceReportingTrace'
+import GovernanceModelSpectrum from './secplus/GovernanceModelSpectrum'
+import AwarenessTrainingTimeline from './secplus/AwarenessTrainingTimeline'
+import PolicyHierarchyStack from './secplus/PolicyHierarchyStack'
+import CloudSecOpsDecision from './cysa/CloudSecOpsDecision'
+import NetworkSegmentationToggle from './cysa/NetworkSegmentationToggle'
+import LogIngestionPipeline from './cysa/LogIngestionPipeline'
+import IdentityAccessSocTiers from './cysa/IdentityAccessSocTiers'
+import ThreatIntelSourceMatcher from './cysa/ThreatIntelSourceMatcher'
+import EncryptionProtocolSpectrum from './cysa/EncryptionProtocolSpectrum'
+import DreadRiskCalculator from './cysa/DreadRiskCalculator'
+import AttackSurfaceManagement from './cysa/AttackSurfaceManagement'
+import EpssKevPrioritization from './cysa/EpssKevPrioritization'
+import ScanReportWalkthrough from './cysa/ScanReportWalkthrough'
+import OwaspWebVulnTypes from './cysa/OwaspWebVulnTypes'
+import FalsePositiveNegativeDecision from './cysa/FalsePositiveNegativeDecision'
+import ChainOfCustodyFlow from './cysa/ChainOfCustodyFlow'
+import EradicationVsRemediation from './cysa/EradicationVsRemediation'
+import MitreAttackTacticTrace from './cysa/MitreAttackTacticTrace'
+import OrderOfVolatilityCysa from './cysa/OrderOfVolatility'
+import PlaybookRunbookMatcher from './cysa/PlaybookRunbookMatcher'
+import RootCauseAnalysisSelector from './cysa/RootCauseAnalysisSelector'
+import ExecutiveVsTechnicalReport from './cysa/ExecutiveVsTechnicalReport'
+import CommunicationCadenceSpectrum from './cysa/CommunicationCadenceSpectrum'
+import PostIncidentReviewAgenda from './cysa/PostIncidentReviewAgenda'
+import VulnManagementKpiCalculator from './cysa/VulnManagementKpiCalculator'
+import CrossAccountAssumeRoleFlow from './awssaa/CrossAccountAssumeRoleFlow'
+import IamRolesUsersGroups from './awssaa/IamRolesUsersGroups'
+import VpcPublicPrivateSubnetDesign from './awssaa/VpcPublicPrivateSubnetDesign'
+import SecretsManagerVsParameterStore from './awssaa/SecretsManagerVsParameterStore'
+import NaclVsSecurityGroupDecision from './awssaa/NaclVsSecurityGroupDecision'
+import WafShieldEdgeProtection from './awssaa/WafShieldEdgeProtection'
+import BackupDrFailoverSequence from './awssaa/BackupDrFailoverSequence'
+import LoadBalancerTypeSpectrum from './awssaa/LoadBalancerTypeSpectrum'
+import DrStrategyOrderChallenge from './awssaa/DrStrategyOrderChallenge'
+import RdsMultiAzToggle from './awssaa/RdsMultiAzToggle'
+import ReadReplicaScalingCalculator from './awssaa/ReadReplicaScalingCalculator'
+import SqsVsSnsDecoupling from './awssaa/SqsVsSnsDecoupling'
+import ApiGatewayTypeComparison from './awssaa/ApiGatewayTypeComparison'
+import CloudFrontCacheTrace from './awssaa/CloudFrontCacheTrace'
+import ComputeServiceDecisionMatrix from './awssaa/ComputeServiceDecisionMatrix'
+import DynamoDbPartitionKeyToggle from './awssaa/DynamoDbPartitionKeyToggle'
+import EbsVolumeTypeSpectrum from './awssaa/EbsVolumeTypeSpectrum'
+import ServerlessEventPipeline from './awssaa/ServerlessEventPipeline'
+import SavingsPlansComparison from './awssaa/SavingsPlansComparison'
+import CostManagementToolComparison from './awssaa/CostManagementToolComparison'
+import DataTransferCostSpectrum from './awssaa/DataTransferCostSpectrum'
+import Ec2RightSizingCalculator from './awssaa/Ec2RightSizingCalculator'
+import LambdaCostModelCalculator from './awssaa/LambdaCostModelCalculator'
+import S3LifecycleTransitionChallenge from './awssaa/S3LifecycleTransitionChallenge'
+import AutomatedRemediationFlowTrace from './awsscs/AutomatedRemediationFlowTrace'
+import GuardDutyFindingTypeMatcher from './awsscs/GuardDutyFindingTypeMatcher'
+import ThreatDetectionServicePipeline from './awsscs/ThreatDetectionServicePipeline'
+import MacieDiscoveryCostCalculator from './awsscs/MacieDiscoveryCostCalculator'
+import CloudTrailDigestChainTimeline from './awsscs/CloudTrailDigestChainTimeline'
+import LogsInsightsCommandMatcher from './awsscs/LogsInsightsCommandMatcher'
+import S3AccessLogsVsDataEvents from './awsscs/S3AccessLogsVsDataEvents'
+import VpcFlowLogFieldOrder from './awsscs/VpcFlowLogFieldOrder'
+import SessionManagerVsBastionToggle from './awsscs/SessionManagerVsBastionToggle'
+import ContainerWorkloadSecurityMatrix from './awsscs/ContainerWorkloadSecurityMatrix'
+import DdosProtectionTierSlider from './awsscs/DdosProtectionTierSlider'
+import EdgeDefenseLayerDiagram from './awsscs/EdgeDefenseLayerDiagram'
+import PatchManagerWorkflowTimeline from './awsscs/PatchManagerWorkflowTimeline'
+import ConnectivityChoiceMatrix from './awsscs/ConnectivityChoiceMatrix'
+import MfaEnforcementApproaches from './awsscs/MfaEnforcementApproaches'
+import FederatedAccessWithIdentityCenter from './awsscs/FederatedAccessWithIdentityCenter'
+import IamPolicyEvaluationLogic from './awsscs/IamPolicyEvaluationLogic'
+import StsTemporaryCredentialsLifecycle from './awsscs/StsTemporaryCredentialsLifecycle'
+import DataClassificationForAwsWorkloads from './awsscs/DataClassificationForAwsWorkloads'
+import EnvelopeEncryptionConcept from './awsscs/EnvelopeEncryptionConcept'
+import KmsKeyPolicyVsIamPolicy from './awsscs/KmsKeyPolicyVsIamPolicy'
+import SecretsManagerRotationLifecycle from './awsscs/SecretsManagerRotationLifecycle'
+import OrganizationsAccountStructure from './awsscs/OrganizationsAccountStructure'
+import MultiAccountSecurityStrategy from './awsscs/MultiAccountSecurityStrategy'
+import ControlTowerGuardrails from './awsscs/ControlTowerGuardrails'
+import CostAllocationTagsForGovernance from './awsscs/CostAllocationTagsForGovernance'
+import ThreatModelingMethods from './cissp/ThreatModelingMethods'
+import DueCareVsDueDiligence from './cissp/DueCareVsDueDiligence'
+import SecurityControlCategories from './cissp/SecurityControlCategories'
+import LegalSystemSpectrum from './cissp/LegalSystemSpectrum'
+import AssetOwnershipHierarchy from './cissp/AssetOwnershipHierarchy'
+import DataSanitizationDecision from './cissp/DataSanitizationDecision'
+import PrivacyPrinciplesMatcher from './cissp/PrivacyPrinciplesMatcher'
+import DataStateControls from './cissp/DataStateControls'
+import CloudAccessSecurityBroker from './cissp/CloudAccessSecurityBroker'
+import SecurityModelsComparison from './cissp/SecurityModelsComparison'
+import DefenseInDepthCalculator from './cissp/DefenseInDepthCalculator'
+import PhysicalSecurityLayersCissp from './cissp/PhysicalSecurityLayers'
+import NetworkAccessControl8021X from './cissp/NetworkAccessControl8021X'
+import ConvergedProtocolsRisk from './cissp/ConvergedProtocolsRisk'
+import SecureProtocolComparison from './cissp/SecureProtocolComparison'
+import WirelessSecurityArchitecture from './cissp/WirelessSecurityArchitecture'
+import BiometricThresholdSpectrum from './cissp/BiometricThresholdSpectrum'
+import KerberosAuthFlow from './cissp/KerberosAuthFlow'
+import JitPrivilegedAccessToggle from './cissp/JitPrivilegedAccessToggle'
+import IdentityLifecycleTimeline from './cissp/IdentityLifecycleTimeline'
+import CodeReviewMethodMatrix from './cissp/CodeReviewMethodMatrix'
+import ControlTestingMethodMatcher from './cissp/ControlTestingMethodMatcher'
+import CoverageStrategyOrdering from './cissp/CoverageStrategyOrdering'
+import AssessmentIntensityStack from './cissp/AssessmentIntensityStack'
+import DrTestTypeOrdering from './cissp/DrTestTypeOrdering'
+import PatchPriorityCalculator from './cissp/PatchPriorityCalculator'
+import ForensicsInvestigationTimeline from './cissp/ForensicsInvestigationTimeline'
+import LogMonitoringPipelineDiagram from './cissp/LogMonitoringPipelineDiagram'
+import AppSecTestingToolsSpectrum from './cissp/AppSecTestingToolsSpectrum'
+import SecureCodingWeaknessStack from './cissp/SecureCodingWeaknessStack'
+import DatabaseSecurityToggle from './cissp/DatabaseSecurityToggle'
+import DevMethodologyComparison from './cissp/DevMethodologyComparison'
+
 export interface ConceptEntry {
   id: string
   certId: string
@@ -936,6 +1143,1654 @@ export const CONCEPTS: ConceptEntry[] = [
     title: 'Fiber Link Loss Calculator',
     description: 'Adjust fiber run length and connector/splice counts to estimate total loss against a link budget.',
     Component: DbLossCalculator,
+  },
+  {
+    id: 'aplus1-laptop-battery-runtime-calculator',
+    certId: 'aplus1',
+    domain: 1,
+    title: 'Laptop Battery Runtime Calculator',
+    description: 'adjust battery capacity and power draw to see how estimated runtime responds.',
+    Component: LaptopBatteryCalculator,
+  },
+  {
+    id: 'aplus1-laptop-display-panel-technologies',
+    certId: 'aplus1',
+    domain: 1,
+    title: 'Laptop Display Panel Technologies',
+    description: 'slide across panel types to see how viewing angle, color accuracy, and black level trade off.',
+    Component: LaptopDisplayTechnologies,
+  },
+  {
+    id: 'aplus1-mobile-device-accessories',
+    certId: 'aplus1',
+    domain: 1,
+    title: 'Mobile Device Accessories',
+    description: 'click a card to flip between the accessory and what it\'s actually for.',
+    Component: MobileAccessoriesMatcher,
+  },
+  {
+    id: 'aplus1-mobile-device-synchronization',
+    certId: 'aplus1',
+    domain: 1,
+    title: 'Mobile Device Synchronization',
+    description: 'pick a sync method and device environment to see the recommended approach.',
+    Component: MobileSyncDecision,
+  },
+  {
+    id: 'aplus1-a-packet-s-journey-out-of-a-soho-network',
+    certId: 'aplus1',
+    domain: 2,
+    title: 'A Packet\'s Journey Out of a SOHO Network',
+    description: 'watch the token trace a request from a laptop out to the Internet.',
+    Component: PacketJourneyThroughSoho,
+  },
+  {
+    id: 'aplus1-common-networking-hardware',
+    certId: 'aplus1',
+    domain: 2,
+    title: 'Common Networking Hardware',
+    description: 'click a card to flip between the device and what it actually does on the network.',
+    Component: NetworkHardwareMatcher,
+  },
+  {
+    id: 'aplus1-dhcp-lease-process-dora',
+    certId: 'aplus1',
+    domain: 2,
+    title: 'DHCP Lease Process (DORA)',
+    description: 'step through how a client obtains an IP address automatically.',
+    Component: DhcpLeaseProcess,
+  },
+  {
+    id: 'aplus1-internet-connection-types-ranked',
+    certId: 'aplus1',
+    domain: 2,
+    title: 'Internet Connection Types, Ranked',
+    description: 'click a connection type to compare typical speed, latency, and use case.',
+    Component: InternetConnectionTypesRanking,
+  },
+  {
+    id: 'aplus1-network-type-spectrum',
+    certId: 'aplus1',
+    domain: 2,
+    title: 'Network Type Spectrum',
+    description: 'slide from the smallest to the largest network scope to compare range and typical technology.',
+    Component: NetworkTypeSpectrum,
+  },
+  {
+    id: 'aplus1-soho-router-hardening',
+    certId: 'aplus1',
+    domain: 2,
+    title: 'SOHO Router Hardening',
+    description: 'toggle between an out-of-the-box configuration and a hardened one.',
+    Component: SohoRouterHardening,
+  },
+  {
+    id: 'aplus1-cpu-socket-compatibility',
+    certId: 'aplus1',
+    domain: 3,
+    title: 'CPU Socket Compatibility',
+    description: 'pick a CPU brand and a motherboard socket to see whether they physically match.',
+    Component: CpuSocketCompatibility,
+  },
+  {
+    id: 'aplus1-custom-pc-build-gaming-vs-cad-workstation',
+    certId: 'aplus1',
+    domain: 3,
+    title: 'Custom PC Build: Gaming vs. CAD/Workstation',
+    description: 'click a spec category to see how a custom build\'s priorities shift between the two scenarios.',
+    Component: CustomPcBuildAdvisor,
+  },
+  {
+    id: 'aplus1-expansion-add-on-card-types',
+    certId: 'aplus1',
+    domain: 3,
+    title: 'Expansion / Add-On Card Types',
+    description: 'click a card to flip between the add-on card and the job it does.',
+    Component: ExpansionCardMatcher,
+  },
+  {
+    id: 'aplus1-motherboard-component-layout',
+    certId: 'aplus1',
+    domain: 3,
+    title: 'Motherboard Component Layout',
+    description: 'step through the major zones of a typical ATX motherboard.',
+    Component: MotherboardComponentDiagram,
+  },
+  {
+    id: 'aplus1-multifunction-device-setup-order',
+    certId: 'aplus1',
+    domain: 3,
+    title: 'Multifunction Device Setup Order',
+    description: 'use the arrows to put these deployment steps in order, then check your work.',
+    Component: MultifunctionDeviceSetupOrder,
+  },
+  {
+    id: 'aplus1-storage-device-speed-tiers',
+    certId: 'aplus1',
+    domain: 3,
+    title: 'Storage Device Speed Tiers',
+    description: 'click a drive type to compare interface, sequential speed, and typical use case.',
+    Component: StorageDeviceSpeedTiers,
+  },
+  {
+    id: 'aplus1-cloud-deployment-model-spectrum',
+    certId: 'aplus1',
+    domain: 4,
+    title: 'Cloud Deployment Model Spectrum',
+    description: 'slide from private to public to see how ownership, control, and cost predictability trade off.',
+    Component: CloudDeploymentModelSpectrum,
+  },
+  {
+    id: 'aplus1-vdi-session-flow',
+    certId: 'aplus1',
+    domain: 4,
+    title: 'VDI Session Flow',
+    description: 'watch a virtual desktop infrastructure session travel from endpoint to host and back.',
+    Component: VdiSessionFlow,
+  },
+  {
+    id: 'aplus1-virtual-switch-mode-picker',
+    certId: 'aplus1',
+    domain: 4,
+    title: 'Virtual Switch Mode Picker',
+    description: 'answer two questions about a VM\'s networking needs to see which virtual switch mode fits.',
+    Component: VirtualNetworkModePicker,
+  },
+  {
+    id: 'aplus1-vm-resource-sizing-calculator',
+    certId: 'aplus1',
+    domain: 4,
+    title: 'VM Resource Sizing Calculator',
+    description: 'adjust host capacity and guest requirements to see whether the host can actually support the planned VMs.',
+    Component: VmResourceSizingCalculator,
+  },
+  {
+    id: 'aplus1-component-swap-test-order',
+    certId: 'aplus1',
+    domain: 5,
+    title: 'Component Swap-Test Order',
+    description: 'for an unstable, no-POST, or randomly rebooting system, work from cheapest/fastest test down to most invasive.',
+    Component: ComponentSwapTestOrder,
+  },
+  {
+    id: 'aplus1-display-signal-path',
+    certId: 'aplus1',
+    domain: 5,
+    title: 'Display Signal Path',
+    description: 'step through the video signal chain to see which symptom points to which stage.',
+    Component: DisplaySignalPathDiagram,
+  },
+  {
+    id: 'aplus1-mobile-device-won-t-power-on-troubleshooting-order',
+    certId: 'aplus1',
+    domain: 5,
+    title: 'Mobile Device Won\'t Power On — Troubleshooting Order',
+    description: 'use the arrows to put these steps in the right order, least invasive first, then check.',
+    Component: MobileDevicePowerTroubleshootingOrder,
+  },
+  {
+    id: 'aplus1-storage-and-raid-failure-symptom-matcher',
+    certId: 'aplus1',
+    domain: 5,
+    title: 'Storage & RAID Failure Symptom Matcher',
+    description: 'click a symptom card to reveal its likely cause and the right first response.',
+    Component: StorageRaidFailureMatcher,
+  },
+  {
+    id: 'aplus1-wired-connectivity-troubleshooting',
+    certId: 'aplus1',
+    domain: 5,
+    title: 'Wired Connectivity Troubleshooting',
+    description: 'step through diagnosing a "no network" wired connection from the cable outward.',
+    Component: WiredConnectivityTroubleshootingTimeline,
+  },
+  {
+    id: 'aplus1-wireless-connectivity-before-after',
+    certId: 'aplus1',
+    domain: 5,
+    title: 'Wireless Connectivity: Before / After',
+    description: 'toggle between a misconfigured access point and the same AP after standard troubleshooting fixes.',
+    Component: WirelessConnectivityBeforeAfter,
+  },
+  {
+    id: 'aplus2-control-panel-applet-router',
+    certId: 'aplus2',
+    domain: 1,
+    title: 'Control Panel Applet Router',
+    description: 'pick a symptom, then pick the applet that fixes it.',
+    Component: ControlPanelAppletRouter,
+  },
+  {
+    id: 'aplus2-linux-disk-full-troubleshooting-sequence',
+    certId: 'aplus2',
+    domain: 1,
+    title: 'Linux Disk-Full Troubleshooting Sequence',
+    description: 'a Linux workstation is nearly out of disk space. Use the arrows to put these commands in the order you\'d actually run them, then check.',
+    Component: LinuxCommandSequence,
+  },
+  {
+    id: 'aplus2-mac-os-tool-spectrum',
+    certId: 'aplus2',
+    domain: 1,
+    title: 'macOS Tool Spectrum',
+    description: 'slide across core macOS features to see what each one is for.',
+    Component: MacOsToolSpectrum,
+  },
+  {
+    id: 'aplus2-mbr-vs-gpt-partition-styles',
+    certId: 'aplus2',
+    domain: 1,
+    title: 'MBR vs GPT Partition Styles',
+    description: 'pick a scenario to see which partition table style Disk Management should use.',
+    Component: DiskPartitionStyleComparison,
+  },
+  {
+    id: 'aplus2-windows-command-line-tool-matcher',
+    certId: 'aplus2',
+    domain: 1,
+    title: 'Windows Command-Line Tool Matcher',
+    description: 'click a command to flip it and reveal what it actually does.',
+    Component: WindowsCliToolMatcher,
+  },
+  {
+    id: 'aplus2-workgroup-to-domain-join',
+    certId: 'aplus2',
+    domain: 1,
+    title: 'Workgroup to Domain Join',
+    description: 'watch a workstation move from a local workgroup into an Active Directory domain.',
+    Component: DomainJoinFlow,
+  },
+  {
+    id: 'aplus2-authentication-method-matcher',
+    certId: 'aplus2',
+    domain: 2,
+    title: 'Authentication Method Matcher',
+    description: 'click a term to flip it and reveal what it actually authenticates with.',
+    Component: AuthenticationMethodMatcher,
+  },
+  {
+    id: 'aplus2-data-destruction-and-disposal-workflow',
+    certId: 'aplus2',
+    domain: 2,
+    title: 'Data Destruction & Disposal Workflow',
+    description: 'walk through choosing and documenting the right disposal method for a drive.',
+    Component: DataDestructionTimeline,
+  },
+  {
+    id: 'aplus2-lost-mobile-device-response',
+    certId: 'aplus2',
+    domain: 2,
+    title: 'Lost Mobile Device Response',
+    description: 'watch the response escalate from a screen lock to a full remote wipe.',
+    Component: MobileDeviceSecurityFlow,
+  },
+  {
+    id: 'aplus2-physical-security-control-ladder',
+    certId: 'aplus2',
+    domain: 2,
+    title: 'Physical Security Control Ladder',
+    description: 'click a control to see how strong a physical barrier it really is.',
+    Component: PhysicalSecurityLayers,
+  },
+  {
+    id: 'aplus2-workstation-hardening-before-after',
+    certId: 'aplus2',
+    domain: 2,
+    title: 'Workstation Hardening: Before / After',
+    description: 'toggle to see an unhardened workstation next to one configured with security best practices.',
+    Component: WindowsSecurityHardeningToggle,
+  },
+  {
+    id: 'aplus2-workstation-port-exposure-calculator',
+    certId: 'aplus2',
+    domain: 2,
+    title: 'Workstation Port Exposure Calculator',
+    description: 'adjust firewall and port settings to see how workstation exposure changes.',
+    Component: PortSecurityRiskCalculator,
+  },
+  {
+    id: 'aplus2-application-crash-and-slow-performance-triage',
+    certId: 'aplus2',
+    domain: 3,
+    title: 'Application Crash & Slow Performance Triage',
+    description: 'pick the symptom and when it happens to get the likely cause and fix path.',
+    Component: ApplicationCrashDecisionMatrix,
+  },
+  {
+    id: 'aplus2-best-practice-malware-removal-process',
+    certId: 'aplus2',
+    domain: 3,
+    title: 'Best Practice Malware Removal Process',
+    description: 'step through CompTIA\'s 7-step malware removal procedure in order.',
+    Component: MalwareRemovalProcess,
+  },
+  {
+    id: 'aplus2-general-troubleshooting-methodology',
+    certId: 'aplus2',
+    domain: 3,
+    title: 'General Troubleshooting Methodology',
+    description: 'use the arrows to put CompTIA\'s six troubleshooting steps in the correct order, then check.',
+    Component: TroubleshootingMethodologySequence,
+  },
+  {
+    id: 'aplus2-mobile-security-symptom-spectrum',
+    certId: 'aplus2',
+    domain: 3,
+    title: 'Mobile Security Symptom Spectrum',
+    description: 'drag across mobile security symptoms to see how private and how obvious each one is.',
+    Component: MobileSecuritySymptomSpectrum,
+  },
+  {
+    id: 'aplus2-pc-security-symptom-matcher',
+    certId: 'aplus2',
+    domain: 3,
+    title: 'PC Security Symptom Matcher',
+    description: 'click a symptom to reveal the likely security issue and next step.',
+    Component: PcSecuritySymptomMatcher,
+  },
+  {
+    id: 'aplus2-windows-update-failure-resolution-path',
+    certId: 'aplus2',
+    domain: 3,
+    title: 'Windows Update Failure Resolution Path',
+    description: 'watch the token move through the escalating fix path for a failed Windows Update.',
+    Component: WindowsUpdateFailureFlow,
+  },
+  {
+    id: 'aplus2-backup-strategy-storage-calculator',
+    certId: 'aplus2',
+    domain: 4,
+    title: 'Backup Strategy Storage Calculator',
+    description: 'adjust data size, daily change rate, and retention to compare full, incremental, and differential backup storage.',
+    Component: BackupRecoveryCalculator,
+  },
+  {
+    id: 'aplus2-customer-communication-and-professionalism',
+    certId: 'aplus2',
+    domain: 4,
+    title: 'Customer Communication & Professionalism',
+    description: 'toggle to compare an unprofessional response with a professional one for the same scenario.',
+    Component: CustomerCommunicationToggle,
+  },
+  {
+    id: 'aplus2-incident-response-and-chain-of-custody',
+    certId: 'aplus2',
+    domain: 4,
+    title: 'Incident Response & Chain of Custody',
+    description: 'use the arrows to order the first-response steps for handling prohibited content or activity, then check.',
+    Component: IncidentResponseSequence,
+  },
+  {
+    id: 'aplus2-remote-access-technology-ladder',
+    certId: 'aplus2',
+    domain: 4,
+    title: 'Remote Access Technology Ladder',
+    description: 'click a tier to compare remote access technologies from simple screen sharing to a full network tunnel.',
+    Component: RemoteAccessLadder,
+  },
+  {
+    id: 'aplus2-scripting-basics-windows-native-vs-cross-platform',
+    certId: 'aplus2',
+    domain: 4,
+    title: 'Scripting Basics: Windows-Native vs Cross-Platform',
+    description: 'compare the two broad scripting families a technician runs into.',
+    Component: ScriptingLanguageComparison,
+  },
+  {
+    id: 'aplus2-server-room-environmental-controls',
+    certId: 'aplus2',
+    domain: 4,
+    title: 'Server Room Environmental Controls',
+    description: 'step through the environmental controls that protect an equipment room.',
+    Component: EnvironmentalControlsDiagram,
+  },
+  {
+    id: 'netplus-ipv4-vs-ipv6-addressing',
+    certId: 'netplus',
+    domain: 1,
+    title: 'IPv4 vs IPv6 Addressing',
+    description: 'compare how the two addressing schemes represent, resolve, and conserve addresses.',
+    Component: Ipv4VsIpv6Addressing,
+  },
+  {
+    id: 'netplus-network-topology-types',
+    certId: 'netplus',
+    domain: 1,
+    title: 'Network Topology Types',
+    description: 'step through physical topologies to see how devices are wired together and what each buys you.',
+    Component: NetworkTopologyDiagram,
+  },
+  {
+    id: 'netplus-traditional-control-plane-vs-sdn',
+    certId: 'netplus',
+    domain: 1,
+    title: 'Traditional Control Plane vs SDN',
+    description: 'toggle to see where forwarding decisions get made, before and after centralizing control.',
+    Component: SdnControlPlaneToggle,
+  },
+  {
+    id: 'netplus-traffic-delivery-types',
+    certId: 'netplus',
+    domain: 1,
+    title: 'Traffic Delivery Types',
+    description: 'click a traffic type to see how many hosts actually receive each packet.',
+    Component: TrafficDeliveryStack,
+  },
+  {
+    id: 'netplus-wan-connection-types',
+    certId: 'netplus',
+    domain: 1,
+    title: 'WAN Connection Types',
+    description: 'slide across WAN link types to compare cost, speed, and latency trade-offs.',
+    Component: WanConnectionSpectrum,
+  },
+  {
+    id: 'netplus-well-known-port-numbers',
+    certId: 'netplus',
+    domain: 1,
+    title: 'Well-Known Port Numbers',
+    description: 'click a card to flip between the port number and the service it belongs to.',
+    Component: WellKnownPortsMatcher,
+  },
+  {
+    id: 'netplus-dhcp-lease-process-dora',
+    certId: 'netplus',
+    domain: 2,
+    title: 'DHCP Lease Process (DORA)',
+    description: 'step through Discover, Offer, Request, Acknowledge, and the later renewal.',
+    Component: DhcpLeaseTimeline,
+  },
+  {
+    id: 'netplus-dns-record-types',
+    certId: 'netplus',
+    domain: 2,
+    title: 'DNS Record Types',
+    description: 'click a card to flip between the record type and what it resolves.',
+    Component: DnsRecordMatcher,
+  },
+  {
+    id: 'netplus-nat-pat-translation-flow',
+    certId: 'netplus',
+    domain: 2,
+    title: 'NAT / PAT Translation Flow',
+    description: 'watch a packet\'s address get translated out to the internet, and back.',
+    Component: NatPatFlowTrace,
+  },
+  {
+    id: 'netplus-redundant-links-stp-blocking-vs-lacp-aggregation',
+    certId: 'netplus',
+    domain: 2,
+    title: 'Redundant Links: STP Blocking vs LACP Aggregation',
+    description: 'toggle to see what happens to a second physical link between two switches.',
+    Component: RedundantLinkToggle,
+  },
+  {
+    id: 'netplus-routing-protocols-by-administrative-distance',
+    certId: 'netplus',
+    domain: 2,
+    title: 'Routing Protocols by Administrative Distance',
+    description: 'click a source to see why a router trusts it more or less than the others when routes conflict.',
+    Component: RoutingProtocolStack,
+  },
+  {
+    id: 'netplus-wireless-security-standards',
+    certId: 'netplus',
+    domain: 2,
+    title: 'Wireless Security Standards',
+    description: 'slide across Wi-Fi security generations to compare encryption and key management.',
+    Component: WirelessSecuritySpectrum,
+  },
+  {
+    id: 'netplus-choosing-a-monitoring-tool',
+    certId: 'netplus',
+    domain: 3,
+    title: 'Choosing a Monitoring Tool',
+    description: 'pick what you need to see and when you need to see it.',
+    Component: MonitoringToolMatrix,
+  },
+  {
+    id: 'netplus-disaster-recovery-site-types',
+    certId: 'netplus',
+    domain: 3,
+    title: 'Disaster Recovery Site Types',
+    description: 'use the arrows to order these sites from fastest to slowest recovery, then check.',
+    Component: DrSiteReorder,
+  },
+  {
+    id: 'netplus-network-change-management-process',
+    certId: 'netplus',
+    domain: 3,
+    title: 'Network Change Management Process',
+    description: 'step through how a network change moves from request to documented reality.',
+    Component: ChangeManagementTimelineNetplus,
+  },
+  {
+    id: 'netplus-physical-vs-logical-network-diagrams',
+    certId: 'netplus',
+    domain: 3,
+    title: 'Physical vs Logical Network Diagrams',
+    description: 'compare what each documentation type shows and when you would reach for it.',
+    Component: DocumentationTypeComparison,
+  },
+  {
+    id: 'netplus-device-hardening-checklist',
+    certId: 'netplus',
+    domain: 4,
+    title: 'Device Hardening Checklist',
+    description: 'toggle between an out-of-the-box device and one that has gone through standard hardening steps.',
+    Component: DeviceHardeningToggle,
+  },
+  {
+    id: 'netplus-ids-vs-ips',
+    certId: 'netplus',
+    domain: 4,
+    title: 'IDS vs IPS',
+    description: 'watch the same malicious packet take the out-of-band IDS path versus the inline IPS path.',
+    Component: IdsVsIpsDiagram,
+  },
+  {
+    id: 'netplus-physical-security-controls',
+    certId: 'netplus',
+    domain: 4,
+    title: 'Physical Security Controls',
+    description: 'click a card to flip between the control\'s name and what it actually does.',
+    Component: PhysicalSecurityControls,
+  },
+  {
+    id: 'netplus-radius-vs-tacacs',
+    certId: 'netplus',
+    domain: 4,
+    title: 'RADIUS vs TACACS+',
+    description: 'compare the two dominant AAA (authentication, authorization, accounting) protocols used to centralize network logins.',
+    Component: AaaProtocolComparison,
+  },
+  {
+    id: 'netplus-dns-troubleshooting-with-nslookup-dig',
+    certId: 'netplus',
+    domain: 5,
+    title: 'DNS Troubleshooting with nslookup/dig',
+    description: 'step through isolating a name-resolution failure to the internal or upstream DNS server.',
+    Component: DnsTroubleshootingFlow,
+  },
+  {
+    id: 'netplus-duplicate-ip-address-conflict',
+    certId: 'netplus',
+    domain: 5,
+    title: 'Duplicate IP Address Conflict',
+    description: 'trace how a stray static IP collides with an address already in use.',
+    Component: DuplicateIpConflictTrace,
+  },
+  {
+    id: 'netplus-interface-error-counters-ranked-by-severity',
+    certId: 'netplus',
+    domain: 5,
+    title: 'Interface Error Counters, Ranked by Severity',
+    description: 'click a counter to see what it means and how urgently it should be investigated.',
+    Component: InterfaceErrorCounters,
+  },
+  {
+    id: 'netplus-latency-jitter-and-packet-loss',
+    certId: 'netplus',
+    domain: 5,
+    title: 'Latency, Jitter & Packet Loss',
+    description: 'drag the sliders to see how the three core performance metrics combine into an overall verdict for real-time traffic.',
+    Component: NetworkPerformanceCalculator,
+  },
+  {
+    id: 'netplus-which-hardware-tool-do-i-need',
+    certId: 'netplus',
+    domain: 5,
+    title: 'Which Hardware Tool Do I Need?',
+    description: 'pick the symptom and cable media to see which physical-layer tool actually fits the job.',
+    Component: NetworkToolSelector,
+  },
+  {
+    id: 'netplus-wireless-signal-strength-troubleshooting',
+    certId: 'netplus',
+    domain: 5,
+    title: 'Wireless Signal Strength Troubleshooting',
+    description: 'drag the slider across RSSI tiers to see what a client actually experiences at each signal level.',
+    Component: WirelessSignalSpectrum,
+  },
+  {
+    id: 'secplus-change-management-process',
+    certId: 'secplus',
+    domain: 1,
+    title: 'Change Management Process',
+    description: 'step through a well-governed change from request to review.',
+    Component: ChangeManagementTimelineSecplus,
+  },
+  {
+    id: 'secplus-deception-and-disruption-technology',
+    certId: 'secplus',
+    domain: 1,
+    title: 'Deception & Disruption Technology',
+    description: 'toggle to see how honeypots and decoys change an attacker\'s path after the perimeter is breached.',
+    Component: DeceptionTechnologyToggle,
+  },
+  {
+    id: 'secplus-encryption-across-the-data-lifecycle',
+    certId: 'secplus',
+    domain: 1,
+    title: 'Encryption Across the Data Lifecycle',
+    description: 'drag across the data lifecycle to see how the right cryptographic control changes by state.',
+    Component: DataStateEncryptionSpectrum,
+  },
+  {
+    id: 'secplus-security-control-types-matrix',
+    certId: 'secplus',
+    domain: 1,
+    title: 'Security Control Types Matrix',
+    description: 'pick a control category and a control function to see a matching real-world example.',
+    Component: SecurityControlTypeMatrix,
+  },
+  {
+    id: 'secplus-attack-surface-reduction-calculator',
+    certId: 'secplus',
+    domain: 2,
+    title: 'Attack Surface Reduction Calculator',
+    description: 'adjust common mitigation techniques and watch the estimated residual risk score respond.',
+    Component: AttackSurfaceReductionCalculator,
+  },
+  {
+    id: 'secplus-physical-intrusion-attempt-sequence',
+    certId: 'secplus',
+    domain: 2,
+    title: 'Physical Intrusion Attempt Sequence',
+    description: 'use the arrows to put a physical social-engineering intrusion in the order it typically unfolds, then check.',
+    Component: PhysicalIntrusionSequence,
+  },
+  {
+    id: 'secplus-sql-injection-attack-trace',
+    certId: 'secplus',
+    domain: 2,
+    title: 'SQL Injection Attack Trace',
+    description: 'watch an unsanitized input field turn into a full data breach.',
+    Component: SqlInjectionAttackTrace,
+  },
+  {
+    id: 'secplus-threat-actor-sophistication-tiers',
+    certId: 'secplus',
+    domain: 2,
+    title: 'Threat Actor Sophistication Tiers',
+    description: 'click each tier to compare threat actors by resources, sophistication, and motivation.',
+    Component: ThreatActorSophisticationStack,
+  },
+  {
+    id: 'secplus-threat-vectors-and-attack-surfaces',
+    certId: 'secplus',
+    domain: 2,
+    title: 'Threat Vectors & Attack Surfaces',
+    description: 'click a card to flip between the vector name and how it is used.',
+    Component: ThreatVectorFlipCards,
+  },
+  {
+    id: 'secplus-vulnerability-types-across-the-stack',
+    certId: 'secplus',
+    domain: 2,
+    title: 'Vulnerability Types Across the Stack',
+    description: 'step through where each vulnerability type actually lives.',
+    Component: VulnerabilityStackDiagram,
+  },
+  {
+    id: 'secplus-cloud-shared-responsibility-model',
+    certId: 'secplus',
+    domain: 3,
+    title: 'Cloud Shared Responsibility Model',
+    description: 'pick a service model to see how security responsibility shifts between provider and customer.',
+    Component: CloudResponsibilityComparison,
+  },
+  {
+    id: 'secplus-high-availability-failover',
+    certId: 'secplus',
+    domain: 3,
+    title: 'High Availability Failover',
+    description: 'watch load balancing and clustering absorb a node failure.',
+    Component: HighAvailabilityFailoverTrace,
+  },
+  {
+    id: 'secplus-ics-scada-and-embedded-device-security-priority',
+    certId: 'secplus',
+    domain: 3,
+    title: 'ICS/SCADA & Embedded Device Security Priority',
+    description: 'since these devices often cannot be patched, use the arrows to rank these controls in the order you should apply them, then check.',
+    Component: IcsCompensatingControlPriority,
+  },
+  {
+    id: 'secplus-screened-subnet-dmz-segmentation',
+    certId: 'secplus',
+    domain: 3,
+    title: 'Screened Subnet (DMZ) Segmentation',
+    description: 'step through how a screened subnet keeps public services separate from the internal network.',
+    Component: ScreenedSubnetDiagram,
+  },
+  {
+    id: 'secplus-alerting-and-monitoring-tool-matcher',
+    certId: 'secplus',
+    domain: 4,
+    title: 'Alerting & Monitoring Tool Matcher',
+    description: 'click a card to flip between the acronym and what the tool actually does.',
+    Component: MonitoringToolMatcher,
+  },
+  {
+    id: 'secplus-asset-management-lifecycle',
+    certId: 'secplus',
+    domain: 4,
+    title: 'Asset Management Lifecycle',
+    description: 'step through a hardware/software asset from procurement to disposal.',
+    Component: AssetManagementLifecycle,
+  },
+  {
+    id: 'secplus-credentialed-vs-non-credentialed-scanning',
+    certId: 'secplus',
+    domain: 4,
+    title: 'Credentialed vs. Non-Credentialed Scanning',
+    description: 'compare what each vulnerability scan type can see and where it fits.',
+    Component: VulnerabilityScanTypes,
+  },
+  {
+    id: 'secplus-layered-network-defenses',
+    certId: 'secplus',
+    domain: 4,
+    title: 'Layered Network Defenses',
+    description: 'step through how a single connection is checked at each defensive layer.',
+    Component: NetworkDefenseLayers,
+  },
+  {
+    id: 'secplus-patch-management-sequence',
+    certId: 'secplus',
+    domain: 4,
+    title: 'Patch Management Sequence',
+    description: 'use the arrows to put the patch management process in order, then check.',
+    Component: PatchManagementSequence,
+  },
+  {
+    id: 'secplus-secure-baseline-hardening',
+    certId: 'secplus',
+    domain: 4,
+    title: 'Secure Baseline Hardening',
+    description: 'toggle between a default configuration and a hardened secure baseline.',
+    Component: SecureBaselineToggle,
+  },
+  {
+    id: 'secplus-audit-and-assessment-type-picker',
+    certId: 'secplus',
+    domain: 5,
+    title: 'Audit & Assessment Type Picker',
+    description: 'pick who performs the review and why, to see which audit type it is.',
+    Component: AuditTypeDecision,
+  },
+  {
+    id: 'secplus-business-impact-analysis-calculator',
+    certId: 'secplus',
+    domain: 5,
+    title: 'Business Impact Analysis Calculator',
+    description: 'adjust outage inputs to see estimated impact and whether it exceeds the process\'s Maximum Tolerable Downtime.',
+    Component: BusinessImpactCalculator,
+  },
+  {
+    id: 'secplus-compliance-reporting-flow',
+    certId: 'secplus',
+    domain: 5,
+    title: 'Compliance Reporting Flow',
+    description: 'watch a finding move from internal review to external disclosure and closure.',
+    Component: ComplianceReportingTrace,
+  },
+  {
+    id: 'secplus-governance-model-spectrum',
+    certId: 'secplus',
+    domain: 5,
+    title: 'Governance Model Spectrum',
+    description: 'drag across the tiers to see how centralized and decentralized governance trade off.',
+    Component: GovernanceModelSpectrum,
+  },
+  {
+    id: 'secplus-security-awareness-training-cycle',
+    certId: 'secplus',
+    domain: 5,
+    title: 'Security Awareness Training Cycle',
+    description: 'step through how an awareness program is built, delivered, and measured.',
+    Component: AwarenessTrainingTimeline,
+  },
+  {
+    id: 'secplus-security-documentation-hierarchy',
+    certId: 'secplus',
+    domain: 5,
+    title: 'Security Documentation Hierarchy',
+    description: 'click a tier to see how governance flows down into policies, standards, procedures, and guidelines.',
+    Component: PolicyHierarchyStack,
+  },
+  {
+    id: 'cysa-cloud-shared-responsibility-finder',
+    certId: 'cysa',
+    domain: 1,
+    title: 'Cloud Shared Responsibility Finder',
+    description: 'pick a service model and a layer to see who is on the hook for securing it.',
+    Component: CloudSecOpsDecision,
+  },
+  {
+    id: 'cysa-flat-network-vs-zero-trust-segmentation',
+    certId: 'cysa',
+    domain: 1,
+    title: 'Flat Network vs. Zero-Trust Segmentation',
+    description: 'toggle to compare a flat, perimeter-only network with a segmented, zero-trust design.',
+    Component: NetworkSegmentationToggle,
+  },
+  {
+    id: 'cysa-log-ingestion-pipeline',
+    certId: 'cysa',
+    domain: 1,
+    title: 'Log Ingestion Pipeline',
+    description: 'watch a raw event travel from source to a correlated alert.',
+    Component: LogIngestionPipeline,
+  },
+  {
+    id: 'cysa-privileged-access-tiering',
+    certId: 'cysa',
+    domain: 1,
+    title: 'Privileged Access Tiering',
+    description: 'click a tier to see why identity infrastructure sits above everyday user accounts.',
+    Component: IdentityAccessSocTiers,
+  },
+  {
+    id: 'cysa-threat-intelligence-source-matcher',
+    certId: 'cysa',
+    domain: 1,
+    title: 'Threat Intelligence Source Matcher',
+    description: 'click a card to reveal what each threat-intel source is best (and worst) for.',
+    Component: ThreatIntelSourceMatcher,
+  },
+  {
+    id: 'cysa-transport-encryption-protocol-spectrum',
+    certId: 'cysa',
+    domain: 1,
+    title: 'Transport Encryption Protocol Spectrum',
+    description: 'slide across the protocol generations to compare strength, forward secrecy, and real-world exposure.',
+    Component: EncryptionProtocolSpectrum,
+  },
+  {
+    id: 'cysa-dread-risk-score-calculator',
+    certId: 'cysa',
+    domain: 2,
+    title: 'DREAD Risk Score Calculator',
+    description: 'rate each DREAD factor 0-10 to see how a threat model converts qualitative judgment into a comparable score.',
+    Component: DreadRiskCalculator,
+  },
+  {
+    id: 'cysa-mapping-the-attack-surface',
+    certId: 'cysa',
+    domain: 2,
+    title: 'Mapping the Attack Surface',
+    description: 'reveal, one category at a time, everything an attacker could try before you even start scanning.',
+    Component: AttackSurfaceManagement,
+  },
+  {
+    id: 'cysa-prioritizing-beyond-cvss-epss-and-kev',
+    certId: 'cysa',
+    domain: 2,
+    title: 'Prioritizing Beyond CVSS: EPSS & KEV',
+    description: 'use the arrows to rank these findings from highest to lowest real-world remediation priority, then check.',
+    Component: EpssKevPrioritization,
+  },
+  {
+    id: 'cysa-reading-a-vulnerability-scan-finding',
+    certId: 'cysa',
+    domain: 2,
+    title: 'Reading a Vulnerability Scan Finding',
+    description: 'walk through how an analyst turns one raw scan finding into a prioritized ticket.',
+    Component: ScanReportWalkthrough,
+  },
+  {
+    id: 'cysa-sql-injection-vs-cross-site-scripting',
+    certId: 'cysa',
+    domain: 2,
+    title: 'SQL Injection vs. Cross-Site Scripting',
+    description: 'two of the most common web application vulnerability classes, compared side by side.',
+    Component: OwaspWebVulnTypes,
+  },
+  {
+    id: 'cysa-true-false-positive-and-negative-finder',
+    certId: 'cysa',
+    domain: 2,
+    title: 'True/False Positive & Negative Finder',
+    description: 'pick a scanner result and a manual validation result to see which outcome you are dealing with.',
+    Component: FalsePositiveNegativeDecision,
+  },
+  {
+    id: 'cysa-chain-of-custody-flow',
+    certId: 'cysa',
+    domain: 3,
+    title: 'Chain of Custody Flow',
+    description: 'step through how evidence moves, and what gets logged, at each handoff.',
+    Component: ChainOfCustodyFlow,
+  },
+  {
+    id: 'cysa-eradication-vs-remediation',
+    certId: 'cysa',
+    domain: 3,
+    title: 'Eradication vs. Remediation',
+    description: 'two phases that sound similar but answer different questions.',
+    Component: EradicationVsRemediation,
+  },
+  {
+    id: 'cysa-mitre-attand-ck-tactic-trace',
+    certId: 'cysa',
+    domain: 3,
+    title: 'MITRE ATT&CK Tactic Trace',
+    description: 'watch a token move across ATT&CK tactics in a typical intrusion path.',
+    Component: MitreAttackTacticTrace,
+  },
+  {
+    id: 'cysa-order-of-volatility',
+    certId: 'cysa',
+    domain: 3,
+    title: 'Order of Volatility',
+    description: 'use the arrows to sequence evidence collection from most to least volatile, then check.',
+    Component: OrderOfVolatilityCysa,
+  },
+  {
+    id: 'cysa-playbook-runbook-and-friends',
+    certId: 'cysa',
+    domain: 3,
+    title: 'Playbook, Runbook & Friends',
+    description: 'click a card to flip between the term and what it actually means in an IR program.',
+    Component: PlaybookRunbookMatcher,
+  },
+  {
+    id: 'cysa-root-cause-analysis-technique-selector',
+    certId: 'cysa',
+    domain: 3,
+    title: 'Root Cause Analysis Technique Selector',
+    description: 'describe the incident and get the RCA technique best suited to it.',
+    Component: RootCauseAnalysisSelector,
+  },
+  {
+    id: 'cysa-executive-summary-vs-technical-report',
+    certId: 'cysa',
+    domain: 4,
+    title: 'Executive Summary vs. Technical Report',
+    description: 'toggle between the two audiences a single vulnerability finding gets written for.',
+    Component: ExecutiveVsTechnicalReport,
+  },
+  {
+    id: 'cysa-incident-communication-cadence',
+    certId: 'cysa',
+    domain: 4,
+    title: 'Incident Communication Cadence',
+    description: 'slide across severity to see how often, and to whom, updates should go out.',
+    Component: CommunicationCadenceSpectrum,
+  },
+  {
+    id: 'cysa-post-incident-review-meeting',
+    certId: 'cysa',
+    domain: 4,
+    title: 'Post-Incident Review Meeting',
+    description: 'step through the agenda a lessons-learned meeting should follow.',
+    Component: PostIncidentReviewAgenda,
+  },
+  {
+    id: 'cysa-vulnerability-management-kpi-calculator',
+    certId: 'cysa',
+    domain: 4,
+    title: 'Vulnerability Management KPI Calculator',
+    description: 'adjust scan and remediation figures to see the KPIs a vulnerability report would surface.',
+    Component: VulnManagementKpiCalculator,
+  },
+  {
+    id: 'awssaa-cross-account-assume-role-flow',
+    certId: 'awssaa',
+    domain: 1,
+    title: 'Cross-Account AssumeRole Flow',
+    description: 'watch a caller in one account assume a role in another.',
+    Component: CrossAccountAssumeRoleFlow,
+  },
+  {
+    id: 'awssaa-iam-users-vs-groups-vs-roles',
+    certId: 'awssaa',
+    domain: 1,
+    title: 'IAM Users vs Groups vs Roles',
+    description: 'compare the three ways IAM represents "who" is making a request.',
+    Component: IamRolesUsersGroups,
+  },
+  {
+    id: 'awssaa-public-private-subnet-design',
+    certId: 'awssaa',
+    domain: 1,
+    title: 'Public/Private Subnet Design',
+    description: 'step through how a VPC routes traffic between tiers.',
+    Component: VpcPublicPrivateSubnetDesign,
+  },
+  {
+    id: 'awssaa-secrets-manager-vs-parameter-store',
+    certId: 'awssaa',
+    domain: 1,
+    title: 'Secrets Manager vs Parameter Store',
+    description: 'click a card to reveal which service the trait belongs to.',
+    Component: SecretsManagerVsParameterStore,
+  },
+  {
+    id: 'awssaa-security-groups-vs-network-acls',
+    certId: 'awssaa',
+    domain: 1,
+    title: 'Security Groups vs Network ACLs',
+    description: 'pick a scope and rule type to see which network control fits.',
+    Component: NaclVsSecurityGroupDecision,
+  },
+  {
+    id: 'awssaa-waf-shield-and-firewall-manager',
+    certId: 'awssaa',
+    domain: 1,
+    title: 'WAF, Shield & Firewall Manager',
+    description: 'click a layer of AWS edge protection to see its scope.',
+    Component: WafShieldEdgeProtection,
+  },
+  {
+    id: 'awssaa-disaster-recovery-failover-sequence',
+    certId: 'awssaa',
+    domain: 2,
+    title: 'Disaster Recovery Failover Sequence',
+    description: 'step through a regional failover from outage to recovery.',
+    Component: BackupDrFailoverSequence,
+  },
+  {
+    id: 'awssaa-elastic-load-balancer-types',
+    certId: 'awssaa',
+    domain: 2,
+    title: 'Elastic Load Balancer Types',
+    description: 'slide across ELB types to compare OSI layer, throughput, and routing flexibility.',
+    Component: LoadBalancerTypeSpectrum,
+  },
+  {
+    id: 'awssaa-order-the-dr-strategies',
+    certId: 'awssaa',
+    domain: 2,
+    title: 'Order the DR Strategies',
+    description: 'use the arrows to rank the four DR strategies from lowest cost/slowest recovery to highest cost/fastest recovery, then check.',
+    Component: DrStrategyOrderChallenge,
+  },
+  {
+    id: 'awssaa-rds-single-az-vs-multi-az',
+    certId: 'awssaa',
+    domain: 2,
+    title: 'RDS Single-AZ vs Multi-AZ',
+    description: 'toggle to see how a standby replica changes failure behavior.',
+    Component: RdsMultiAzToggle,
+  },
+  {
+    id: 'awssaa-read-replica-scaling-calculator',
+    certId: 'awssaa',
+    domain: 2,
+    title: 'Read Replica Scaling Calculator',
+    description: 'adjust query load to see how many read replicas an RDS primary needs.',
+    Component: ReadReplicaScalingCalculator,
+  },
+  {
+    id: 'awssaa-sqs-vs-sns-messaging-patterns',
+    certId: 'awssaa',
+    domain: 2,
+    title: 'SQS vs SNS Messaging Patterns',
+    description: 'compare queue-based and topic-based decoupling.',
+    Component: SqsVsSnsDecoupling,
+  },
+  {
+    id: 'awssaa-api-gateway-rest-api-vs-http-api',
+    certId: 'awssaa',
+    domain: 3,
+    title: 'API Gateway: REST API vs HTTP API',
+    description: 'compare the two API Gateway types for building a high-performing front door to your backend.',
+    Component: ApiGatewayTypeComparison,
+  },
+  {
+    id: 'awssaa-cloud-front-cache-request-trace',
+    certId: 'awssaa',
+    domain: 3,
+    title: 'CloudFront Cache Request Trace',
+    description: 'watch a request travel from viewer to edge to origin and back.',
+    Component: CloudFrontCacheTrace,
+  },
+  {
+    id: 'awssaa-compute-service-selection',
+    certId: 'awssaa',
+    domain: 3,
+    title: 'Compute Service Selection',
+    description: 'pick your operational preference and workload shape to see which compute service fits.',
+    Component: ComputeServiceDecisionMatrix,
+  },
+  {
+    id: 'awssaa-dynamo-db-partition-key-design',
+    certId: 'awssaa',
+    domain: 3,
+    title: 'DynamoDB Partition Key Design',
+    description: 'toggle between a low-cardinality key and a well-distributed one to see why hot partitions happen.',
+    Component: DynamoDbPartitionKeyToggle,
+  },
+  {
+    id: 'awssaa-ebs-volume-type-spectrum',
+    certId: 'awssaa',
+    domain: 3,
+    title: 'EBS Volume Type Spectrum',
+    description: 'slide across EBS volume types to compare IOPS, throughput, and relative cost.',
+    Component: EbsVolumeTypeSpectrum,
+  },
+  {
+    id: 'awssaa-serverless-event-driven-pipeline',
+    certId: 'awssaa',
+    domain: 3,
+    title: 'Serverless Event-Driven Pipeline',
+    description: 'step through a decoupled S3 → Lambda → DynamoDB → SNS ingestion pipeline.',
+    Component: ServerlessEventPipeline,
+  },
+  {
+    id: 'awssaa-compute-sp-vs-ec2-instance-sp-vs-reserved-instances',
+    certId: 'awssaa',
+    domain: 4,
+    title: 'Compute SP vs EC2 Instance SP vs Reserved Instances',
+    description: 'compare the three ways to commit spend for a discount, from most to least flexible.',
+    Component: SavingsPlansComparison,
+  },
+  {
+    id: 'awssaa-cost-explorer-vs-budgets-vs-trusted-advisor',
+    certId: 'awssaa',
+    domain: 4,
+    title: 'Cost Explorer vs Budgets vs Trusted Advisor',
+    description: 'pick what you\'re trying to accomplish to see which AWS cost management tool fits.',
+    Component: CostManagementToolComparison,
+  },
+  {
+    id: 'awssaa-data-transfer-cost-spectrum',
+    certId: 'awssaa',
+    domain: 4,
+    title: 'Data Transfer Cost Spectrum',
+    description: 'slide across traffic paths to see how cost and latency change as data crosses more boundaries.',
+    Component: DataTransferCostSpectrum,
+  },
+  {
+    id: 'awssaa-ec2-right-sizing-calculator',
+    certId: 'awssaa',
+    domain: 4,
+    title: 'EC2 Right-Sizing Calculator',
+    description: 'set a running instance size and its average CPU utilization to see the right-sizing recommendation.',
+    Component: Ec2RightSizingCalculator,
+  },
+  {
+    id: 'awssaa-lambda-cost-model-calculator',
+    certId: 'awssaa',
+    domain: 4,
+    title: 'Lambda Cost Model Calculator',
+    description: 'adjust monthly invocations, duration, and memory to see how Lambda\'s two-part pricing (requests + GB-seconds) plays out.',
+    Component: LambdaCostModelCalculator,
+  },
+  {
+    id: 'awssaa-order-the-s3-lifecycle-transitions',
+    certId: 'awssaa',
+    domain: 4,
+    title: 'Order the S3 Lifecycle Transitions',
+    description: 'use the arrows to put a single object\'s lifecycle policy transitions in chronological order, then check.',
+    Component: S3LifecycleTransitionChallenge,
+  },
+  {
+    id: 'awsscs-automated-remediation-event-bridge-lambda',
+    certId: 'awsscs',
+    domain: 1,
+    title: 'Automated Remediation: EventBridge + Lambda',
+    description: 'watch a GuardDuty finding travel through an automated response pipeline.',
+    Component: AutomatedRemediationFlowTrace,
+  },
+  {
+    id: 'awsscs-guard-duty-finding-type-matcher',
+    certId: 'awsscs',
+    domain: 1,
+    title: 'GuardDuty Finding Type Matcher',
+    description: 'GuardDuty finding type names encode threat, resource, and behavior. Click a card to reveal what it actually means.',
+    Component: GuardDutyFindingTypeMatcher,
+  },
+  {
+    id: 'awsscs-guard-duty-to-security-hub-to-detective-pipeline',
+    certId: 'awsscs',
+    domain: 1,
+    title: 'GuardDuty to Security Hub to Detective Pipeline',
+    description: 'step through how a raw signal becomes an investigated finding across the three detection services.',
+    Component: ThreatDetectionServicePipeline,
+  },
+  {
+    id: 'awsscs-macie-sensitive-data-discovery-coverage-vs-cost',
+    certId: 'awsscs',
+    domain: 1,
+    title: 'Macie Sensitive Data Discovery: Coverage vs. Cost',
+    description: 'adjust bucket size, sampling depth, and enabled identifiers to see the coverage/cost tradeoff of a classification job.',
+    Component: MacieDiscoveryCostCalculator,
+  },
+  {
+    id: 'awsscs-cloud-trail-log-file-integrity-validation',
+    certId: 'awsscs',
+    domain: 2,
+    title: 'CloudTrail Log File Integrity Validation',
+    description: 'step through how CloudTrail\'s digest hash chain makes tampering detectable.',
+    Component: CloudTrailDigestChainTimeline,
+  },
+  {
+    id: 'awsscs-cloud-watch-logs-insights-query-commands',
+    certId: 'awsscs',
+    domain: 2,
+    title: 'CloudWatch Logs Insights: Query Commands',
+    description: 'click a command to reveal what it does in a Logs Insights query pipeline.',
+    Component: LogsInsightsCommandMatcher,
+  },
+  {
+    id: 'awsscs-s3-server-access-logging-vs-cloud-trail-data-events',
+    certId: 'awsscs',
+    domain: 2,
+    title: 'S3 Server Access Logging vs. CloudTrail Data Events',
+    description: 'two different ways to log S3 object activity, each with different reliability, cost, and automation implications.',
+    Component: S3AccessLogsVsDataEvents,
+  },
+  {
+    id: 'awsscs-vpc-flow-log-record-field-order',
+    certId: 'awsscs',
+    domain: 2,
+    title: 'VPC Flow Log Record: Field Order',
+    description: 'a representative subset of the default flow log record\'s fields, scrambled. Use the arrows to put them back in their real left-to-right order, then check.',
+    Component: VpcFlowLogFieldOrder,
+  },
+  {
+    id: 'awsscs-bastion-host-vs-systems-manager-session-manager',
+    certId: 'awsscs',
+    domain: 3,
+    title: 'Bastion Host vs. Systems Manager Session Manager',
+    description: 'toggle between the legacy SSH bastion pattern and Session Manager.',
+    Component: SessionManagerVsBastionToggle,
+  },
+  {
+    id: 'awsscs-container-workload-security-scanning-task-role-scope',
+    certId: 'awsscs',
+    domain: 3,
+    title: 'Container Workload Security: Scanning + Task Role Scope',
+    description: 'pick an ECR scanning level and a task role scope to see the resulting posture.',
+    Component: ContainerWorkloadSecurityMatrix,
+  },
+  {
+    id: 'awsscs-ddo-s-protection-tiers-shield-standard-to-full-edge-stack',
+    certId: 'awsscs',
+    domain: 3,
+    title: 'DDoS Protection Tiers: Shield Standard to Full Edge Stack',
+    description: 'slide across tiers to see how coverage, cost, and DRT access scale.',
+    Component: DdosProtectionTierSlider,
+  },
+  {
+    id: 'awsscs-network-firewall-waf-and-security-groups-layered-defense',
+    certId: 'awsscs',
+    domain: 3,
+    title: 'Network Firewall, WAF, and Security Groups: Layered Defense',
+    description: 'step through the order in which each layer inspects inbound traffic.',
+    Component: EdgeDefenseLayerDiagram,
+  },
+  {
+    id: 'awsscs-patch-management-with-systems-manager',
+    certId: 'awsscs',
+    domain: 3,
+    title: 'Patch Management with Systems Manager',
+    description: 'step through the Patch Manager workflow from baseline to compliance report.',
+    Component: PatchManagerWorkflowTimeline,
+  },
+  {
+    id: 'awsscs-vpc-peering-vs-transit-gateway-vs-private-link',
+    certId: 'awsscs',
+    domain: 3,
+    title: 'VPC Peering vs. Transit Gateway vs. PrivateLink',
+    description: 'pick your connectivity goal to see which private connectivity option fits.',
+    Component: ConnectivityChoiceMatrix,
+  },
+  {
+    id: 'awsscs-enforcing-mfa-optional-vs-conditionally-required',
+    certId: 'awsscs',
+    domain: 4,
+    title: 'Enforcing MFA: Optional vs Conditionally Required',
+    description: 'toggle to compare an unenforced setup with a policy that actually requires MFA.',
+    Component: MfaEnforcementApproaches,
+  },
+  {
+    id: 'awsscs-federated-access-via-iam-identity-center',
+    certId: 'awsscs',
+    domain: 4,
+    title: 'Federated Access via IAM Identity Center',
+    description: 'trace a workforce sign-in from the external IdP to a live AWS session.',
+    Component: FederatedAccessWithIdentityCenter,
+  },
+  {
+    id: 'awsscs-identity-based-vs-resource-based-policy-evaluation',
+    certId: 'awsscs',
+    domain: 4,
+    title: 'Identity-Based vs Resource-Based Policy Evaluation',
+    description: 'pick each policy\'s stance and the account scope to see whether the request is allowed.',
+    Component: IamPolicyEvaluationLogic,
+  },
+  {
+    id: 'awsscs-lifecycle-of-sts-temporary-credentials',
+    certId: 'awsscs',
+    domain: 4,
+    title: 'Lifecycle of STS Temporary Credentials',
+    description: 'follow a role assumption from request to automatic expiry.',
+    Component: StsTemporaryCredentialsLifecycle,
+  },
+  {
+    id: 'awsscs-data-classification-tiers-for-aws-workloads',
+    certId: 'awsscs',
+    domain: 5,
+    title: 'Data Classification Tiers for AWS Workloads',
+    description: 'slide across the classification levels to see the controls each one demands.',
+    Component: DataClassificationForAwsWorkloads,
+  },
+  {
+    id: 'awsscs-envelope-encryption-with-kms',
+    certId: 'awsscs',
+    domain: 5,
+    title: 'Envelope Encryption with KMS',
+    description: 'watch the data key travel through generation, local use, and decryption.',
+    Component: EnvelopeEncryptionConcept,
+  },
+  {
+    id: 'awsscs-kms-key-policy-vs-iam-policy-who-actually-grants-access',
+    certId: 'awsscs',
+    domain: 5,
+    title: 'KMS Key Policy vs IAM Policy: Who Actually Grants Access',
+    description: 'the key policy is the root of trust; IAM policies only help once the key policy delegates to them.',
+    Component: KmsKeyPolicyVsIamPolicy,
+  },
+  {
+    id: 'awsscs-secrets-manager-rotation-lifecycle',
+    certId: 'awsscs',
+    domain: 5,
+    title: 'Secrets Manager Rotation Lifecycle',
+    description: 'step through the AWSPENDING/AWSCURRENT dance behind automatic secret rotation.',
+    Component: SecretsManagerRotationLifecycle,
+  },
+  {
+    id: 'awsscs-aws-organizations-a-typical-account-structure',
+    certId: 'awsscs',
+    domain: 6,
+    title: 'AWS Organizations: A Typical Account Structure',
+    description: 'click a tier to see why that account or OU exists and what it should (and shouldn\'t) run.',
+    Component: OrganizationsAccountStructure,
+  },
+  {
+    id: 'awsscs-building-a-multi-account-security-strategy',
+    certId: 'awsscs',
+    domain: 6,
+    title: 'Building a Multi-Account Security Strategy',
+    description: 'use the arrows to put these landing-zone steps in order, then check.',
+    Component: MultiAccountSecurityStrategy,
+  },
+  {
+    id: 'awsscs-control-tower-guardrail-types',
+    certId: 'awsscs',
+    domain: 6,
+    title: 'Control Tower Guardrail Types',
+    description: 'click a card to reveal what each guardrail category actually does.',
+    Component: ControlTowerGuardrails,
+  },
+  {
+    id: 'awsscs-cost-allocation-tags-as-a-governance-signal',
+    certId: 'awsscs',
+    domain: 6,
+    title: 'Cost Allocation Tags as a Governance Signal',
+    description: 'adjust tag coverage to see how it drives a governance visibility score.',
+    Component: CostAllocationTagsForGovernance,
+  },
+  {
+    id: 'cissp-choosing-a-threat-modeling-methodology',
+    certId: 'cissp',
+    domain: 1,
+    title: 'Choosing a Threat Modeling Methodology',
+    description: 'pick the scenario driving your threat model and see which methodology fits.',
+    Component: ThreatModelingMethods,
+  },
+  {
+    id: 'cissp-due-diligence-vs-due-care',
+    certId: 'cissp',
+    domain: 1,
+    title: 'Due Diligence vs Due Care',
+    description: 'toggle between the research step and the action step of the prudent-person rule.',
+    Component: DueCareVsDueDiligence,
+  },
+  {
+    id: 'cissp-security-control-categories-by-timing',
+    certId: 'cissp',
+    domain: 1,
+    title: 'Security Control Categories by Timing',
+    description: 'click a tier to see where it sits in the incident timeline, from deterring an attacker to recovering from one.',
+    Component: SecurityControlCategories,
+  },
+  {
+    id: 'cissp-world-legal-system-families',
+    certId: 'cissp',
+    domain: 1,
+    title: 'World Legal System Families',
+    description: 'slide across the major legal system types recognized for cross-border compliance work.',
+    Component: LegalSystemSpectrum,
+  },
+  {
+    id: 'cissp-asset-and-data-ownership-roles',
+    certId: 'cissp',
+    domain: 2,
+    title: 'Asset & Data Ownership Roles',
+    description: 'click a role to see where it sits in the chain of accountability, from executive owner down to end user.',
+    Component: AssetOwnershipHierarchy,
+  },
+  {
+    id: 'cissp-clear-purge-or-destroy',
+    certId: 'cissp',
+    domain: 2,
+    title: 'Clear, Purge, or Destroy?',
+    description: 'pick a media type and disposition to see the NIST 800-88 sanitization category it demands.',
+    Component: DataSanitizationDecision,
+  },
+  {
+    id: 'cissp-core-privacy-principles',
+    certId: 'cissp',
+    domain: 2,
+    title: 'Core Privacy Principles',
+    description: 'click a principle to flip it and reveal what it actually requires.',
+    Component: PrivacyPrinciplesMatcher,
+  },
+  {
+    id: 'cissp-the-three-states-of-data',
+    certId: 'cissp',
+    domain: 2,
+    title: 'The Three States of Data',
+    description: 'step through at rest, in transit, and in use to see which control applies where.',
+    Component: DataStateControls,
+  },
+  {
+    id: 'cissp-casb-the-four-pillars',
+    certId: 'cissp',
+    domain: 3,
+    title: 'CASB: The Four Pillars',
+    description: 'watch a cloud request pass through a Cloud Access Security Broker\'s core functions.',
+    Component: CloudAccessSecurityBroker,
+  },
+  {
+    id: 'cissp-clark-wilson-vs-brewer-nash',
+    certId: 'cissp',
+    domain: 3,
+    title: 'Clark-Wilson vs. Brewer-Nash',
+    description: 'compare an integrity model against a conflict-of-interest model side by side.',
+    Component: SecurityModelsComparison,
+  },
+  {
+    id: 'cissp-defense-in-depth-layered-detection',
+    certId: 'cissp',
+    domain: 3,
+    title: 'Defense in Depth: Layered Detection',
+    description: 'adjust the number of independent layers and each layer\'s detection rate to see why redundant, independent controls compound.',
+    Component: DefenseInDepthCalculator,
+  },
+  {
+    id: 'cissp-layered-physical-defense',
+    certId: 'cissp',
+    domain: 3,
+    title: 'Layered Physical Defense',
+    description: 'step through the five stages of physical security, from discouraging an attacker to responding to one.',
+    Component: PhysicalSecurityLayersCissp,
+  },
+  {
+    id: 'cissp-802-1-x-port-based-nac-sequence',
+    certId: 'cissp',
+    domain: 4,
+    title: '802.1X Port-Based NAC Sequence',
+    description: 'use the arrows to put the 802.1X authentication handshake in order, then check.',
+    Component: NetworkAccessControl8021X,
+  },
+  {
+    id: 'cissp-securing-converged-voice-vo-ip-sip',
+    certId: 'cissp',
+    domain: 4,
+    title: 'Securing Converged Voice (VoIP/SIP)',
+    description: 'toggle between an unsecured and a hardened SIP/VoIP deployment.',
+    Component: ConvergedProtocolsRisk,
+  },
+  {
+    id: 'cissp-which-secure-protocol-fits',
+    certId: 'cissp',
+    domain: 4,
+    title: 'Which Secure Protocol Fits?',
+    description: 'pick a use case to see which secure channel protocol it calls for and why.',
+    Component: SecureProtocolComparison,
+  },
+  {
+    id: 'cissp-wireless-security-standards',
+    certId: 'cissp',
+    domain: 4,
+    title: 'Wireless Security Standards',
+    description: 'slide across the Wi-Fi security generations to see how encryption, key management, and attack resistance improved.',
+    Component: WirelessSecurityArchitecture,
+  },
+  {
+    id: 'cissp-biometric-sensitivity-far-vs-frr-trade-off',
+    certId: 'cissp',
+    domain: 5,
+    title: 'Biometric Sensitivity: FAR vs. FRR Trade-off',
+    description: 'slide the sensor threshold and watch false acceptance and false rejection trade off.',
+    Component: BiometricThresholdSpectrum,
+  },
+  {
+    id: 'cissp-kerberos-authentication-flow',
+    certId: 'cissp',
+    domain: 5,
+    title: 'Kerberos Authentication Flow',
+    description: 'watch the ticket-granting handshake between client, KDC, and service.',
+    Component: KerberosAuthFlow,
+  },
+  {
+    id: 'cissp-standing-privileged-access-vs-just-in-time-jit',
+    certId: 'cissp',
+    domain: 5,
+    title: 'Standing Privileged Access vs. Just-in-Time (JIT)',
+    description: 'toggle to compare always-on admin rights with time-bound, brokered elevation.',
+    Component: JitPrivilegedAccessToggle,
+  },
+  {
+    id: 'cissp-the-identity-and-access-provisioning-lifecycle',
+    certId: 'cissp',
+    domain: 5,
+    title: 'The Identity & Access Provisioning Lifecycle',
+    description: 'step through an identity from hire to deprovisioning.',
+    Component: IdentityLifecycleTimeline,
+  },
+  {
+    id: 'cissp-choosing-a-code-review-method',
+    certId: 'cissp',
+    domain: 6,
+    title: 'Choosing a Code Review Method',
+    description: 'pick your access level and goal to see which review technique fits.',
+    Component: CodeReviewMethodMatrix,
+  },
+  {
+    id: 'cissp-security-control-testing-techniques',
+    certId: 'cissp',
+    domain: 6,
+    title: 'Security Control Testing Techniques',
+    description: 'click a card to reveal how each control-testing technique actually works.',
+    Component: ControlTestingMethodMatcher,
+  },
+  {
+    id: 'cissp-test-coverage-strategies-weakest-to-strongest',
+    certId: 'cissp',
+    domain: 6,
+    title: 'Test Coverage Strategies, Weakest to Strongest',
+    description: 'use the arrows to order these from weakest to strongest rigor, then check.',
+    Component: CoverageStrategyOrdering,
+  },
+  {
+    id: 'cissp-vulnerability-assessment-vs-penetration-test-vs-red-team',
+    certId: 'cissp',
+    domain: 6,
+    title: 'Vulnerability Assessment vs. Penetration Test vs. Red Team',
+    description: 'click a tier to see how scope, stealth, and realism escalate.',
+    Component: AssessmentIntensityStack,
+  },
+  {
+    id: 'cissp-disaster-recovery-plan-test-types',
+    certId: 'cissp',
+    domain: 7,
+    title: 'Disaster Recovery Plan Test Types',
+    description: 'order these DR test types from least to most disruptive, then check.',
+    Component: DrTestTypeOrdering,
+  },
+  {
+    id: 'cissp-risk-based-patch-priority-calculator',
+    certId: 'cissp',
+    domain: 7,
+    title: 'Risk-Based Patch Priority Calculator',
+    description: 'adjust the inputs to see how a patch\'s priority and SLA are derived.',
+    Component: PatchPriorityCalculator,
+  },
+  {
+    id: 'cissp-the-digital-forensics-investigation-process',
+    certId: 'cissp',
+    domain: 7,
+    title: 'The Digital Forensics Investigation Process',
+    description: 'step through evidence handling from first response to presentation.',
+    Component: ForensicsInvestigationTimeline,
+  },
+  {
+    id: 'cissp-the-logging-and-monitoring-pipeline',
+    certId: 'cissp',
+    domain: 7,
+    title: 'The Logging & Monitoring Pipeline',
+    description: 'step through how a raw log event becomes an analyst\'s alert.',
+    Component: LogMonitoringPipelineDiagram,
+  },
+  {
+    id: 'cissp-application-security-testing-tools-across-the-sdlc',
+    certId: 'cissp',
+    domain: 8,
+    title: 'Application Security Testing Tools Across the SDLC',
+    description: 'slide across SAST, SCA, IAST, and DAST to compare where and how each runs.',
+    Component: AppSecTestingToolsSpectrum,
+  },
+  {
+    id: 'cissp-common-software-weakness-categories-cwe-style',
+    certId: 'cissp',
+    domain: 8,
+    title: 'Common Software Weakness Categories (CWE-style)',
+    description: 'click a category to see how it shows up at the source-code level.',
+    Component: SecureCodingWeaknessStack,
+  },
+  {
+    id: 'cissp-database-security-aggregation-and-inference',
+    certId: 'cissp',
+    domain: 8,
+    title: 'Database Security: Aggregation & Inference',
+    description: 'toggle to compare a database exposed to aggregation/inference with one hardened against it.',
+    Component: DatabaseSecurityToggle,
+  },
+  {
+    id: 'cissp-waterfall-vs-agile-dev-sec-ops',
+    certId: 'cissp',
+    domain: 8,
+    title: 'Waterfall vs. Agile / DevSecOps',
+    description: 'compare how each development methodology integrates (or bolts on) security.',
+    Component: DevMethodologyComparison,
   },
 ]
 
