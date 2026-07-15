@@ -1,10 +1,21 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { useCert } from '../cert/CertContext'
-import { conceptsForCert } from '../concepts/registry'
+import { conceptsForCert, type ConceptEntry } from '../concepts/registry'
+import { certConfig } from '../lib/certs'
 
 export default function Concepts() {
   const { cert } = useCert()
   const items = conceptsForCert(cert.id)
+  const domainLabels = certConfig(cert.id).domains
+  const groups = useMemo(() => {
+    const g: { domain: number; items: { item: ConceptEntry; index: number }[] }[] = []
+    items.forEach((item, index) => {
+      const last = g[g.length - 1]
+      if (last && last.domain === item.domain) last.items.push({ item, index })
+      else g.push({ domain: item.domain, items: [{ item, index }] })
+    })
+    return g
+  }, [items])
   const [activeId, setActiveId] = useState<string | null>(items[0]?.id ?? null)
   // Fall back to the first figure when the cert switches and the stored id
   // belongs to the previous cert's list.
@@ -27,25 +38,31 @@ export default function Concepts() {
 
   return (
     <div className="grid md:grid-cols-[230px_1fr] gap-6">
-      <nav className="space-y-0.5">
-        {items.map((item, i) => (
-          <button
-            key={item.id}
-            onClick={() => setActiveId(item.id)}
-            className={`w-full text-left rounded-crisp border-l-2 px-3 py-2 text-sm transition-colors ${
-              item.id === active?.id
-                ? 'border-accent bg-accent-tint text-ink'
-                : 'border-transparent text-soft hover:bg-wash hover:text-ink'
-            }`}
-          >
-            <div className="font-medium">
-              <span className="font-mono text-xs text-faint mr-1.5">{i + 1}.</span>
-              {item.title}
+      <nav className="space-y-3 max-h-[calc(100vh-10rem)] overflow-y-auto pr-1">
+        {groups.map((group) => (
+          <div key={group.domain}>
+            <p className="px-3 mb-1 font-mono text-[10px] uppercase tracking-wider text-faint">
+              §{group.domain} · {domainLabels[group.domain] ?? `Domain ${group.domain}`}
+            </p>
+            <div className="space-y-0.5">
+              {group.items.map(({ item, index }) => (
+                <button
+                  key={item.id}
+                  onClick={() => setActiveId(item.id)}
+                  className={`w-full text-left rounded-crisp border-l-2 px-3 py-2 text-sm transition-colors ${
+                    item.id === active?.id
+                      ? 'border-accent bg-accent-tint text-ink'
+                      : 'border-transparent text-soft hover:bg-wash hover:text-ink'
+                  }`}
+                >
+                  <div className="font-medium">
+                    <span className="font-mono text-xs text-faint mr-1.5">{index + 1}.</span>
+                    {item.title}
+                  </div>
+                </button>
+              ))}
             </div>
-            <div className="text-[11px] uppercase tracking-wider text-faint mt-0.5">
-              <span className="font-mono normal-case">§{item.domain}</span> · Domain {item.domain}
-            </div>
-          </button>
+          </div>
         ))}
       </nav>
       <div>
