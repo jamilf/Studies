@@ -8,13 +8,15 @@ export default function Concepts() {
   const items = conceptsForCert(cert.id)
   const domainLabels = certConfig(cert.id).domains
   const groups = useMemo(() => {
-    const g: { domain: number; items: { item: ConceptEntry; index: number }[] }[] = []
+    const byDomain = new Map<number, { item: ConceptEntry; index: number }[]>()
     items.forEach((item, index) => {
-      const last = g[g.length - 1]
-      if (last && last.domain === item.domain) last.items.push({ item, index })
-      else g.push({ domain: item.domain, items: [{ item, index }] })
+      const list = byDomain.get(item.domain) ?? []
+      list.push({ item, index })
+      byDomain.set(item.domain, list)
     })
-    return g
+    return [...byDomain.entries()]
+      .sort(([a], [b]) => a - b)
+      .map(([domain, domainItems]) => ({ domain, items: domainItems }))
   }, [items])
   const [activeId, setActiveId] = useState<string | null>(items[0]?.id ?? null)
   // Fall back to the first figure when the cert switches and the stored id
