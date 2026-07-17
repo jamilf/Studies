@@ -26,7 +26,7 @@ export default function ObjectLockModes() {
       <div>
         <h3 className="font-display text-lg text-ink">S3 Object Lock: Governance vs Compliance</h3>
         <p className="text-sm text-soft">
-          Domain 5.2 — pick a retention mode and an actor, then try to delete a locked object before its retention expires.
+          Domain 5.2 — pick a retention mode and an actor, then try to delete a locked object to see who can override.
         </p>
       </div>
 
