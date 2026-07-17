@@ -65,8 +65,8 @@ export default function VmResourceSizingCalculator() {
       <div className="rounded-crisp bg-wash border-l-2 border-line-strong px-4 py-3 text-sm text-soft">
         RAM is normally the hard ceiling — a hypervisor can't lend out memory it doesn't physically have the way it
         can share CPU time slices. CPU can be oversubscribed (more total vCPUs than physical cores) because VMs
-        rarely peg the CPU simultaneously, but going much past a 4:1–8:1 vCPU-to-core ratio for general workloads
-        starts causing scheduling contention and sluggish VMs even when RAM still fits.
+        rarely peg the CPU simultaneously, but going past roughly a 4:1 vCPU-to-core ratio for general workloads (the
+        threshold this tool flags) starts causing scheduling contention and sluggish VMs even when RAM still fits.
       </div>
     </div>
   )
