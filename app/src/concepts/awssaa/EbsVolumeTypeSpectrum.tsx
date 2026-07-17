@@ -40,15 +40,15 @@ export default function EbsVolumeTypeSpectrum() {
       <div className="grid sm:grid-cols-3 gap-3">
         <div className="rounded-crisp border border-line bg-wash p-3">
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Max IOPS</p>
-          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.iops ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
+          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.iops ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
         </div>
         <div className="rounded-crisp border border-line bg-wash p-3">
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Throughput</p>
-          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.throughput ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
+          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.throughput ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
         </div>
         <div className="rounded-crisp border border-line bg-wash p-3">
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Relative $/GB cost</p>
-          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.cost ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
+          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.cost ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
         </div>
       </div>
 

@@ -32,9 +32,10 @@ export default function ReadReplicaScalingCalculator() {
       </div>
 
       <div className="rounded-crisp bg-wash border-l-2 border-line-strong px-4 py-3 text-sm text-soft">
-        Writes always go to the primary — replicas only offload reads, and up to 15 replicas can attach to a
-        single RDS primary (more for Aurora). Because replication is asynchronous, a replica can lag behind the
-        primary, so read-your-own-write scenarios still need to hit the primary directly.
+        Writes always go to the primary — replicas only offload reads. A standard RDS primary (MySQL, MariaDB,
+        PostgreSQL, Oracle) supports up to 5 read replicas, while an Aurora cluster supports up to 15 low-lag
+        Aurora Replicas. Because replication is asynchronous, a replica can lag behind the primary, so
+        read-your-own-write scenarios still need to hit the primary directly.
       </div>
     </div>
   )

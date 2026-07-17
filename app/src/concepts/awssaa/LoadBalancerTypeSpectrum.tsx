@@ -9,9 +9,9 @@ interface Tier {
 }
 
 const TIERS: Tier[] = [
-  { name: 'Classic LB', layer: 1, throughput: 2, flexibility: 1, desc: 'Legacy load balancer supporting both L4 and basic L7 routing — AWS no longer recommends it for new workloads; kept mainly for old EC2-Classic setups.' },
-  { name: 'Application LB', layer: 3, throughput: 3, flexibility: 5, desc: 'Layer 7 (HTTP/HTTPS) — routes by path, host header, or query string, supports WebSockets, and integrates with ECS/EKS target groups. The default choice for web applications.' },
-  { name: 'Network LB', layer: 1, throughput: 5, flexibility: 2, desc: 'Layer 4 (TCP/UDP/TLS) — handles millions of requests per second with ultra-low latency, supports a static IP / Elastic IP per AZ, and preserves the client source IP.' },
+  { name: 'Classic LB', layer: 3, throughput: 2, flexibility: 1, desc: 'Legacy load balancer supporting both L4 and basic L7 routing — AWS no longer recommends it for new workloads; kept mainly for old EC2-Classic setups.' },
+  { name: 'Application LB', layer: 5, throughput: 3, flexibility: 5, desc: 'Layer 7 (HTTP/HTTPS) — routes by path, host header, or query string, supports WebSockets, and integrates with ECS/EKS target groups. The default choice for web applications.' },
+  { name: 'Network LB', layer: 2, throughput: 5, flexibility: 2, desc: 'Layer 4 (TCP/UDP/TLS) — handles millions of requests per second with ultra-low latency, supports a static IP / Elastic IP per AZ, and preserves the client source IP.' },
   { name: 'Gateway LB', layer: 1, throughput: 4, flexibility: 3, desc: 'Layer 3 (GENEVE on port 6081) — transparently inserts third-party virtual appliances (firewalls, IDS/IPS) inline into the traffic path for inspection.' },
 ]
 
@@ -40,15 +40,15 @@ export default function LoadBalancerTypeSpectrum() {
       <div className="grid sm:grid-cols-3 gap-3">
         <div className="rounded-crisp border border-line bg-wash p-3">
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">OSI layer focus</p>
-          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.layer ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
+          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.layer ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
         </div>
         <div className="rounded-crisp border border-line bg-wash p-3">
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Raw throughput</p>
-          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.throughput ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
+          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.throughput ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
         </div>
         <div className="rounded-crisp border border-line bg-wash p-3">
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Routing flexibility</p>
-          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.flexibility ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
+          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.flexibility ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
         </div>
       </div>
 

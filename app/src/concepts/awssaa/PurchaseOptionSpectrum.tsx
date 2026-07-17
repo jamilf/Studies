@@ -39,15 +39,15 @@ export default function PurchaseOptionSpectrum() {
       <div className="grid sm:grid-cols-3 gap-3">
         <div className="rounded-crisp border border-line bg-wash p-3">
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Relative discount</p>
-          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.discount ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
+          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.discount ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
         </div>
         <div className="rounded-crisp border border-line bg-wash p-3">
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Commitment</p>
-          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.commitment ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
+          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.commitment ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
         </div>
         <div className="rounded-crisp border border-line bg-wash p-3">
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Interruption risk</p>
-          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.interruption ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
+          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.interruption ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
         </div>
       </div>
 
