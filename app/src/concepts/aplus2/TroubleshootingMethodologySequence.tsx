@@ -42,7 +42,7 @@ const ITEMS: Item[] = [
     id: 'theory',
     label: 'Establish a theory of probable cause (question the obvious)',
     correctIndex: 1,
-    detail: 'Start with the simplest, most likely explanation before chasing rare edge cases.',
+    detail: 'Start with the simplest, most likely explanation — a loose cable or a powered-off device — before chasing rare edge cases.',
   },
 ]
 

@@ -56,7 +56,7 @@ export default function MobileTroubleshootingSpectrum() {
     <div className="space-y-5">
       <div>
         <h3 className="font-display text-lg text-ink">Mobile App Troubleshooting Spectrum</h3>
-        <p className="text-sm text-soft">Domain 3.5 — drag across common mobile OS symptoms to see the likely cause and fix.</p>
+        <p className="text-sm text-soft">Domain 3.4 — drag across common mobile OS symptoms to see the likely cause and fix.</p>
       </div>
 
       <input

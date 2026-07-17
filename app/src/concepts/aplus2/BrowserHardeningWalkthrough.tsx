@@ -70,7 +70,7 @@ export default function BrowserHardeningWalkthrough() {
       <div className="flex items-center justify-between">
         <div>
           <h3 className="font-display text-lg text-ink">Browser Hardening Walkthrough</h3>
-          <p className="text-sm text-soft">Domain 3.3 — step through certificate warnings, extensions, pop-ups, and proxy settings.</p>
+          <p className="text-sm text-soft">Domain 3.2 — step through certificate warnings, extensions, pop-ups, and proxy settings.</p>
         </div>
         <button
           onClick={() => {

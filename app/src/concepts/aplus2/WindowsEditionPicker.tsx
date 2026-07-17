@@ -125,7 +125,7 @@ export default function WindowsEditionPicker() {
       <div className="rounded-crisp bg-wash border-l-2 border-line-strong px-4 py-3 text-sm text-soft">
         Exam pattern: 1102 loves "which edition is the minimum needed" questions. The rule of thumb — Home lacks
         domain join, BitLocker's full UI, RDP hosting, Hyper-V, and gpedit; Enterprise adds the large-organization
-        features (BranchCache, AppLocker, Windows To Go) on top of everything Pro has.
+        features (BranchCache, AppLocker, Credential Guard) on top of everything Pro has.
       </div>
     </div>
   )
