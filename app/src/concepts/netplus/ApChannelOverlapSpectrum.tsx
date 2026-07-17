@@ -81,7 +81,7 @@ export default function ApChannelOverlapSpectrum() {
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Interference level</p>
           <div className="flex gap-1">
             {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.interference ? BAR_COLOR[i] : 'bg-line/50'}`} />
+              <div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.interference ? BAR_COLOR[i] : 'bg-line/50'}`} />
             ))}
           </div>
         </div>
@@ -89,7 +89,7 @@ export default function ApChannelOverlapSpectrum() {
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Effective throughput</p>
           <div className="flex gap-1">
             {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.throughput ? 'bg-good' : 'bg-line/50'}`} />
+              <div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.throughput ? 'bg-good' : 'bg-line/50'}`} />
             ))}
           </div>
         </div>

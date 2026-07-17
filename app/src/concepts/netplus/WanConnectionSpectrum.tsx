@@ -86,7 +86,7 @@ export default function WanConnectionSpectrum() {
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Cost</p>
           <div className="flex gap-1">
             {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.cost ? BAR_COLOR[i] : 'bg-line/50'}`} />
+              <div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.cost ? BAR_COLOR[i] : 'bg-line/50'}`} />
             ))}
           </div>
         </div>
@@ -94,7 +94,7 @@ export default function WanConnectionSpectrum() {
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Speed</p>
           <div className="flex gap-1">
             {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.speed ? BAR_COLOR[i] : 'bg-line/50'}`} />
+              <div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.speed ? BAR_COLOR[i] : 'bg-line/50'}`} />
             ))}
           </div>
         </div>
@@ -102,7 +102,7 @@ export default function WanConnectionSpectrum() {
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Latency</p>
           <div className="flex gap-1">
             {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.latency ? BAR_COLOR[i] : 'bg-line/50'}`} />
+              <div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.latency ? BAR_COLOR[i] : 'bg-line/50'}`} />
             ))}
           </div>
         </div>

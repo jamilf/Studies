@@ -79,7 +79,7 @@ export default function WirelessSecuritySpectrum() {
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Encryption strength</p>
           <div className="flex gap-1">
             {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.encryption ? BAR_COLOR[i] : 'bg-line/50'}`} />
+              <div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.encryption ? BAR_COLOR[i] : 'bg-line/50'}`} />
             ))}
           </div>
         </div>
@@ -87,7 +87,7 @@ export default function WirelessSecuritySpectrum() {
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Key management</p>
           <div className="flex gap-1">
             {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.keyMgmt ? BAR_COLOR[i] : 'bg-line/50'}`} />
+              <div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.keyMgmt ? BAR_COLOR[i] : 'bg-line/50'}`} />
             ))}
           </div>
         </div>
@@ -95,7 +95,7 @@ export default function WirelessSecuritySpectrum() {
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Attack resistance</p>
           <div className="flex gap-1">
             {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.resistance ? BAR_COLOR[i] : 'bg-line/50'}`} />
+              <div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.resistance ? BAR_COLOR[i] : 'bg-line/50'}`} />
             ))}
           </div>
         </div>
