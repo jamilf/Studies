@@ -55,7 +55,7 @@ export default function ThirdPartyRiskSpectrum() {
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Assurance level</p>
           <div className="flex gap-1">
             {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.assurance ? BAR_COLOR[i] : 'bg-line/50'}`} />
+              <div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.assurance ? BAR_COLOR[i] : 'bg-line/50'}`} />
             ))}
           </div>
         </div>
@@ -63,7 +63,7 @@ export default function ThirdPartyRiskSpectrum() {
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Relative cost/effort</p>
           <div className="flex gap-1">
             {Array.from({ length: 5 }).map((_, i) => (
-              <div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.cost ? BAR_COLOR[i] : 'bg-line/50'}`} />
+              <div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.cost ? BAR_COLOR[i] : 'bg-line/50'}`} />
             ))}
           </div>
         </div>

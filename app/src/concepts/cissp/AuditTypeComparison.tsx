@@ -9,18 +9,18 @@ export default function AuditTypeComparison() {
       <div className="grid sm:grid-cols-2 gap-4">
         <div className="rounded-crisp border border-accent-line bg-accent-tint/50 p-4 space-y-2">
           <p className="text-sm font-semibold text-accent mb-1">Internal Audit</p>
-          <p className="text-sm text-soft">Performed by the organization's own staff.</p>
-          <p className="text-sm text-soft">Ongoing self-assessment.</p>
-          <p className="text-sm text-soft">Limited independence — reports to the audited organization.</p>
-          <p className="text-sm text-soft">No independent assurance to outsiders.</p>
+          <p className="text-sm text-soft"><span className="font-semibold text-ink">Performed by:</span> The organization's own audit staff, ideally reporting to the audit committee or board, not to the department being reviewed.</p>
+          <p className="text-sm text-soft"><span className="font-semibold text-ink">Cadence:</span> Ongoing, risk-based self-assessment on a recurring schedule.</p>
+          <p className="text-sm text-soft"><span className="font-semibold text-ink">Independence:</span> Limited — auditors are still employees of the audited organization.</p>
+          <p className="text-sm text-soft"><span className="font-semibold text-ink">Assurance value:</span> Keeps management informed, but carries no independent weight with outside parties.</p>
           <p className="text-sm text-soft"><span className="font-semibold text-ink">Example:</span> A quarterly access-review check by IT internal audit.</p>
         </div>
         <div className="rounded-crisp border border-good-line bg-good-tint/50 p-4 space-y-2">
           <p className="text-sm font-semibold text-good mb-1">External / Third-Party Audit</p>
-          <p className="text-sm text-soft">Performed by an independent outside firm.</p>
-          <p className="text-sm text-soft">Objective assurance that controls work as designed.</p>
-          <p className="text-sm text-soft">High independence.</p>
-          <p className="text-sm text-soft">Assurance that outsiders can actually rely on.</p>
+          <p className="text-sm text-soft"><span className="font-semibold text-ink">Performed by:</span> An independent outside firm with no stake in the outcome.</p>
+          <p className="text-sm text-soft"><span className="font-semibold text-ink">Cadence:</span> Point-in-time, typically annual or per a contractual/regulatory requirement.</p>
+          <p className="text-sm text-soft"><span className="font-semibold text-ink">Independence:</span> High — the auditor's opinion is what gives the report credibility.</p>
+          <p className="text-sm text-soft"><span className="font-semibold text-ink">Assurance value:</span> Produces a report that customers, regulators, and partners can actually rely on.</p>
           <p className="text-sm text-soft"><span className="font-semibold text-ink">Example:</span> A SOC 2 Type II report, or a PCI DSS QSA assessment.</p>
         </div>
       </div>

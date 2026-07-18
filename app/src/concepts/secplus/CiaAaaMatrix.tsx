@@ -32,7 +32,10 @@ export default function CiaAaaMatrix() {
   const [aaa, setAaa] = useState<Aaa>('authentication')
 
   const relation = useMemo(
-    () => `CIA defines *what* you're protecting (${CIA_INFO[cia].label.toLowerCase()}); AAA defines *how* you control and track access to it (${AAA_INFO[aaa].label.toLowerCase()}).`,
+    () => ({
+      cia: CIA_INFO[cia].label.toLowerCase(),
+      aaa: AAA_INFO[aaa].label.toLowerCase(),
+    }),
     [cia, aaa],
   )
 
@@ -82,7 +85,10 @@ export default function CiaAaaMatrix() {
         <p className="text-sm text-ink"><span className="font-semibold">{CIA_INFO[cia].label}:</span> {CIA_INFO[cia].goal}</p>
         <p className="text-sm text-ink"><span className="font-semibold">Example control:</span> {CIA_INFO[cia].example}</p>
         <p className="text-sm text-ink"><span className="font-semibold">{AAA_INFO[aaa].label}:</span> {AAA_INFO[aaa].role}</p>
-        <p className="text-sm text-ink pt-1">{relation}</p>
+        <p className="text-sm text-ink pt-1">
+          CIA defines <em>what</em> you&apos;re protecting ({relation.cia}); AAA defines <em>how</em> you control
+          and track access to it ({relation.aaa}).
+        </p>
       </div>
 
       <div className="rounded-crisp bg-wash border-l-2 border-line-strong px-4 py-3 text-sm text-soft">

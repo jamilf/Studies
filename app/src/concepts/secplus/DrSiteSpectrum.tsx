@@ -93,7 +93,7 @@ export default function DrSiteSpectrum() {
             {Array.from({ length: 5 }).map((_, i) => (
               <div
                 key={i}
-                className={`h-3 flex-1 rounded-xs transition-colors ${i < t.cost ? COST_COLOR[i] : 'bg-line/50'}`}
+                className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.cost ? COST_COLOR[i] : 'bg-line/50'}`}
               />
             ))}
           </div>

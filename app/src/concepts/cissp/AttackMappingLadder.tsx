@@ -8,10 +8,10 @@ interface Tier {
 
 const TIERS: Tier[] = [
   { name: 'Eavesdropping / Sniffing', type: 'Passive', detail: 'Silently capturing traffic (e.g., with Wireshark) — hard to detect, and needs unencrypted data to be useful.' },
-  { name: 'Spoofing (IP/MAC/ARP)', type: 'Active — basic', detail: 'Falsifying an address to impersonate a trusted host.' },
-  { name: 'Session Hijacking', type: 'Active', detail: 'Stealing or predicting a valid session token to take over an authenticated session.' },
-  { name: 'On-Path (MITM)', type: 'Active', detail: 'Actively positioned between two parties, intercepting or altering traffic in real time.' },
-  { name: 'Denial of Service', type: 'Availability attack', detail: 'Overwhelming a single target from one source.' },
+  { name: 'Spoofing (IP/MAC/ARP)', type: 'Active — basic', detail: 'Falsifying a source address to impersonate a trusted host — ARP spoofing on a LAN segment is the classic setup move for an on-path attack.' },
+  { name: 'Session Hijacking', type: 'Active', detail: 'Stealing or predicting a valid session token (a weak session ID, an unprotected cookie) to take over an already-authenticated session without ever needing the victim\'s credentials.' },
+  { name: 'On-Path (MITM)', type: 'Active', detail: 'Actively positioned between two parties — via ARP spoofing, a rogue access point, or a malicious proxy — intercepting or altering traffic between them in real time.' },
+  { name: 'Denial of Service', type: 'Availability attack', detail: 'Overwhelming a single target\'s bandwidth, connections, or CPU from one source, e.g. a SYN flood that exhausts the victim\'s TCP connection table.' },
   { name: 'Distributed Denial of Service', type: 'Availability attack, distributed', detail: 'The same goal as DoS but from many distributed sources (a botnet) — far larger scale and harder to filter.' },
 ]
 

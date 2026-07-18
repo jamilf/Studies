@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 const PHASES = [
   { label: 'Flat, untrusted network', caption: 'Every host is on one segment with unrestricted traffic — compromise of any single host endangers all of them.' },
-  { label: 'Add a perimeter firewall', caption: 'Internet-to-internal traffic is now filtered at a single choke point.' },
+  { label: 'Add a perimeter firewall', caption: 'Internet-to-internal traffic is now filtered at a single choke point, with a default-deny inbound rule that only opens the specific ports the business needs.' },
   { label: 'Add a DMZ', caption: 'The public-facing web server is isolated in its own segment; only necessary ports are opened between the DMZ and the internal network.' },
   { label: 'Segment internally (VLANs)', caption: 'Workstations and database servers are separated into their own VLANs with controlled inter-VLAN routing.' },
   { label: 'Add VPN for remote access', caption: 'Remote users reach internal resources only through an encrypted tunnel, never through direct exposure.' },
