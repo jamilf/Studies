@@ -40,15 +40,15 @@ export default function WirelessSecurityArchitecture() {
       <div className="grid sm:grid-cols-3 gap-3">
         <div className="rounded-crisp border border-line bg-wash p-3">
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Encryption strength</p>
-          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.encryption ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
+          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.encryption ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
         </div>
         <div className="rounded-crisp border border-line bg-wash p-3">
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Key management</p>
-          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.keyMgmt ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
+          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.keyMgmt ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
         </div>
         <div className="rounded-crisp border border-line bg-wash p-3">
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Offline attack resistance</p>
-          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.attackResist ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
+          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.attackResist ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
         </div>
       </div>
 

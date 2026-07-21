@@ -25,7 +25,7 @@ export default function ThirdPartyRiskSpectrum() {
     <div className="space-y-5">
       <div>
         <h3 className="font-display text-lg text-ink">Third-Party Risk Management Spectrum</h3>
-        <p className="text-sm text-soft">Domain 5.4 — drag across the tiers to see how vendor oversight rigor trades off with cost.</p>
+        <p className="text-sm text-soft">Domain 5.3 — drag across the tiers to see how vendor oversight rigor trades off with cost.</p>
       </div>
 
       <input

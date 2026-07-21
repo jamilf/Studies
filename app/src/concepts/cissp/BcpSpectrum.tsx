@@ -12,7 +12,7 @@ const TIERS: Tier[] = [
   { name: 'No plan', assurance: 1, cost: 1, disruption: 1, desc: 'No documented continuity plan exists — recovery, if it happens at all, is entirely improvised.' },
   { name: 'Documented plan only', assurance: 2, cost: 2, disruption: 1, desc: 'A plan exists on paper but has never been tested — assurance is purely theoretical.' },
   { name: 'Plan + tabletop exercise', assurance: 3, cost: 3, disruption: 1, desc: 'The team walks through the plan in a discussion-based exercise, surfacing gaps without touching production systems.' },
-  { name: 'Plan + full simulation', assurance: 4, cost: 4, disruption: 3, desc: 'A parallel test exercises the recovery systems themselves without cutting over production — stronger proof, some operational effort.' },
+  { name: 'Plan + parallel test', assurance: 4, cost: 4, disruption: 3, desc: 'A parallel test brings the recovery systems online and processes real transactions alongside production, without cutting over — stronger proof, some operational effort.' },
   { name: 'Plan + full interruption test', assurance: 5, cost: 5, disruption: 5, desc: 'Production is actually failed over to the recovery environment — the strongest possible proof, but with real business risk if something goes wrong.' },
 ]
 
@@ -41,15 +41,15 @@ export default function BcpSpectrum() {
       <div className="grid sm:grid-cols-3 gap-3">
         <div className="rounded-crisp border border-line bg-wash p-3">
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Assurance level</p>
-          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.assurance ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
+          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.assurance ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
         </div>
         <div className="rounded-crisp border border-line bg-wash p-3">
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Relative cost</p>
-          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.cost ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
+          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.cost ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
         </div>
         <div className="rounded-crisp border border-line bg-wash p-3">
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Disruption during test</p>
-          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.disruption ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
+          <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => (<div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.disruption ? BAR_COLOR[i] : 'bg-line/50'}`} />))}</div>
         </div>
       </div>
 

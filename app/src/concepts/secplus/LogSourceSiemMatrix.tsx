@@ -64,7 +64,7 @@ export default function LogSourceSiemMatrix() {
     <div className="space-y-5">
       <div>
         <h3 className="font-display text-lg text-ink">Log Source Fit for SIEM Questions</h3>
-        <p className="text-sm text-soft">Domain 4.3 — pick a security question and a log source to see how well they match.</p>
+        <p className="text-sm text-soft">Domain 4.9 — pick a security question and a log source to see how well they match.</p>
       </div>
 
       <div className="grid sm:grid-cols-2 gap-4">

@@ -55,7 +55,7 @@ export default function BiometricThresholdSpectrum() {
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">False Acceptance Rate (Type II)</p>
           <div className="flex gap-1">
             {Array.from({ length: 9 }).map((_, i) => (
-              <div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.far ? BAR_COLOR[i] : 'bg-line/50'}`} />
+              <div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.far ? BAR_COLOR[i] : 'bg-line/50'}`} />
             ))}
           </div>
         </div>
@@ -63,7 +63,7 @@ export default function BiometricThresholdSpectrum() {
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">False Rejection Rate (Type I)</p>
           <div className="flex gap-1">
             {Array.from({ length: 9 }).map((_, i) => (
-              <div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.frr ? BAR_COLOR[i] : 'bg-line/50'}`} />
+              <div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.frr ? BAR_COLOR[i] : 'bg-line/50'}`} />
             ))}
           </div>
         </div>

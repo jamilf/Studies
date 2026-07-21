@@ -84,7 +84,7 @@ export default function AppSecTestingToolsSpectrum() {
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">How early ("shift-left")</p>
           <div className="flex gap-1">
             {Array.from({ length: 9 }).map((_, i) => (
-              <div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.shiftLeft ? BAR_COLOR[i] : 'bg-line/50'}`} />
+              <div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.shiftLeft ? BAR_COLOR[i] : 'bg-line/50'}`} />
             ))}
           </div>
         </div>
@@ -92,7 +92,7 @@ export default function AppSecTestingToolsSpectrum() {
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Runtime visibility</p>
           <div className="flex gap-1">
             {Array.from({ length: 9 }).map((_, i) => (
-              <div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.runtimeVisibility ? BAR_COLOR[i] : 'bg-line/50'}`} />
+              <div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.runtimeVisibility ? BAR_COLOR[i] : 'bg-line/50'}`} />
             ))}
           </div>
         </div>
@@ -100,7 +100,7 @@ export default function AppSecTestingToolsSpectrum() {
           <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Typical false-positive rate</p>
           <div className="flex gap-1">
             {Array.from({ length: 9 }).map((_, i) => (
-              <div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.falsePositive ? BAR_COLOR[i] : 'bg-line/50'}`} />
+              <div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.falsePositive ? BAR_COLOR[i] : 'bg-line/50'}`} />
             ))}
           </div>
         </div>
