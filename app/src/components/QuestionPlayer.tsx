@@ -28,7 +28,7 @@ export default function QuestionPlayer({ question, value, onChange, reveal }: Pr
       {q.qtype === 'matching' && <Matching {...{ q, value, onChange, reveal }} />}
       {reveal && (
         <div
-          className={`rounded-crisp border-l-2 px-4 py-3 text-sm leading-relaxed ${
+          className={`rounded-crisp border-l-2 px-4 py-3 text-sm leading-relaxed animate-rise ${
             isCorrect(q, value) ? 'border-good bg-good-tint' : 'border-bad bg-bad-tint'
           }`}
         >
@@ -44,7 +44,8 @@ export default function QuestionPlayer({ question, value, onChange, reveal }: Pr
 
 type PartProps = { q: Question; value: unknown; onChange: (r: unknown) => void; reveal: boolean }
 
-const optionBase = 'w-full text-left rounded-crisp border px-4 py-2.5 text-sm text-ink transition'
+const optionBase =
+  'w-full text-left rounded-crisp border px-4 py-2.5 text-sm text-ink transition-all duration-150 enabled:active:scale-[0.99]'
 const optionIdle = 'border-line bg-surface hover:border-line-strong'
 const optionSelected = 'border-accent bg-accent-tint'
 const optionCorrect = 'border-good-line bg-good-tint'

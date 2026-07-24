@@ -105,15 +105,20 @@ export default function Flashcards() {
       </div>
 
       {!current ? (
-        <div className="text-center py-16">
-          <p className="text-2xl text-faint mb-4">❦</p>
+        <div className="text-center py-16 animate-pop">
+          <p className="text-2xl text-faint mb-4 animate-pulse-dot">❦</p>
           <p className="font-display text-xl text-ink">Queue clear</p>
           <p className="text-sm text-soft mt-2">
             All due cards reviewed. Take a quiz next, or come back tomorrow — the schedule does the remembering.
           </p>
         </div>
       ) : (
-        <div className="bg-surface border border-line rounded-soft shadow-card p-8 sm:p-10 space-y-6 min-h-64">
+        <div
+          key={current.id}
+          className={`bg-surface border border-line rounded-soft shadow-card p-8 sm:p-10 space-y-6 min-h-64 animate-pop ${
+            flipped ? 'animate-reveal' : ''
+          }`}
+        >
           <div className="flex justify-between text-[11px] uppercase tracking-wider text-faint">
             <span>
               <span className="font-mono normal-case">§{current.domain}.{current.objective.split('.')[1] ?? ''}</span>{' '}
@@ -125,7 +130,7 @@ export default function Flashcards() {
           </div>
           <p className="font-display text-xl sm:text-2xl text-ink leading-snug whitespace-pre-wrap">{current.front}</p>
           {flipped ? (
-            <>
+            <div className="space-y-6 animate-rise">
               <hr className="border-line" />
               <p className="text-ink leading-relaxed whitespace-pre-wrap">{current.back}</p>
               <div className="grid grid-cols-4 gap-2 pt-2">
@@ -154,11 +159,11 @@ export default function Flashcards() {
                   onClick={() => void grade(5)}
                 />
               </div>
-            </>
+            </div>
           ) : (
             <button
               onClick={() => setFlipped(true)}
-              className="w-full rounded-crisp border border-line bg-surface hover:border-line-strong hover:bg-wash py-3 text-sm font-semibold text-ink transition-colors"
+              className="w-full rounded-crisp border border-line bg-surface hover:border-line-strong hover:bg-wash py-3 text-sm font-semibold text-ink transition-all duration-200 active:scale-[0.99]"
             >
               Show answer
             </button>
@@ -171,7 +176,10 @@ export default function Flashcards() {
 
 function GradeBtn({ label, sub, color, onClick }: { label: string; sub: string; color: string; onClick: () => void }) {
   return (
-    <button onClick={onClick} className={`rounded-crisp border py-2.5 text-sm font-semibold transition-colors ${color}`}>
+    <button
+      onClick={onClick}
+      className={`rounded-crisp border py-2.5 text-sm font-semibold transition-all duration-150 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] ${color}`}
+    >
       {label}
       {sub && <span className="block text-[10px] font-normal opacity-70">{sub}</span>}
     </button>

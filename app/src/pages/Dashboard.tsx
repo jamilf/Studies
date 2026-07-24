@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useUserId } from '../auth/AuthContext'
 import { useCert } from '../cert/CertContext'
+import { useCountUp } from '../lib/useCountUp'
 import {
   computeStreak,
   domainAccuracy,
@@ -29,6 +30,8 @@ export default function Dashboard() {
   const { cert } = useCert()
   const [stats, setStats] = useState<Stats | null>(null)
   const [error, setError] = useState<string | null>(null)
+  // Drives the 0→target grow of the domain/forecast bars once data lands.
+  const [barsIn, setBarsIn] = useState(false)
 
   useEffect(() => {
     let cancelled = false
@@ -102,6 +105,16 @@ export default function Dashboard() {
     }
   }, [userId, cert])
 
+  // Reset then trigger the bar-grow whenever a fresh stats payload arrives.
+  useEffect(() => {
+    if (!stats) {
+      setBarsIn(false)
+      return
+    }
+    const id = requestAnimationFrame(() => setBarsIn(true))
+    return () => cancelAnimationFrame(id)
+  }, [stats])
+
   if (error) return <p className="text-bad">{error}</p>
   if (!stats) return <p className="text-soft">Loading…</p>
 
@@ -120,13 +133,13 @@ export default function Dashboard() {
       )}
 
       <div className="grid grid-cols-2 md:grid-cols-4 border-y border-line [&>*]:border-line [&>*:nth-child(even)]:border-l md:[&>*:nth-child(n+2)]:border-l max-md:[&>*:nth-child(n+3)]:border-t">
-        <Tile label="Cards due now" value={String(stats.dueNow)} to="/flashcards" accent={stats.dueNow > 0} />
-        <Tile label="New cards waiting" value={String(stats.newCards)} to="/flashcards" />
-        <Tile label="Exam readiness" value={`${stats.readiness}%`} />
-        <Tile label="Study streak" value={`${stats.streak}d`} />
+        <Tile label="Cards due now" value={stats.dueNow} to="/flashcards" accent={stats.dueNow > 0} delay={0} />
+        <Tile label="New cards waiting" value={stats.newCards} to="/flashcards" delay={1} />
+        <Tile label="Exam readiness" value={stats.readiness} suffix="%" delay={2} />
+        <Tile label="Study streak" value={stats.streak} suffix="d" delay={3} />
       </div>
 
-      <section>
+      <section className="animate-rise stagger-1">
         <h2 className="font-display text-lg text-ink pb-2 border-b border-line mb-4">What to do next</h2>
         <ol className="text-sm text-soft list-decimal ml-5 space-y-1.5">
           <li>
@@ -153,12 +166,12 @@ export default function Dashboard() {
         </ol>
       </section>
 
-      <section>
+      <section className="animate-rise stagger-2">
         <h2 className="font-display text-lg text-ink pb-2 border-b border-line mb-4">
           Domain mastery <span className="text-sm text-faint font-sans">(blueprint-weighted)</span>
         </h2>
         <div className="space-y-3">
-          {stats.domains.map((d) => (
+          {stats.domains.map((d, i) => (
             <div key={d.domain}>
               <div className="flex justify-between items-baseline text-xs mb-1">
                 <span className="text-soft">
@@ -171,7 +184,7 @@ export default function Dashboard() {
               </div>
               <div className="relative h-1.5 rounded-full bg-wash overflow-hidden">
                 <div
-                  className={`h-full rounded-full ${
+                  className={`h-full rounded-full transition-[width] duration-700 ease-out ${
                     d.accuracy === null
                       ? 'bg-line'
                       : d.accuracy >= 0.85
@@ -180,7 +193,10 @@ export default function Dashboard() {
                           ? 'bg-warn'
                           : 'bg-bad'
                   }`}
-                  style={{ width: `${(d.accuracy ?? 0.05) * 100}%` }}
+                  style={{
+                    width: barsIn ? `${(d.accuracy ?? 0.05) * 100}%` : '0%',
+                    transitionDelay: `${i * 70}ms`,
+                  }}
                 />
                 <div className="absolute top-0 h-full w-px bg-line-strong" style={{ left: '85%' }} title="85% target" />
               </div>
@@ -189,12 +205,12 @@ export default function Dashboard() {
         </div>
       </section>
 
-      <section>
+      <section className="animate-rise stagger-3">
         <h2 className="font-display text-lg text-ink pb-2 border-b border-line mb-4">
           Review forecast <span className="text-sm text-faint font-sans">(next 7 days)</span>
         </h2>
         <div className="flex gap-1.5 items-end h-24 border-b border-line">
-          {stats.dueSoon.map((d) => {
+          {stats.dueSoon.map((d, i) => {
             const max = Math.max(...stats.dueSoon.map((x) => x.count), 1)
             return (
               <div
@@ -202,10 +218,23 @@ export default function Dashboard() {
                 className="flex-1 flex flex-col items-center justify-end gap-1 h-full"
                 title={`${d.count} card${d.count === 1 ? '' : 's'} due ${d.day}`}
               >
-                {d.count > 0 && <span className="font-mono text-[10px] text-faint">{d.count}</span>}
+                {d.count > 0 && (
+                  <span
+                    className="font-mono text-[10px] text-faint transition-opacity duration-300"
+                    style={{ opacity: barsIn ? 1 : 0, transitionDelay: `${300 + i * 55}ms` }}
+                  >
+                    {d.count}
+                  </span>
+                )}
                 <div
-                  className={`w-full max-w-10 mx-auto rounded-t-xs ${d.count > 0 ? 'bg-accent/70' : 'bg-wash'}`}
-                  style={{ height: `${(d.count / max) * 64 + 2}px` }}
+                  className={`w-full max-w-10 mx-auto rounded-t-[var(--radius-crisp)] origin-bottom transition-transform duration-500 ease-out ${
+                    d.count > 0 ? 'bg-accent/70' : 'bg-wash'
+                  }`}
+                  style={{
+                    height: `${(d.count / max) * 64 + 2}px`,
+                    transform: barsIn ? 'scaleY(1)' : 'scaleY(0)',
+                    transitionDelay: `${i * 55}ms`,
+                  }}
                 />
               </div>
             )
@@ -223,15 +252,42 @@ export default function Dashboard() {
   )
 }
 
-function Tile({ label, value, to, accent }: { label: string; value: string; to?: string; accent?: boolean }) {
+function Tile({
+  label,
+  value,
+  suffix = '',
+  to,
+  accent,
+  delay = 0,
+}: {
+  label: string
+  value: number
+  suffix?: string
+  to?: string
+  accent?: boolean
+  delay?: number
+}) {
+  const shown = useCountUp(value)
   const inner = (
     <div className={`px-4 py-5 h-full ${to ? 'hover:bg-wash transition-colors' : ''}`}>
-      <p className={`font-display text-3xl ${accent ? 'text-accent' : 'text-ink'}`}>
-        {value}
-        {accent && <span className="align-middle ml-2 inline-block w-2 h-2 rounded-full bg-accent" />}
+      <p className={`font-display text-3xl tabular-nums ${accent ? 'text-accent' : 'text-ink'}`}>
+        {shown}
+        {suffix}
+        {accent && (
+          <span className="align-middle ml-2 inline-block w-2 h-2 rounded-full bg-accent animate-pulse-dot" />
+        )}
       </p>
       <p className="text-[11px] uppercase tracking-wider text-faint mt-1.5">{label}</p>
     </div>
   )
-  return to ? <Link to={to}>{inner}</Link> : inner
+  const wrapped = (
+    <div className={`h-full animate-scale-in stagger-${delay + 1}`}>{inner}</div>
+  )
+  return to ? (
+    <Link to={to} className="h-full">
+      {wrapped}
+    </Link>
+  ) : (
+    wrapped
+  )
 }
