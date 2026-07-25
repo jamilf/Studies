@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { PageSkeleton } from '../components/Skeleton'
+import Stage from '../components/Stage'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useUserId } from '../auth/AuthContext'
 import { useCert } from '../cert/CertContext'
@@ -11,6 +12,14 @@ import { shuffle, weightedSample } from '../lib/shuffle'
 import type { Question, QuizKind } from '../lib/types'
 
 const QUIZ_SIZE = 15
+
+/** Human labels: the raw qtype enum ("mcq") was leaking into the UI. */
+const QTYPE_LABEL: Record<string, string> = {
+  mcq: 'Multiple choice',
+  multi: 'Select all',
+  ordering: 'Ordering',
+  matching: 'Matching',
+}
 
 type Mode = { kind: QuizKind; domain?: number }
 
@@ -108,6 +117,7 @@ export default function Quiz() {
 
   if (!mode) {
     return (
+      <Stage>
       <div className="max-w-2xl mx-auto space-y-5">
         <div>
           <h1 className="font-display text-2xl text-ink">Practice quiz</h1>
@@ -144,6 +154,7 @@ export default function Quiz() {
           </div>
         </div>
       </div>
+      </Stage>
     )
   }
 
@@ -153,6 +164,7 @@ export default function Quiz() {
   if (idx >= quiz.length) {
     const pct = Math.round((score / quiz.length) * 100)
     return (
+      <Stage>
       <div className="max-w-2xl mx-auto text-center space-y-4 py-10">
         <p className="font-display text-5xl text-ink">
           {score}/{quiz.length}
@@ -180,16 +192,18 @@ export default function Quiz() {
           </button>
         </div>
       </div>
+      </Stage>
     )
   }
 
   const q = quiz[idx]
   const answered = response !== null && (q.qtype !== 'matching' || (response as (number | null)[]).every((p) => p !== null))
   return (
+    <Stage>
     <div className="max-w-2xl mx-auto space-y-4">
       <div className="flex items-center justify-between gap-3 font-mono text-xs text-faint">
         <span>
-          {idx + 1}/{quiz.length} · §{q.domain} {q.objective} · {q.qtype}
+          {idx + 1}/{quiz.length} · §{q.domain} {q.objective} · {QTYPE_LABEL[q.qtype]}
         </span>
         <span className="flex items-center gap-3">
           <span>{score} correct so far</span>
@@ -202,16 +216,24 @@ export default function Quiz() {
         </span>
       </div>
       {/* Progress through the set. */}
-      <div className="h-1 rounded-full bg-wash overflow-hidden">
+      <div
+        className="h-1 rounded-full bg-wash overflow-hidden"
+        role="progressbar"
+        aria-label="Quiz progress"
+        aria-valuemin={0}
+        aria-valuemax={quiz.length}
+        aria-valuenow={idx + 1}
+      >
         <div
           className="h-full rounded-full bg-accent transition-[width] duration-300 ease-out"
-          style={{ width: `${(idx / quiz.length) * 100}%` }}
+          style={{ width: `${((idx + 1) / quiz.length) * 100}%` }}
         />
       </div>
-      <div className="bg-surface border border-line rounded-soft shadow-card p-6">
+      <div className="bg-surface border border-line rounded-soft shadow-card p-5 sm:p-6">
         <QuestionPlayer question={q} value={response} onChange={setResponse} reveal={revealed} />
         <div className="mt-5">
           {!revealed ? (
+            <div className="flex items-center gap-3 flex-wrap">
             <button
               disabled={!answered}
               onClick={() => void lockIn()}
@@ -219,6 +241,10 @@ export default function Quiz() {
             >
               Lock in answer
             </button>
+            {!answered && (
+              <span className="text-xs text-faint">Choose an answer to continue.</span>
+            )}
+            </div>
           ) : (
             <button
               onClick={next}
@@ -230,6 +256,7 @@ export default function Quiz() {
         </div>
       </div>
     </div>
+    </Stage>
   )
 }
 
