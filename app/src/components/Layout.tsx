@@ -67,7 +67,7 @@ function Shell() {
       <header className="border-b border-line bg-paper/90 sticky top-0 z-10 backdrop-blur">
         <div className="mx-auto max-w-5xl px-4">
           {/* Row 1 — identity, scope, account */}
-          <div className="flex items-center gap-3 py-2.5 animate-fadein">
+          <div className="flex items-center gap-3 py-2 sm:py-2.5 animate-fadein">
             <span className="font-display text-lg font-semibold tracking-tight text-ink">
               Primer<span className="text-accent inline-block animate-pulse-dot">.</span>
             </span>
@@ -117,7 +117,7 @@ function Shell() {
         id="main"
         ref={mainRef}
         tabIndex={-1}
-        className="mx-auto max-w-5xl px-4 py-8 pb-24 sm:pb-8 outline-none"
+        className="mx-auto max-w-5xl px-4 py-5 pb-24 sm:py-8 sm:pb-8 outline-none"
       >
         {/* Keyed per route: replays the entrance animation and clears any
             contained error when the user navigates elsewhere. */}

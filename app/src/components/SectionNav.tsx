@@ -11,15 +11,15 @@ export function SectionNav() {
   if (!section?.children?.length) return null
 
   return (
-    <nav aria-label={`${section.label} sections`} className="mb-6 -mt-1">
-      <div className="inline-flex flex-wrap gap-1 rounded-crisp border border-line bg-wash p-1">
+    <nav aria-label={`${section.label} sections`} className="mb-4 sm:mb-6 -mt-1">
+      <div className="inline-flex flex-wrap gap-1 rounded-crisp border border-line bg-wash p-0.5 sm:p-1">
         {section.children.map((child) => (
           <NavLink
             key={child.path}
             to={child.path}
             title={child.blurb}
             className={({ isActive }) =>
-              `rounded-crisp px-3 py-1.5 text-sm transition-colors ${
+              `rounded-crisp px-2.5 sm:px-3 py-1 sm:py-1.5 text-sm transition-colors ${
                 isActive
                   ? 'bg-surface text-ink font-medium shadow-card'
                   : 'text-soft hover:text-ink'

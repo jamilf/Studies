@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { PageSkeleton } from '../components/Skeleton'
+import Stage from '../components/Stage'
 import { useUserId } from '../auth/AuthContext'
 import { useCert } from '../cert/CertContext'
 import { fetchCardStates, fetchFlashcards, gradeCard } from '../lib/data'
@@ -67,6 +68,7 @@ export default function Feynman() {
   }
 
   return (
+    <Stage>
     <div className="max-w-2xl mx-auto space-y-4">
       <div className="flex justify-between text-[11px] uppercase tracking-wider text-faint">
         <span>
@@ -131,5 +133,6 @@ export default function Feynman() {
         )}
       </div>
     </div>
+    </Stage>
   )
 }

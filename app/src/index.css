@@ -86,9 +86,12 @@
       opacity: 0;
       transform: translateY(12px);
     }
+    /* `none`, not translateY(0): the fill mode keeps the final value, and any
+       transform on the route wrapper would make it the containing block for
+       position:fixed descendants (the mobile grade bar). */
     to {
       opacity: 1;
-      transform: translateY(0);
+      transform: none;
     }
   }
 

@@ -34,6 +34,7 @@ export default function Exam() {
   const [responses, setResponses] = useState<Record<string, unknown>>({})
   const [flags, setFlags] = useState<Set<string>>(new Set())
   const [idx, setIdx] = useState(0)
+  const [gridOpen, setGridOpen] = useState(false)
   const [secondsLeft, setSecondsLeft] = useState(cert.exam.minutes * 60)
   const [result, setResult] = useState<{ raw: number; scaled: number; passed: boolean } | null>(null)
   const deadline = useRef<number>(0)
@@ -171,6 +172,7 @@ export default function Exam() {
   const isReview = phase === 'review'
   const mins = Math.floor(secondsLeft / 60)
   const secs = secondsLeft % 60
+  const answeredCount = form.filter((f) => responses[f.id] !== undefined && responses[f.id] !== null).length
 
   return (
     <div className="max-w-3xl mx-auto space-y-4">
@@ -193,9 +195,16 @@ export default function Exam() {
         </div>
       )}
 
-      <div className="flex items-center justify-between">
+      {/* Sticky during a run: the clock is the most important thing on screen
+          and used to scroll away on longer questions. */}
+      <div
+        className={`flex items-center justify-between gap-3 ${
+          !isReview ? 'sticky top-14 z-10 -mx-2 px-2 py-2 bg-paper/95 backdrop-blur border-b border-line' : ''
+        }`}
+      >
         <span className="font-mono text-xs text-faint">
           {idx + 1}/{form.length}
+          {!isReview && <span className="text-soft"> · {answeredCount} answered</span>}
           {isReview && ` · §${q.domain} ${q.objective}`}
         </span>
         {!isReview ? (
@@ -205,7 +214,9 @@ export default function Exam() {
             role="timer"
             aria-live="off"
             aria-label={`Time remaining: ${mins} minutes ${secs} seconds`}
-            className={`font-mono text-sm tabular-nums ${secondsLeft < 600 ? 'text-bad' : 'text-soft'}`}
+            className={`font-mono text-lg font-semibold tabular-nums ${
+              secondsLeft < 600 ? 'text-bad' : 'text-ink'
+            }`}
           >
             {mins}:{secs.toString().padStart(2, '0')}
           </span>
@@ -233,16 +244,16 @@ export default function Exam() {
         <button
           disabled={idx === 0}
           onClick={() => setIdx((i) => i - 1)}
-          className="rounded-crisp border border-line bg-surface hover:border-line-strong disabled:opacity-40 px-4 py-2 text-sm text-ink transition-colors"
+          className="rounded-crisp border border-line bg-surface hover:border-line-strong disabled:opacity-40 px-3 sm:px-4 py-2.5 sm:py-2 min-h-11 sm:min-h-0 text-sm text-ink transition-colors whitespace-nowrap"
         >
-          ← Prev
+          ←<span className="hidden sm:inline"> Prev</span>
         </button>
         <button
           disabled={idx === form.length - 1}
           onClick={() => setIdx((i) => i + 1)}
-          className="rounded-crisp border border-line bg-surface hover:border-line-strong disabled:opacity-40 px-4 py-2 text-sm text-ink transition-colors"
+          className="rounded-crisp border border-line bg-surface hover:border-line-strong disabled:opacity-40 px-3 sm:px-4 py-2.5 sm:py-2 min-h-11 sm:min-h-0 text-sm text-ink transition-colors whitespace-nowrap"
         >
-          Next →
+          <span className="hidden sm:inline">Next </span>→
         </button>
         {!isReview && (
           <>
@@ -255,7 +266,7 @@ export default function Exam() {
                   return n
                 })
               }
-              className={`rounded-crisp border px-4 py-2 text-sm transition-colors ${
+              className={`rounded-crisp border px-3 sm:px-4 py-2.5 sm:py-2 min-h-11 sm:min-h-0 text-sm transition-colors whitespace-nowrap ${
                 flags.has(q.id)
                   ? 'bg-warn-tint border-warn-line text-warn'
                   : 'border-line bg-surface text-ink hover:border-line-strong'
@@ -268,9 +279,9 @@ export default function Exam() {
               onClick={() => {
                 if (confirm('Submit the exam? Unanswered questions count as wrong.')) void submit()
               }}
-              className="rounded-crisp bg-accent hover:bg-accent-deep text-paper px-5 py-2 text-sm font-semibold transition-colors"
+              className="rounded-crisp bg-accent hover:bg-accent-deep text-paper px-4 sm:px-5 py-2.5 sm:py-2 min-h-11 sm:min-h-0 text-sm font-semibold transition-colors whitespace-nowrap"
             >
-              Submit exam
+              Submit
             </button>
           </>
         )}
@@ -287,7 +298,20 @@ export default function Exam() {
         )}
       </div>
 
-      <div className="flex flex-wrap gap-1" role="group" aria-label="Jump to question">
+      <button
+        onClick={() => setGridOpen((o) => !o)}
+        aria-expanded={gridOpen}
+        className="sm:hidden w-full rounded-crisp border border-line bg-surface px-3 py-2.5 text-sm text-ink transition-colors hover:border-line-strong flex items-center justify-between"
+      >
+        <span>Jump to question · {answeredCount}/{form.length} answered</span>
+        <span aria-hidden className={`text-faint transition-transform ${gridOpen ? 'rotate-180' : ''}`}>▾</span>
+      </button>
+
+      <div
+        className={`${gridOpen ? 'flex' : 'hidden'} sm:flex flex-wrap gap-1`}
+        role="group"
+        aria-label="Jump to question"
+      >
         {form.map((fq, i) => {
           const answered = responses[fq.id] !== undefined && responses[fq.id] !== null
           const flagged = flags.has(fq.id)
@@ -305,7 +329,7 @@ export default function Exam() {
               aria-label={`Question ${i + 1}, ${state}`}
               aria-current={i === idx ? 'true' : undefined}
               onClick={() => setIdx(i)}
-              className={`w-8 h-7 rounded-crisp text-[11px] font-mono border transition-colors ${
+              className={`w-11 h-11 sm:w-8 sm:h-7 rounded-crisp text-xs sm:text-[11px] font-mono border transition-colors ${
                 i === idx ? 'ring-2 ring-accent ring-offset-2 ring-offset-paper ' : ''
               }${
                 reviewState === 'ok'

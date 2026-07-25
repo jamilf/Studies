@@ -45,6 +45,9 @@ export default function QuestionPlayer({ question, value, onChange, reveal }: Pr
 
 type PartProps = { q: Question; value: unknown; onChange: (r: unknown) => void; reveal: boolean }
 
+/** A, B, C … Exam convention, and far easier to scan. */
+const LETTERS = 'ABCDEFGH'
+
 const optionBase =
   'w-full text-left rounded-crisp border px-4 py-2.5 text-sm text-ink transition-all duration-150 enabled:active:scale-[0.99]'
 const optionIdle = 'border-line bg-surface hover:border-line-strong'
@@ -57,7 +60,7 @@ function Mcq({ q, value, onChange, reveal }: PartProps) {
   const perm = useMemo(() => shuffledIndexes(choices.length), [q.id, choices.length])
   return (
     <div className="space-y-2">
-      {perm.map((orig) => {
+      {perm.map((orig, i) => {
         const selected = value === orig
         const correct = reveal && orig === q.answer
         const wrongPick = reveal && selected && orig !== q.answer
@@ -71,6 +74,7 @@ function Mcq({ q, value, onChange, reveal }: PartProps) {
               correct ? optionCorrect : wrongPick ? optionWrong : selected ? optionSelected : optionIdle
             }`}
           >
+            <span aria-hidden className="font-mono text-faint mr-2">{LETTERS[i]}</span>
             {choices[orig]}
           </button>
         )

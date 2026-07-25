@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { PageSkeleton } from '../components/Skeleton'
+import Stage from '../components/Stage'
 import { useUserId } from '../auth/AuthContext'
 import { useCert } from '../cert/CertContext'
 import { fetchCardStates, fetchFlashcards, gradeCard } from '../lib/data'
@@ -84,15 +86,21 @@ export default function Flashcards() {
 
   if (!cards) return <PageSkeleton label="Loading cards" />
 
+  // Session progress: cards graded out of everything this session will hand
+  // you. A lapsed card is re-queued, so the denominator grows with it.
+  const sessionTotal = done + queue.length
+  const sessionPct = sessionTotal === 0 ? 0 : (done / sessionTotal) * 100
+
   return (
-    <div className="space-y-5 max-w-2xl mx-auto">
+    <Stage>
+    <div className="space-y-4 sm:space-y-5 max-w-2xl mx-auto">
       <div className="flex items-center justify-between flex-wrap gap-2">
         <div className="inline-flex border border-line rounded-crisp overflow-hidden divide-x divide-line bg-surface">
           {(['all', 'core', 'acronym'] as DeckFilter[]).map((d) => (
             <button
               key={d}
               onClick={() => setDeck(d)}
-              className={`px-3 py-1.5 text-xs capitalize transition-colors ${
+              className={`px-2.5 sm:px-3 py-1.5 text-xs capitalize transition-colors ${
                 deck === d ? 'bg-accent-tint text-accent font-medium' : 'text-soft hover:text-ink'
               }`}
             >
@@ -103,6 +111,21 @@ export default function Flashcards() {
         <p className="font-mono text-xs text-faint">
           {counts.due} due · {counts.fresh} new · {done} done
         </p>
+      </div>
+
+      {/* Progress through this session, matching the quiz bar. */}
+      <div
+        className="h-1 rounded-full bg-wash overflow-hidden"
+        role="progressbar"
+        aria-label="Session progress"
+        aria-valuemin={0}
+        aria-valuemax={sessionTotal}
+        aria-valuenow={done}
+      >
+        <div
+          className="h-full rounded-full bg-accent transition-[width] duration-300 ease-out"
+          style={{ width: `${sessionPct}%` }}
+        />
       </div>
 
       {!current ? (
@@ -116,8 +139,8 @@ export default function Flashcards() {
       ) : (
         <div
           key={current.id}
-          className={`bg-surface border border-line rounded-soft shadow-card p-8 sm:p-10 space-y-6 min-h-64 animate-pop ${
-            flipped ? 'animate-reveal' : ''
+          className={`bg-surface border border-line rounded-soft shadow-card p-5 sm:p-10 space-y-5 sm:space-y-6 min-h-64 animate-pop ${
+            flipped ? 'animate-reveal pb-24 sm:pb-10' : ''
           }`}
         >
           <div className="flex justify-between text-[11px] uppercase tracking-wider text-faint">
@@ -134,32 +157,8 @@ export default function Flashcards() {
             <div className="space-y-6 animate-rise">
               <hr className="border-line" />
               <p className="text-ink leading-relaxed whitespace-pre-wrap">{current.back}</p>
-              <div className="grid grid-cols-4 gap-2 pt-2">
-                <GradeBtn
-                  label="Again"
-                  sub="&lt;10m"
-                  color="bg-bad-tint text-bad border-bad-line hover:border-bad"
-                  onClick={() => void grade(0)}
-                />
-                <GradeBtn
-                  label="Hard"
-                  sub=""
-                  color="bg-warn-tint text-warn border-warn-line hover:border-warn"
-                  onClick={() => void grade(3)}
-                />
-                <GradeBtn
-                  label="Good"
-                  sub=""
-                  color="bg-good-tint text-good border-good-line hover:border-good"
-                  onClick={() => void grade(4)}
-                />
-                <GradeBtn
-                  label="Easy"
-                  sub=""
-                  color="bg-accent-tint text-accent border-accent-line hover:border-accent"
-                  onClick={() => void grade(5)}
-                />
-              </div>
+              {/* Desktop: in the card, right under the answer. */}
+              <GradeRow className="hidden sm:grid pt-2" onGrade={(g) => void grade(g)} />
             </div>
           ) : (
             <button
@@ -171,6 +170,43 @@ export default function Flashcards() {
           )}
         </div>
       )}
+
+      {/* Mobile: grading is the most repeated action in the app, so it sits in
+          the thumb zone just above the bottom bar rather than mid-screen.
+          Portalled to the body because the animated route wrapper carries a
+          transform, which would otherwise become its containing block. */}
+      {current &&
+        flipped &&
+        createPortal(
+          <GradeRow
+            className="grid sm:hidden fixed inset-x-0 bottom-[calc(2.9rem+env(safe-area-inset-bottom))] z-20 border-t border-line bg-paper/95 px-3 py-2 backdrop-blur"
+            onGrade={(g) => void grade(g)}
+          />,
+          document.body,
+        )}
+    </div>
+    </Stage>
+  )
+}
+
+/** The four SM-2 grades. Rendered twice — desktop in-card, mobile thumb bar. */
+function GradeRow({ className, onGrade }: { className: string; onGrade: (g: Grade) => void }) {
+  return (
+    <div className={`grid-cols-4 gap-2 ${className}`}>
+      <GradeBtn
+        label="Again"
+        sub="&lt;10m"
+        color="bg-bad-tint text-bad border-bad-line hover:border-bad"
+        onClick={() => onGrade(0)}
+      />
+      <GradeBtn label="Hard" sub="" color="bg-warn-tint text-warn border-warn-line hover:border-warn" onClick={() => onGrade(3)} />
+      <GradeBtn label="Good" sub="" color="bg-good-tint text-good border-good-line hover:border-good" onClick={() => onGrade(4)} />
+      <GradeBtn
+        label="Easy"
+        sub=""
+        color="bg-accent-tint text-accent border-accent-line hover:border-accent"
+        onClick={() => onGrade(5)}
+      />
     </div>
   )
 }
