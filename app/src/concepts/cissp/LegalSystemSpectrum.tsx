@@ -28,7 +28,7 @@ export default function LegalSystemSpectrum() {
 
       <div className="space-y-2">
         <input
-          type="range"
+          type="range" aria-label="World Legal System Families"
           min={0}
           max={SYSTEMS.length - 1}
           step={1}

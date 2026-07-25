@@ -37,21 +37,21 @@ export default function BackupRecoveryCalculator() {
             <span>Total data size</span>
             <span className="font-mono text-ink">{dataSize} GB</span>
           </div>
-          <input type="range" min={50} max={2000} step={50} value={dataSize} onChange={(e) => setDataSize(Number(e.target.value))} className="w-full" />
+          <input type="range" aria-label="Backup Strategy Storage Calculator" min={50} max={2000} step={50} value={dataSize} onChange={(e) => setDataSize(Number(e.target.value))} className="w-full" />
         </div>
         <div>
           <div className="flex justify-between text-xs text-soft mb-1">
             <span>Daily change rate</span>
             <span className="font-mono text-ink">{changeRate}%</span>
           </div>
-          <input type="range" min={1} max={40} step={1} value={changeRate} onChange={(e) => setChangeRate(Number(e.target.value))} className="w-full" />
+          <input type="range" aria-label="Backup Strategy Storage Calculator" min={1} max={40} step={1} value={changeRate} onChange={(e) => setChangeRate(Number(e.target.value))} className="w-full" />
         </div>
         <div>
           <div className="flex justify-between text-xs text-soft mb-1">
             <span>Retention period</span>
             <span className="font-mono text-ink">{retention} days</span>
           </div>
-          <input type="range" min={2} max={30} step={1} value={retention} onChange={(e) => setRetention(Number(e.target.value))} className="w-full" />
+          <input type="range" aria-label="Backup Strategy Storage Calculator" min={2} max={30} step={1} value={retention} onChange={(e) => setRetention(Number(e.target.value))} className="w-full" />
         </div>
       </div>
 

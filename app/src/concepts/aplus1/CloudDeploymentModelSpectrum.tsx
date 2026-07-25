@@ -53,7 +53,7 @@ export default function CloudDeploymentModelSpectrum() {
       </div>
 
       <input
-        type="range"
+        type="range" aria-label="Cloud Deployment Model Spectrum"
         min={0}
         max={MODELS.length - 1}
         step={1}

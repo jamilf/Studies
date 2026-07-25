@@ -85,7 +85,7 @@ export default function DdosProtectionTierSlider() {
 
       <div>
         <input
-          type="range"
+          type="range" aria-label="DDoS Protection Tiers: Shield Standard to Full Edge Stack"
           min={0}
           max={TIERS.length - 1}
           step={1}

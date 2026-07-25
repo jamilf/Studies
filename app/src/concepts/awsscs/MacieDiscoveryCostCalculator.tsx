@@ -34,7 +34,7 @@ export default function MacieDiscoveryCostCalculator() {
             <span className="font-mono text-ink">{bucketSizeGb.toLocaleString()} GB</span>
           </div>
           <input
-            type="range"
+            type="range" aria-label="Macie Sensitive Data Discovery: Coverage vs. Cost"
             min={10}
             max={5000}
             step={10}
@@ -49,7 +49,7 @@ export default function MacieDiscoveryCostCalculator() {
             <span className="font-mono text-ink">{samplingPercent}%</span>
           </div>
           <input
-            type="range"
+            type="range" aria-label="Macie Sensitive Data Discovery: Coverage vs. Cost"
             min={1}
             max={100}
             step={1}
@@ -64,7 +64,7 @@ export default function MacieDiscoveryCostCalculator() {
             <span className="font-mono text-ink">{identifierCount}</span>
           </div>
           <input
-            type="range"
+            type="range" aria-label="Macie Sensitive Data Discovery: Coverage vs. Cost"
             min={0}
             max={10}
             step={1}

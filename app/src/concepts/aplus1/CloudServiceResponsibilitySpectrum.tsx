@@ -59,7 +59,7 @@ export default function CloudServiceResponsibilitySpectrum() {
       </div>
 
       <input
-        type="range"
+        type="range" aria-label="IaaS / PaaS / SaaS Responsibility Spectrum"
         min={0}
         max={TIERS.length - 1}
         step={1}

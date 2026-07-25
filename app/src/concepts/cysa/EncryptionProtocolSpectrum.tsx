@@ -72,7 +72,7 @@ export default function EncryptionProtocolSpectrum() {
 
       <div>
         <input
-          type="range"
+          type="range" aria-label="Transport Encryption Protocol Spectrum"
           min={0}
           max={TIERS.length - 1}
           step={1}

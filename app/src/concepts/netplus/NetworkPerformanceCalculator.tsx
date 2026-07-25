@@ -64,21 +64,21 @@ export default function NetworkPerformanceCalculator() {
             <span>Latency</span>
             <span className="font-mono">{latencyMs} ms</span>
           </div>
-          <input type="range" min={0} max={300} step={5} value={latencyMs} onChange={(e) => setLatencyMs(Number(e.target.value))} className="w-full accent-accent" />
+          <input type="range" aria-label="Latency, Jitter &amp; Packet Loss" min={0} max={300} step={5} value={latencyMs} onChange={(e) => setLatencyMs(Number(e.target.value))} className="w-full accent-accent" />
         </div>
         <div>
           <div className="flex justify-between text-xs text-soft mb-1">
             <span>Jitter</span>
             <span className="font-mono">{jitterMs} ms</span>
           </div>
-          <input type="range" min={0} max={50} step={1} value={jitterMs} onChange={(e) => setJitterMs(Number(e.target.value))} className="w-full accent-accent" />
+          <input type="range" aria-label="Latency, Jitter &amp; Packet Loss" min={0} max={50} step={1} value={jitterMs} onChange={(e) => setJitterMs(Number(e.target.value))} className="w-full accent-accent" />
         </div>
         <div>
           <div className="flex justify-between text-xs text-soft mb-1">
             <span>Packet loss</span>
             <span className="font-mono">{lossPct.toFixed(1)}%</span>
           </div>
-          <input type="range" min={0} max={10} step={0.1} value={lossPct} onChange={(e) => setLossPct(Number(e.target.value))} className="w-full accent-accent" />
+          <input type="range" aria-label="Latency, Jitter &amp; Packet Loss" min={0} max={10} step={0.1} value={lossPct} onChange={(e) => setLossPct(Number(e.target.value))} className="w-full accent-accent" />
         </div>
       </div>
 

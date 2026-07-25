@@ -29,7 +29,7 @@ export default function ThirdPartyRiskSpectrum() {
       </div>
 
       <input
-        type="range"
+        type="range" aria-label="Third-Party Risk Management Spectrum"
         min={0}
         max={TIERS.length - 1}
         step={1}

@@ -63,7 +63,7 @@ export default function DrSiteSpectrum() {
       </div>
 
       <input
-        type="range"
+        type="range" aria-label="Disaster Recovery Site Spectrum"
         min={0}
         max={TIERS.length - 1}
         step={1}

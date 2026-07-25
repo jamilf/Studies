@@ -30,7 +30,7 @@ export default function LaptopBatteryCalculator() {
             <span className="font-mono text-ink font-medium">{capacityWh} Wh</span>
           </div>
           <input
-            type="range"
+            type="range" aria-label="Battery capacity"
             min={30}
             max={99}
             step={1}
@@ -45,7 +45,7 @@ export default function LaptopBatteryCalculator() {
             <span className="font-mono text-ink font-medium">{brightness}%</span>
           </div>
           <input
-            type="range"
+            type="range" aria-label="Screen brightness"
             min={0}
             max={100}
             step={5}
@@ -60,7 +60,7 @@ export default function LaptopBatteryCalculator() {
             <span className="font-mono text-ink font-medium">{radiosOn} of 3</span>
           </div>
           <input
-            type="range"
+            type="range" aria-label="Active radios"
             min={0}
             max={3}
             step={1}

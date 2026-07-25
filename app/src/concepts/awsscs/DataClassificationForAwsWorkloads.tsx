@@ -64,7 +64,7 @@ export default function DataClassificationForAwsWorkloads() {
 
       <div>
         <input
-          type="range"
+          type="range" aria-label="Data Classification Tiers for AWS Workloads"
           min={0}
           max={TIERS.length - 1}
           step={1}

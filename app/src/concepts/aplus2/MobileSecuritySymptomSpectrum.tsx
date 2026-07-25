@@ -54,7 +54,7 @@ function Meter({ label, value }: { label: string; value: number }) {
       <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">{label}</p>
       <div className="flex gap-1">
         {Array.from({ length: 5 }).map((_, i) => (
-          <div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < value ? METER[i] : 'bg-line/50'}`} />
+          <div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < value ? METER[i] : 'bg-line/50'}`} />
         ))}
       </div>
     </div>
@@ -73,7 +73,7 @@ export default function MobileSecuritySymptomSpectrum() {
       </div>
 
       <input
-        type="range"
+        type="range" aria-label="Mobile Security Symptom Spectrum"
         min={0}
         max={TIERS.length - 1}
         step={1}

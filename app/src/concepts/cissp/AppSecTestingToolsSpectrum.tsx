@@ -58,7 +58,7 @@ export default function AppSecTestingToolsSpectrum() {
       </div>
 
       <input
-        type="range"
+        type="range" aria-label="Application Security Testing Tools Across the SDLC"
         min={0}
         max={TIERS.length - 1}
         step={1}

@@ -89,7 +89,7 @@ function Slider({ label, value, onChange, min, max, step, format }: SliderProps)
         <span className="text-soft">{label}</span>
         <span className="font-mono text-ink font-medium">{format(value)}</span>
       </div>
-      <input type="range" min={min} max={max} step={step} value={value} onChange={(e) => onChange(Number(e.target.value))} className="w-full" />
+      <input type="range" aria-label="VM Resource Sizing Calculator" min={min} max={max} step={step} value={value} onChange={(e) => onChange(Number(e.target.value))} className="w-full" />
     </div>
   )
 }

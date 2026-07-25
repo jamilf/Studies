@@ -48,28 +48,28 @@ export default function PatchPriorityCalculator() {
             <span className="text-ink font-medium">CVSS base score</span>
             <span className="font-mono text-soft">{cvss.toFixed(1)}</span>
           </div>
-          <input type="range" min={0} max={10} step={0.1} value={cvss} onChange={(e) => setCvss(Number(e.target.value))} className="w-full" />
+          <input type="range" aria-label="Risk-Based Patch Priority Calculator" min={0} max={10} step={0.1} value={cvss} onChange={(e) => setCvss(Number(e.target.value))} className="w-full" />
         </div>
         <div>
           <div className="flex justify-between text-sm mb-1">
             <span className="text-ink font-medium">Exploit maturity</span>
             <span className="font-mono text-soft">{EXPLOIT_LABELS[exploitMaturity]}</span>
           </div>
-          <input type="range" min={0} max={3} step={1} value={exploitMaturity} onChange={(e) => setExploitMaturity(Number(e.target.value))} className="w-full" />
+          <input type="range" aria-label="Risk-Based Patch Priority Calculator" min={0} max={3} step={1} value={exploitMaturity} onChange={(e) => setExploitMaturity(Number(e.target.value))} className="w-full" />
         </div>
         <div>
           <div className="flex justify-between text-sm mb-1">
             <span className="text-ink font-medium">Asset criticality (1-5)</span>
             <span className="font-mono text-soft">{assetCriticality}</span>
           </div>
-          <input type="range" min={1} max={5} step={1} value={assetCriticality} onChange={(e) => setAssetCriticality(Number(e.target.value))} className="w-full" />
+          <input type="range" aria-label="Risk-Based Patch Priority Calculator" min={1} max={5} step={1} value={assetCriticality} onChange={(e) => setAssetCriticality(Number(e.target.value))} className="w-full" />
         </div>
         <div>
           <div className="flex justify-between text-sm mb-1">
             <span className="text-ink font-medium">Exposure</span>
             <span className="font-mono text-soft">{EXPOSURE_LABELS[exposure]}</span>
           </div>
-          <input type="range" min={0} max={2} step={1} value={exposure} onChange={(e) => setExposure(Number(e.target.value))} className="w-full" />
+          <input type="range" aria-label="Risk-Based Patch Priority Calculator" min={0} max={2} step={1} value={exposure} onChange={(e) => setExposure(Number(e.target.value))} className="w-full" />
         </div>
       </div>
 

@@ -27,7 +27,7 @@ export default function DataTransferCostSpectrum() {
         <p className="text-sm text-soft">Domain 4.3 — slide across traffic paths to see how cost and latency change as data crosses more boundaries.</p>
       </div>
 
-      <input type="range" min={0} max={PATHS.length - 1} step={1} value={selected} onChange={(e) => setSelected(Number(e.target.value))} className="w-full" />
+      <input type="range" aria-label="Data Transfer Cost Spectrum" min={0} max={PATHS.length - 1} step={1} value={selected} onChange={(e) => setSelected(Number(e.target.value))} className="w-full" />
       <div className="flex justify-between text-[10px] text-faint px-0.5 -mt-3">
         {PATHS.map((path, i) => (
           <button key={path.name} onClick={() => setSelected(i)} className={`text-center transition-colors ${i === selected ? 'text-accent font-semibold' : 'hover:text-soft'}`} style={{ width: `${100 / PATHS.length}%` }}>

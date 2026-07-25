@@ -42,7 +42,7 @@ export default function VpcConnectivityScaling() {
           <span className="font-mono text-ink font-medium">{vpcCount}</span>
         </div>
         <input
-          type="range"
+          type="range" aria-label="Number of VPCs"
           min={2}
           max={12}
           step={1}

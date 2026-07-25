@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { PageSkeleton } from '../components/Skeleton'
 import { useUserId } from '../auth/AuthContext'
 import { useCert } from '../cert/CertContext'
 import { fetchCardStates, fetchFlashcards, gradeCard } from '../lib/data'
@@ -81,7 +82,7 @@ export default function Flashcards() {
     })
   }
 
-  if (!cards) return <p className="text-soft">Loading…</p>
+  if (!cards) return <PageSkeleton label="Loading cards" />
 
   return (
     <div className="space-y-5 max-w-2xl mx-auto">

@@ -85,7 +85,7 @@ function Slider({
         </span>
       </div>
       <input
-        type="range"
+        type="range" aria-label="Attack Surface Reduction Calculator"
         min={min}
         max={max}
         value={value}

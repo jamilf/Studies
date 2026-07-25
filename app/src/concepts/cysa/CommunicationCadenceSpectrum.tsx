@@ -31,7 +31,7 @@ export default function CommunicationCadenceSpectrum() {
 
       <div>
         <input
-          type="range"
+          type="range" aria-label="Incident Communication Cadence"
           min={0}
           max={TIERS.length - 1}
           step={1}

@@ -75,7 +75,7 @@ export default function CostAllocationTagsForGovernance() {
               </span>
             </div>
             <input
-              type="range"
+              type="range" aria-label="Cost Allocation Tags as a Governance Signal"
               min={0}
               max={100}
               step={5}

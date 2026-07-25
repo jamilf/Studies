@@ -32,28 +32,28 @@ export default function VulnManagementKpiCalculator() {
             <span className="text-soft">Vulnerabilities found this cycle</span>
             <span className="font-mono text-ink font-medium">{found}</span>
           </div>
-          <input type="range" min={10} max={500} step={5} value={found} onChange={(e) => setFound(Number(e.target.value))} className="w-full" />
+          <input type="range" aria-label="Vulnerabilities found this cycle" min={10} max={500} step={5} value={found} onChange={(e) => setFound(Number(e.target.value))} className="w-full" />
         </div>
         <div>
           <div className="flex justify-between text-xs mb-1">
             <span className="text-soft">Remediated within SLA</span>
             <span className="font-mono text-ink font-medium">{cappedRemediated}</span>
           </div>
-          <input type="range" min={0} max={found} step={1} value={cappedRemediated} onChange={(e) => setRemediatedOnTime(Number(e.target.value))} className="w-full" />
+          <input type="range" aria-label="Remediated within SLA" min={0} max={found} step={1} value={cappedRemediated} onChange={(e) => setRemediatedOnTime(Number(e.target.value))} className="w-full" />
         </div>
         <div>
           <div className="flex justify-between text-xs mb-1">
             <span className="text-soft">Avg. days to detect</span>
             <span className="font-mono text-ink font-medium">{avgDetectDays}d</span>
           </div>
-          <input type="range" min={0} max={30} step={1} value={avgDetectDays} onChange={(e) => setAvgDetectDays(Number(e.target.value))} className="w-full" />
+          <input type="range" aria-label="Avg. days to detect" min={0} max={30} step={1} value={avgDetectDays} onChange={(e) => setAvgDetectDays(Number(e.target.value))} className="w-full" />
         </div>
         <div>
           <div className="flex justify-between text-xs mb-1">
             <span className="text-soft">Avg. days to remediate</span>
             <span className="font-mono text-ink font-medium">{avgRemediateDays}d</span>
           </div>
-          <input type="range" min={0} max={90} step={1} value={avgRemediateDays} onChange={(e) => setAvgRemediateDays(Number(e.target.value))} className="w-full" />
+          <input type="range" aria-label="Avg. days to remediate" min={0} max={90} step={1} value={avgRemediateDays} onChange={(e) => setAvgRemediateDays(Number(e.target.value))} className="w-full" />
         </div>
       </div>
 

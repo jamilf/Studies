@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { PageSkeleton } from '../components/Skeleton'
 import { useSearchParams } from 'react-router-dom'
 import { useUserId } from '../auth/AuthContext'
 import { useCert } from '../cert/CertContext'
@@ -118,7 +119,7 @@ export default function Exam() {
     submitting.current = false
   }
 
-  if (!all) return <p className="text-soft">Loading…</p>
+  if (!all) return <PageSkeleton label="Loading exam" />
 
   // Safety net: a run/review URL with no form behind it (hand-typed URL) falls
   // back to the briefing instead of rendering an undefined question.
@@ -198,11 +199,21 @@ export default function Exam() {
           {isReview && ` · §${q.domain} ${q.objective}`}
         </span>
         {!isReview ? (
-          <span className={`font-mono text-sm tabular-nums ${secondsLeft < 600 ? 'text-bad' : 'text-soft'}`}>
+          // Announced politely: a screen-reader user needs the time remaining
+          // without it interrupting them on every tick.
+          <span
+            role="timer"
+            aria-live="off"
+            aria-label={`Time remaining: ${mins} minutes ${secs} seconds`}
+            className={`font-mono text-sm tabular-nums ${secondsLeft < 600 ? 'text-bad' : 'text-soft'}`}
+          >
             {mins}:{secs.toString().padStart(2, '0')}
           </span>
         ) : (
-          <span className={`text-xs font-semibold ${isCorrect(q, responses[q.id]) ? 'text-good' : 'text-bad'}`}>
+          <span
+            role="status"
+            className={`text-xs font-semibold ${isCorrect(q, responses[q.id]) ? 'text-good' : 'text-bad'}`}
+          >
             {isCorrect(q, responses[q.id]) ? 'Correct' : 'Incorrect'}
           </span>
         )}
@@ -276,14 +287,23 @@ export default function Exam() {
         )}
       </div>
 
-      <div className="flex flex-wrap gap-1">
+      <div className="flex flex-wrap gap-1" role="group" aria-label="Jump to question">
         {form.map((fq, i) => {
           const answered = responses[fq.id] !== undefined && responses[fq.id] !== null
           const flagged = flags.has(fq.id)
           const reviewState = isReview ? (isCorrect(fq, responses[fq.id]) ? 'ok' : 'bad') : null
+          // The colour alone carries the state visually; spell it out for
+          // assistive tech.
+          const state = reviewState
+            ? reviewState === 'ok'
+              ? 'correct'
+              : 'incorrect'
+            : [answered ? 'answered' : 'unanswered', flagged ? 'flagged' : null].filter(Boolean).join(', ')
           return (
             <button
               key={fq.id}
+              aria-label={`Question ${i + 1}, ${state}`}
+              aria-current={i === idx ? 'true' : undefined}
               onClick={() => setIdx(i)}
               className={`w-8 h-7 rounded-crisp text-[11px] font-mono border transition-colors ${
                 i === idx ? 'ring-2 ring-accent ring-offset-2 ring-offset-paper ' : ''

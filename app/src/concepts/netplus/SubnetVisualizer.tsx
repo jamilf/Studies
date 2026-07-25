@@ -70,7 +70,7 @@ export default function SubnetVisualizer() {
             <span className="font-mono text-ink font-medium">/{prefix}</span>
           </div>
           <input
-            type="range"
+            type="range" aria-label="Prefix length"
             min={8}
             max={30}
             step={1}

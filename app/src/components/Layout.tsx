@@ -1,11 +1,13 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { useAuth } from '../auth/AuthContext'
 import { useCert } from '../cert/CertContext'
 import { NAV, sectionForPath, titleForPath } from '../lib/nav'
 import BottomNav from './BottomNav'
 import CertScope from './CertScope'
+import ErrorBoundary from './ErrorBoundary'
 import { NavigationGuard, RunGuardProvider } from './NavGuard'
+import { PageSkeleton } from './Skeleton'
 
 export default function Layout() {
   return (
@@ -117,8 +119,14 @@ function Shell() {
         tabIndex={-1}
         className="mx-auto max-w-5xl px-4 py-8 pb-24 sm:pb-8 outline-none"
       >
+        {/* Keyed per route: replays the entrance animation and clears any
+            contained error when the user navigates elsewhere. */}
         <div key={pathname} className="animate-rise">
-          <Outlet />
+          <ErrorBoundary label="page">
+            <Suspense fallback={<PageSkeleton />}>
+              <Outlet />
+            </Suspense>
+          </ErrorBoundary>
         </div>
       </main>
 

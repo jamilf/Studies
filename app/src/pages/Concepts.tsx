@@ -1,5 +1,7 @@
-import { useMemo, useState } from 'react'
+import { Suspense, useMemo, useState } from 'react'
 import { useCert } from '../cert/CertContext'
+import ErrorBoundary from '../components/ErrorBoundary'
+import { FigureSkeleton } from '../components/Skeleton'
 import { conceptsForCert, type ConceptEntry } from '../concepts/registry'
 import { certConfig } from '../lib/certs'
 
@@ -99,7 +101,13 @@ export default function Concepts() {
             <figcaption className="font-mono text-[11px] uppercase tracking-wider text-faint pb-4 mb-5 border-b border-line">
               Fig. {activeIndex + 1} — {active.title}
             </figcaption>
-            <active.Component />
+            {/* Each figure is lazy-loaded and independently contained, so a
+                slow or broken diagram never takes down the page around it. */}
+            <ErrorBoundary key={active.id} label="figure">
+              <Suspense fallback={<FigureSkeleton />}>
+                <active.Component />
+              </Suspense>
+            </ErrorBoundary>
           </figure>
         )}
       </div>

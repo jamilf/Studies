@@ -28,7 +28,7 @@ export default function LoadBalancerTypeSpectrum() {
         <p className="text-sm text-soft">Domain 2.2 — slide across ELB types to compare OSI layer, throughput, and routing flexibility.</p>
       </div>
 
-      <input type="range" min={0} max={TIERS.length - 1} step={1} value={selected} onChange={(e) => setSelected(Number(e.target.value))} className="w-full" />
+      <input type="range" aria-label="Elastic Load Balancer Types" min={0} max={TIERS.length - 1} step={1} value={selected} onChange={(e) => setSelected(Number(e.target.value))} className="w-full" />
       <div className="flex justify-between text-[10px] text-faint px-0.5 -mt-3">
         {TIERS.map((tier, i) => (
           <button key={tier.name} onClick={() => setSelected(i)} className={`text-center transition-colors ${i === selected ? 'text-accent font-semibold' : 'hover:text-soft'}`} style={{ width: `${100 / TIERS.length}%` }}>

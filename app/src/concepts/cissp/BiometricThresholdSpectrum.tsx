@@ -29,7 +29,7 @@ export default function BiometricThresholdSpectrum() {
       </div>
 
       <input
-        type="range"
+        type="range" aria-label="Biometric Sensitivity: FAR vs. FRR Trade-off"
         min={0}
         max={TIERS.length - 1}
         step={1}

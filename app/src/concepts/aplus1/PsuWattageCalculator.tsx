@@ -93,7 +93,7 @@ function Slider({
         <span className="text-soft">{label}</span>
         <span className="font-mono text-ink font-medium">{format(value)}</span>
       </div>
-      <input type="range" min={min} max={max} step={step} value={value} onChange={(e) => onChange(Number(e.target.value))} className="w-full" />
+      <input type="range" aria-label="PSU Wattage Calculator" min={min} max={max} step={step} value={value} onChange={(e) => onChange(Number(e.target.value))} className="w-full" />
     </div>
   )
 }

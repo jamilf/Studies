@@ -32,7 +32,7 @@ export default function WirelessSignalSpectrum() {
 
       <div>
         <input
-          type="range"
+          type="range" aria-label="Wireless Signal Strength Troubleshooting"
           min={0}
           max={TIERS.length - 1}
           step={1}

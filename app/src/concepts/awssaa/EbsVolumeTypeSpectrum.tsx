@@ -28,7 +28,7 @@ export default function EbsVolumeTypeSpectrum() {
         <p className="text-sm text-soft">Domain 3.1 — slide across EBS volume types to compare IOPS, throughput, and relative cost.</p>
       </div>
 
-      <input type="range" min={0} max={TIERS.length - 1} step={1} value={selected} onChange={(e) => setSelected(Number(e.target.value))} className="w-full" />
+      <input type="range" aria-label="EBS Volume Type Spectrum" min={0} max={TIERS.length - 1} step={1} value={selected} onChange={(e) => setSelected(Number(e.target.value))} className="w-full" />
       <div className="flex justify-between text-[10px] text-faint px-0.5 -mt-3">
         {TIERS.map((tier, i) => (
           <button key={tier.name} onClick={() => setSelected(i)} className={`text-center transition-colors ${i === selected ? 'text-accent font-semibold' : 'hover:text-soft'}`} style={{ width: `${100 / TIERS.length}%` }}>

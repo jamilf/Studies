@@ -48,7 +48,7 @@ export default function BackupTypeSpectrum() {
       </div>
 
       <input
-        type="range"
+        type="range" aria-label="Backup Type Spectrum"
         min={0}
         max={TIERS.length - 1}
         step={1}

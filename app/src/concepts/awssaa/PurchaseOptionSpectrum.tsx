@@ -27,7 +27,7 @@ export default function PurchaseOptionSpectrum() {
         <p className="text-sm text-soft">Domain 4.1 — slide across purchase options to see how discount, commitment, and interruption risk trade off.</p>
       </div>
 
-      <input type="range" min={0} max={TIERS.length - 1} step={1} value={selected} onChange={(e) => setSelected(Number(e.target.value))} className="w-full" />
+      <input type="range" aria-label="EC2 Purchase Option Spectrum" min={0} max={TIERS.length - 1} step={1} value={selected} onChange={(e) => setSelected(Number(e.target.value))} className="w-full" />
       <div className="flex justify-between text-[10px] text-faint px-0.5 -mt-3">
         {TIERS.map((tier, i) => (
           <button key={tier.name} onClick={() => setSelected(i)} className={`text-center transition-colors ${i === selected ? 'text-accent font-semibold' : 'hover:text-soft'}`} style={{ width: `${100 / TIERS.length}%` }}>

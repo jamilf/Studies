@@ -53,7 +53,7 @@ export default function WirelessSecuritySpectrum() {
       </div>
 
       <input
-        type="range"
+        type="range" aria-label="Wireless Security Standards"
         min={0}
         max={STANDARDS.length - 1}
         step={1}

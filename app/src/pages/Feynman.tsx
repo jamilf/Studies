@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { PageSkeleton } from '../components/Skeleton'
 import { useUserId } from '../auth/AuthContext'
 import { useCert } from '../cert/CertContext'
 import { fetchCardStates, fetchFlashcards, gradeCard } from '../lib/data'
@@ -50,7 +51,7 @@ export default function Feynman() {
     setDone((d) => d + 1)
   }
 
-  if (!prompts) return <p className="text-soft">Loading…</p>
+  if (!prompts) return <PageSkeleton label="Loading prompts" />
 
   if (!current) {
     return (

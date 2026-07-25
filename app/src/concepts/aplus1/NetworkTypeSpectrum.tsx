@@ -62,7 +62,7 @@ export default function NetworkTypeSpectrum() {
       </div>
 
       <input
-        type="range"
+        type="range" aria-label="Network Type Spectrum"
         min={0}
         max={TYPES.length - 1}
         step={1}

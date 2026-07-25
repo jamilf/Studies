@@ -72,7 +72,7 @@ export default function WifiStandardSpectrum() {
       </div>
 
       <input
-        type="range"
+        type="range" aria-label="802.11 Wi-Fi Standard Spectrum"
         min={0}
         max={STANDARDS.length - 1}
         step={1}

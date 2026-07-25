@@ -25,7 +25,7 @@ export default function SharedResponsibilitySpectrum() {
         <p className="text-sm text-soft">Domain 1.1 — drag across service models to see the line move between what you manage and what AWS manages.</p>
       </div>
 
-      <input type="range" min={0} max={TIERS.length - 1} step={1} value={selected} onChange={(e) => setSelected(Number(e.target.value))} className="w-full" />
+      <input type="range" aria-label="Shared Responsibility Spectrum" min={0} max={TIERS.length - 1} step={1} value={selected} onChange={(e) => setSelected(Number(e.target.value))} className="w-full" />
       <div className="flex justify-between text-[10px] text-faint px-0.5 -mt-3">
         {TIERS.map((tier, i) => (
           <button key={tier.name} onClick={() => setSelected(i)} className={`text-center transition-colors ${i === selected ? 'text-accent font-semibold' : 'hover:text-soft'}`} style={{ width: `${100 / TIERS.length}%` }}>

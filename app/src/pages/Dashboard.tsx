@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { DashboardSkeleton } from '../components/Skeleton'
 import { Link } from 'react-router-dom'
 import { useUserId } from '../auth/AuthContext'
 import { useCert } from '../cert/CertContext'
@@ -116,7 +117,7 @@ export default function Dashboard() {
   }, [stats])
 
   if (error) return <p className="text-bad">{error}</p>
-  if (!stats) return <p className="text-soft">Loading…</p>
+  if (!stats) return <DashboardSkeleton />
 
   return (
     <div className="space-y-10">

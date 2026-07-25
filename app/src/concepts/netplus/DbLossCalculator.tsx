@@ -82,7 +82,7 @@ function Slider({
         <span className="font-mono text-ink font-medium">{format(value)}</span>
       </div>
       <input
-        type="range"
+        type="range" aria-label="Fiber Link Loss Calculator"
         min={min}
         max={max}
         step={step}

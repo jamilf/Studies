@@ -67,7 +67,7 @@ export default function MacOsToolSpectrum() {
       </div>
 
       <input
-        type="range"
+        type="range" aria-label="macOS Tool Spectrum"
         min={0}
         max={TOOLS.length - 1}
         step={1}

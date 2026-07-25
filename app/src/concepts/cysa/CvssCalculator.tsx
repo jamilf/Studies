@@ -92,7 +92,7 @@ function TierSlider({
         <span className="font-mono text-ink font-medium">{tiers[value].label}</span>
       </div>
       <input
-        type="range"
+        type="range" aria-label="CVSS v3 Base Score Estimator"
         min={0}
         max={tiers.length - 1}
         step={1}

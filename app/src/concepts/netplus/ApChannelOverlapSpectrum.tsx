@@ -55,7 +55,7 @@ export default function ApChannelOverlapSpectrum() {
       </div>
 
       <input
-        type="range"
+        type="range" aria-label="2.4 GHz Channel Overlap"
         min={0}
         max={TIERS.length - 1}
         step={1}

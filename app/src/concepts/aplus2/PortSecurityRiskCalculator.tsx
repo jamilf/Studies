@@ -31,7 +31,7 @@ export default function PortSecurityRiskCalculator() {
             <span>Inbound ports open beyond defaults (e.g. RDP 3389, Telnet 23, SMB 445)</span>
             <span className="font-mono text-ink">{openPorts}</span>
           </div>
-          <input type="range" min={0} max={8} step={1} value={openPorts} onChange={(e) => setOpenPorts(Number(e.target.value))} className="w-full" />
+          <input type="range" aria-label="Workstation Port Exposure Calculator" min={0} max={8} step={1} value={openPorts} onChange={(e) => setOpenPorts(Number(e.target.value))} className="w-full" />
         </div>
 
         <div>
@@ -39,7 +39,7 @@ export default function PortSecurityRiskCalculator() {
             <span>Firewall configuration</span>
             <span className="font-mono text-ink">{firewallLabels[firewallLevel]}</span>
           </div>
-          <input type="range" min={0} max={2} step={1} value={firewallLevel} onChange={(e) => setFirewallLevel(Number(e.target.value))} className="w-full" />
+          <input type="range" aria-label="Workstation Port Exposure Calculator" min={0} max={2} step={1} value={firewallLevel} onChange={(e) => setFirewallLevel(Number(e.target.value))} className="w-full" />
         </div>
 
         <div>
@@ -47,7 +47,7 @@ export default function PortSecurityRiskCalculator() {
             <span>Unpatched/legacy services running (e.g. old SMBv1, Telnet daemon)</span>
             <span className="font-mono text-ink">{vulnServices}</span>
           </div>
-          <input type="range" min={0} max={5} step={1} value={vulnServices} onChange={(e) => setVulnServices(Number(e.target.value))} className="w-full" />
+          <input type="range" aria-label="Workstation Port Exposure Calculator" min={0} max={5} step={1} value={vulnServices} onChange={(e) => setVulnServices(Number(e.target.value))} className="w-full" />
         </div>
 
         <div>
@@ -55,7 +55,7 @@ export default function PortSecurityRiskCalculator() {
             <span>Default admin shares (ADMIN$, C$) left enabled</span>
             <span className="font-mono text-ink">{adminShares === 1 ? 'Enabled' : 'Disabled'}</span>
           </div>
-          <input type="range" min={0} max={1} step={1} value={adminShares} onChange={(e) => setAdminShares(Number(e.target.value))} className="w-full" />
+          <input type="range" aria-label="Workstation Port Exposure Calculator" min={0} max={1} step={1} value={adminShares} onChange={(e) => setAdminShares(Number(e.target.value))} className="w-full" />
         </div>
       </div>
 

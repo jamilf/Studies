@@ -62,7 +62,7 @@ export default function DataStateEncryptionSpectrum() {
       </div>
 
       <input
-        type="range"
+        type="range" aria-label="Encryption Across the Data Lifecycle"
         min={0}
         max={TIERS.length - 1}
         step={1}

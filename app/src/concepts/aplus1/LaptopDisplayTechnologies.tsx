@@ -98,7 +98,7 @@ export default function LaptopDisplayTechnologies() {
       </div>
 
       <input
-        type="range"
+        type="range" aria-label="Laptop Display Panel Technologies"
         min={0}
         max={PANELS.length - 1}
         step={1}

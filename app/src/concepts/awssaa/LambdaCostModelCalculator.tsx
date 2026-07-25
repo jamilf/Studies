@@ -57,7 +57,7 @@ function Slider({ label, value, onChange, min, max, step, format }: { label: str
   return (
     <div>
       <div className="flex justify-between text-xs mb-1"><span className="text-soft">{label}</span><span className="font-mono text-ink font-medium">{format(value)}</span></div>
-      <input type="range" min={min} max={max} step={step} value={value} onChange={(e) => onChange(Number(e.target.value))} className="w-full" />
+      <input type="range" aria-label="Lambda Cost Model Calculator" min={min} max={max} step={step} value={value} onChange={(e) => onChange(Number(e.target.value))} className="w-full" />
     </div>
   )
 }

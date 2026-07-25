@@ -20,7 +20,7 @@ function Slider({ label, value, onChange, min, max, step, format }: SliderProps)
         <span className="font-mono text-ink font-medium">{format(value)}</span>
       </div>
       <input
-        type="range"
+        type="range" aria-label="Business Impact Analysis Calculator"
         min={min}
         max={max}
         step={step}

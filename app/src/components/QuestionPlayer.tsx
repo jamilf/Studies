@@ -28,6 +28,7 @@ export default function QuestionPlayer({ question, value, onChange, reveal }: Pr
       {q.qtype === 'matching' && <Matching {...{ q, value, onChange, reveal }} />}
       {reveal && (
         <div
+          role="status"
           className={`rounded-crisp border-l-2 px-4 py-3 text-sm leading-relaxed animate-rise ${
             isCorrect(q, value) ? 'border-good bg-good-tint' : 'border-bad bg-bad-tint'
           }`}
@@ -64,6 +65,7 @@ function Mcq({ q, value, onChange, reveal }: PartProps) {
           <button
             key={orig}
             disabled={reveal}
+            aria-pressed={selected}
             onClick={() => onChange(orig)}
             className={`${optionBase} ${
               correct ? optionCorrect : wrongPick ? optionWrong : selected ? optionSelected : optionIdle
@@ -98,10 +100,11 @@ function Multi({ q, value, onChange, reveal }: PartProps) {
           <button
             key={orig}
             disabled={reveal}
+            aria-pressed={selected}
             onClick={() => toggle(orig)}
             className={`${optionBase} ${correct ? optionCorrect : selected ? optionSelected : optionIdle}`}
           >
-            <span className={`font-mono mr-2 ${selected ? 'text-accent' : 'text-faint'}`}>
+            <span aria-hidden className={`font-mono mr-2 ${selected ? 'text-accent' : 'text-faint'}`}>
               {selected ? '☑' : '☐'}
             </span>
             {choices[orig]}
@@ -191,6 +194,7 @@ function Matching({ q, value, onChange, reveal }: PartProps) {
           </span>
           <select
             disabled={reveal}
+            aria-label={`Match for ${label}`}
             value={picks[i] ?? ''}
             onChange={(e) => setPick(i, e.target.value === '' ? null : Number(e.target.value))}
             className="flex-1 rounded-crisp border border-line bg-surface px-2 py-2 text-sm text-ink"

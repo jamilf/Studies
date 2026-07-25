@@ -60,7 +60,7 @@ export default function MobileTroubleshootingSpectrum() {
       </div>
 
       <input
-        type="range"
+        type="range" aria-label="Mobile App Troubleshooting Spectrum"
         min={0}
         max={TIERS.length - 1}
         step={1}
@@ -85,7 +85,7 @@ export default function MobileTroubleshootingSpectrum() {
         <p className="text-[11px] uppercase tracking-wider text-faint mb-1.5">Severity / annoyance</p>
         <div className="flex gap-1">
           {Array.from({ length: 5 }).map((_, i) => (
-            <div key={i} className={`h-3 flex-1 rounded-xs transition-colors ${i < t.severity ? SEVERITY_COLOR[i] : 'bg-line/50'}`} />
+            <div key={i} className={`h-3 flex-1 rounded-crisp transition-colors ${i < t.severity ? SEVERITY_COLOR[i] : 'bg-line/50'}`} />
           ))}
         </div>
       </div>

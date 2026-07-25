@@ -44,7 +44,7 @@ export default function DreadRiskCalculator() {
               <span className="font-mono text-ink font-medium">{s.value}</span>
             </div>
             <input
-              type="range"
+              type="range" aria-label="DREAD Risk Score Calculator"
               min={0}
               max={10}
               step={1}

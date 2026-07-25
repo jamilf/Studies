@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { PageSkeleton } from '../components/Skeleton'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useUserId } from '../auth/AuthContext'
 import { useCert } from '../cert/CertContext'
@@ -103,7 +104,7 @@ export default function Quiz() {
     setRevealed(false)
   }
 
-  if (!all) return <p className="text-soft">Loading…</p>
+  if (!all) return <PageSkeleton label="Loading questions" />
 
   if (!mode) {
     return (

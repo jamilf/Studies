@@ -60,7 +60,7 @@ export default function WanConnectionSpectrum() {
       </div>
 
       <input
-        type="range"
+        type="range" aria-label="WAN Connection Types"
         min={0}
         max={TIERS.length - 1}
         step={1}

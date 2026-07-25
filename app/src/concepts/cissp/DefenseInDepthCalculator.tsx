@@ -23,14 +23,14 @@ export default function DefenseInDepthCalculator() {
             <span>Independent security layers</span>
             <span className="font-mono text-ink">{layers}</span>
           </div>
-          <input type="range" min={1} max={6} step={1} value={layers} onChange={(e) => setLayers(Number(e.target.value))} className="w-full" />
+          <input type="range" aria-label="Defense in Depth: Layered Detection" min={1} max={6} step={1} value={layers} onChange={(e) => setLayers(Number(e.target.value))} className="w-full" />
         </div>
         <div>
           <div className="flex justify-between text-sm text-soft mb-1">
             <span>Detection rate per layer</span>
             <span className="font-mono text-ink">{detectRate}%</span>
           </div>
-          <input type="range" min={10} max={90} step={5} value={detectRate} onChange={(e) => setDetectRate(Number(e.target.value))} className="w-full" />
+          <input type="range" aria-label="Defense in Depth: Layered Detection" min={10} max={90} step={5} value={detectRate} onChange={(e) => setDetectRate(Number(e.target.value))} className="w-full" />
         </div>
       </div>
 

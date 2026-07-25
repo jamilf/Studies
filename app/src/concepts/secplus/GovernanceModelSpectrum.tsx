@@ -68,7 +68,7 @@ export default function GovernanceModelSpectrum() {
       </div>
 
       <input
-        type="range"
+        type="range" aria-label="Governance Model Spectrum"
         min={0}
         max={TIERS.length - 1}
         step={1}

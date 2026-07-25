@@ -71,7 +71,7 @@ export default function Ec2RightSizingCalculator() {
 
       <div>
         <div className="flex justify-between text-xs mb-1"><span className="text-soft">Average CPU utilization (CloudWatch, last 14 days)</span><span className="font-mono text-ink font-medium">{avgCpu}%</span></div>
-        <input type="range" min={1} max={95} step={1} value={avgCpu} onChange={(e) => setAvgCpu(Number(e.target.value))} className="w-full" />
+        <input type="range" aria-label="Average CPU utilization (CloudWatch, last 14 days)" min={1} max={95} step={1} value={avgCpu} onChange={(e) => setAvgCpu(Number(e.target.value))} className="w-full" />
       </div>
 
       <div className="grid sm:grid-cols-3 gap-3">

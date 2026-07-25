@@ -118,7 +118,7 @@ export default function RaidLevelComparison() {
           <span className="font-mono text-ink font-medium">{driveSize.toLocaleString()} GB</span>
         </div>
         <input
-          type="range"
+          type="range" aria-label="Size per drive (4 identical drives)"
           min={500}
           max={8000}
           step={500}
