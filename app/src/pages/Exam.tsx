@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { useUserId } from '../auth/AuthContext'
 import { useCert } from '../cert/CertContext'
 import QuestionPlayer from '../components/QuestionPlayer'
+import { useRunGuard } from '../components/NavGuard'
 import { supabase } from '../lib/supabase'
 import { fetchQuestions } from '../lib/data'
 import { buildExamForm, isCorrect, scaledScore } from '../lib/exam'
@@ -9,12 +11,24 @@ import type { ExamAttempt, Question } from '../lib/types'
 
 type Phase = 'idle' | 'running' | 'review'
 
+/**
+ * Phase lives in a search param (`?attempt=run|review`) so Back, refresh and
+ * history all behave — and, unlike a child route, changing it does not remount
+ * this component and destroy the in-memory form and timer.
+ */
+function phaseFromParam(value: string | null): Phase {
+  if (value === 'run') return 'running'
+  if (value === 'review') return 'review'
+  return 'idle'
+}
+
 export default function Exam() {
   const userId = useUserId()
   const { cert } = useCert()
+  const [searchParams, setSearchParams] = useSearchParams()
   const [all, setAll] = useState<Question[] | null>(null)
   const [attempts, setAttempts] = useState<ExamAttempt[]>([])
-  const [phase, setPhase] = useState<Phase>('idle')
+  const phase = phaseFromParam(searchParams.get('attempt'))
   const [form, setForm] = useState<Question[]>([])
   const [responses, setResponses] = useState<Record<string, unknown>>({})
   const [flags, setFlags] = useState<Set<string>>(new Set())
@@ -26,7 +40,7 @@ export default function Exam() {
 
   useEffect(() => {
     setAll(null)
-    setPhase('idle')
+    setForm([])
     void fetchQuestions(cert.id).then(setAll)
     void supabase
       .from('exam_attempts')
@@ -36,7 +50,21 @@ export default function Exam() {
       .order('started_at', { ascending: false })
       .limit(10)
       .then(({ data }) => setAttempts((data ?? []) as ExamAttempt[]))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId, cert])
+
+  // A form lives only in memory, so a /run or /review URL with nothing behind
+  // it (hard refresh, hand-typed link, cert switch) returns to the briefing.
+  useEffect(() => {
+    if (phase !== 'idle' && form.length === 0) setSearchParams({}, { replace: true })
+  }, [phase, form.length, setSearchParams])
+
+  // A timed, unsaved attempt is the most destructive thing to navigate away
+  // from, so it is always guarded.
+  useRunGuard(
+    phase === 'running',
+    'Your exam is still running. Leaving now discards every answer and the timer.',
+  )
 
   useEffect(() => {
     if (phase !== 'running') return
@@ -59,7 +87,7 @@ export default function Exam() {
     deadline.current = Date.now() + cert.exam.minutes * 60 * 1000
     setSecondsLeft(cert.exam.minutes * 60)
     setResult(null)
-    setPhase('running')
+    setSearchParams({ attempt: 'run' })
   }
 
   async function submit() {
@@ -74,7 +102,7 @@ export default function Exam() {
     const scaled = scaledScore(raw, form.length, cert)
     const passed = scaled >= cert.exam.pass
     setResult({ raw, scaled, passed })
-    setPhase('review')
+    setSearchParams({ attempt: 'review' }, { replace: true })
     setIdx(0)
     await supabase.from('answer_events').insert(events)
     await supabase.from('exam_attempts').insert({
@@ -92,7 +120,9 @@ export default function Exam() {
 
   if (!all) return <p className="text-soft">Loading…</p>
 
-  if (phase === 'idle') {
+  // Safety net: a run/review URL with no form behind it (hand-typed URL) falls
+  // back to the briefing instead of rendering an undefined question.
+  if (phase === 'idle' || form.length === 0) {
     return (
       <div className="max-w-2xl mx-auto space-y-8">
         <div className="bg-surface border border-line rounded-soft shadow-card p-6 space-y-4">
@@ -237,7 +267,7 @@ export default function Exam() {
           <>
             <div className="flex-1" />
             <button
-              onClick={() => setPhase('idle')}
+              onClick={() => setSearchParams({})}
               className="rounded-crisp border border-line bg-surface hover:border-line-strong px-4 py-2 text-sm text-ink transition-colors"
             >
               Done reviewing

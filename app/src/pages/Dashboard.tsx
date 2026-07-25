@@ -133,37 +133,35 @@ export default function Dashboard() {
       )}
 
       <div className="grid grid-cols-2 md:grid-cols-4 border-y border-line [&>*]:border-line [&>*:nth-child(even)]:border-l md:[&>*:nth-child(n+2)]:border-l max-md:[&>*:nth-child(n+3)]:border-t">
-        <Tile label="Cards due now" value={stats.dueNow} to="/flashcards" accent={stats.dueNow > 0} delay={0} />
-        <Tile label="New cards waiting" value={stats.newCards} to="/flashcards" delay={1} />
-        <Tile label="Exam readiness" value={stats.readiness} suffix="%" delay={2} />
+        <Tile label="Cards due now" value={stats.dueNow} to="/study/flashcards" accent={stats.dueNow > 0} delay={0} />
+        <Tile label="New cards waiting" value={stats.newCards} to="/study/flashcards" delay={1} />
+        <Tile label="Exam readiness" value={stats.readiness} suffix="%" to="/practice/exam" delay={2} />
         <Tile label="Study streak" value={stats.streak} suffix="d" delay={3} />
       </div>
 
       <section className="animate-rise stagger-1">
         <h2 className="font-display text-lg text-ink pb-2 border-b border-line mb-4">What to do next</h2>
-        <ol className="text-sm text-soft list-decimal ml-5 space-y-1.5">
-          <li>
-            Clear your{' '}
-            <Link className="text-accent underline underline-offset-2 hover:text-accent-deep" to="/flashcards">
-              due cards
-            </Link>{' '}
-            — spaced repetition only works daily.
-          </li>
-          <li>
-            Take one 15-question{' '}
-            <Link className="text-accent underline underline-offset-2 hover:text-accent-deep" to="/quiz">
-              mixed quiz
-            </Link>{' '}
-            (or <em>weak areas</em> if a domain lags).
-          </li>
-          <li>
-            From week 2: one full{' '}
-            <Link className="text-accent underline underline-offset-2 hover:text-accent-deep" to="/exam">
-              mock exam
-            </Link>{' '}
-            weekly. Sustained 85%+ readiness plus a passed mock → book the real exam.
-          </li>
-        </ol>
+        <div className="grid gap-3 sm:grid-cols-3">
+          <NextStep
+            step={1}
+            title={stats.dueNow > 0 ? `Clear ${stats.dueNow} due card${stats.dueNow === 1 ? '' : 's'}` : 'Review flashcards'}
+            desc="Spaced repetition only works if you show up daily."
+            to="/study/flashcards"
+            primary={stats.dueNow > 0}
+          />
+          <NextStep
+            step={2}
+            title="Take a mixed quiz"
+            desc="15 interleaved questions — or Weak areas if a domain lags."
+            to="/practice/quiz"
+          />
+          <NextStep
+            step={3}
+            title="Sit a mock exam"
+            desc="From week 2, weekly. 85%+ readiness plus a pass → book it."
+            to="/practice/exam"
+          />
+        </div>
       </section>
 
       <section className="animate-rise stagger-2">
@@ -249,6 +247,37 @@ export default function Dashboard() {
         </div>
       </section>
     </div>
+  )
+}
+
+/** A concrete next action, not a sentence with a link buried in it. */
+function NextStep({
+  step,
+  title,
+  desc,
+  to,
+  primary,
+}: {
+  step: number
+  title: string
+  desc: string
+  to: string
+  primary?: boolean
+}) {
+  return (
+    <Link
+      to={to}
+      className={`hover-lift group block rounded-soft border bg-surface p-4 ${
+        primary ? 'border-accent-line' : 'border-line'
+      }`}
+    >
+      <p className="font-mono text-[10px] uppercase tracking-wider text-faint">Step {step}</p>
+      <p className={`font-display text-base mt-1 ${primary ? 'text-accent' : 'text-ink'}`}>
+        {title}
+        <span className="inline-block ml-1 transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+      </p>
+      <p className="text-xs text-soft mt-1 leading-relaxed">{desc}</p>
+    </Link>
   )
 }
 

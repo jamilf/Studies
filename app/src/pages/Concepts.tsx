@@ -7,9 +7,14 @@ export default function Concepts() {
   const { cert } = useCert()
   const items = conceptsForCert(cert.id)
   const domainLabels = certConfig(cert.id).domains
+  const [query, setQuery] = useState('')
   const groups = useMemo(() => {
+    const q = query.trim().toLowerCase()
     const byDomain = new Map<number, { item: ConceptEntry; index: number }[]>()
     items.forEach((item, index) => {
+      // Filter on title/description but keep the ORIGINAL index so figure
+      // numbers stay stable while searching.
+      if (q && !`${item.title} ${item.description}`.toLowerCase().includes(q)) return
       const list = byDomain.get(item.domain) ?? []
       list.push({ item, index })
       byDomain.set(item.domain, list)
@@ -17,7 +22,8 @@ export default function Concepts() {
     return [...byDomain.entries()]
       .sort(([a], [b]) => a - b)
       .map(([domain, domainItems]) => ({ domain, items: domainItems }))
-  }, [items])
+  }, [items, query])
+  const matchCount = groups.reduce((n, g) => n + g.items.length, 0)
   const [activeId, setActiveId] = useState<string | null>(items[0]?.id ?? null)
   // Fall back to the first figure when the cert switches and the stored id
   // belongs to the previous cert's list.
@@ -41,6 +47,26 @@ export default function Concepts() {
   return (
     <div className="grid md:grid-cols-[230px_1fr] gap-6">
       <nav className="space-y-3 max-h-[calc(100vh-10rem)] overflow-y-auto pr-1">
+        <div className="sticky top-0 bg-paper pb-2 z-10">
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder={`Search ${items.length} figures…`}
+            aria-label="Search figures"
+            className="w-full rounded-crisp bg-surface border border-line focus:border-accent px-3 py-1.5 text-sm text-ink placeholder:text-faint outline-none transition-colors"
+          />
+          {query && (
+            <p className="px-1 pt-1.5 font-mono text-[10px] text-faint">
+              {matchCount} match{matchCount === 1 ? '' : 'es'}
+            </p>
+          )}
+        </div>
+        {matchCount === 0 && (
+          <p className="px-3 py-4 text-sm text-soft">
+            No figure matches “{query}”.
+          </p>
+        )}
         {groups.map((group) => (
           <div key={group.domain}>
             <p className="px-3 mb-1 font-mono text-[10px] uppercase tracking-wider text-faint">
