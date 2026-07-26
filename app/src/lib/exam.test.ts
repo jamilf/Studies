@@ -83,6 +83,56 @@ describe('buildExamForm', () => {
   it('returns an empty form for an empty pool instead of throwing', () => {
     expect(buildExamForm([], secplus)).toEqual([])
   })
+
+  // The suite above only ever exercised Security+. Every cert has its own
+  // weights and exam length, so rounding in domainCounts can go wrong for one
+  // cert while Security+ stays green.
+  it('produces a full, distinct, blueprint-shaped form for every cert', () => {
+    for (const cfg of Object.values(CERTS)) {
+      const form = buildExamForm(fullPool(cfg), cfg)
+      expect(form, `${cfg.id} length`).toHaveLength(cfg.exam.questions)
+      expect(new Set(form.map((f) => f.id)).size, `${cfg.id} distinct`).toBe(form.length)
+
+      const counts = domainCounts(cfg)
+      for (const [domain, expected] of Object.entries(counts)) {
+        const got = form.filter((item) => item.domain === Number(domain)).length
+        expect(got, `${cfg.id} domain ${domain}`).toBe(expected)
+      }
+    }
+  })
+
+  // A bank only just big enough is the realistic case for a thin cert: the
+  // blueprint quotas must still be satisfiable without reusing an item.
+  it('fills a form without repeats when the pool is exactly the exam length', () => {
+    for (const cfg of Object.values(CERTS)) {
+      const counts = domainCounts(cfg)
+      const pool: Question[] = []
+      for (const [domain, n] of Object.entries(counts)) {
+        for (let i = 0; i < n; i++) pool.push(q(`${cfg.id}-d${domain}-${i}`, Number(domain)))
+      }
+      expect(pool, `${cfg.id} pool`).toHaveLength(cfg.exam.questions)
+
+      const form = buildExamForm(pool, cfg)
+      expect(form, `${cfg.id} length`).toHaveLength(cfg.exam.questions)
+      expect(new Set(form.map((f) => f.id)).size, `${cfg.id} distinct`).toBe(form.length)
+    }
+  })
+
+  // The top-up path is what runs today for A+ and Network+, whose banks are
+  // smaller than a form. It is allowed to return short -- it must never pad the
+  // form by repeating a question, which would silently inflate the score.
+  it('never repeats a question when topping up from a short bank', () => {
+    for (const cfg of Object.values(CERTS)) {
+      const short = Math.floor(cfg.exam.questions * 0.8)
+      const pool: Question[] = []
+      const domains = Object.keys(cfg.domains).map(Number)
+      for (let i = 0; i < short; i++) pool.push(q(`${cfg.id}-${i}`, domains[i % domains.length]))
+
+      const form = buildExamForm(pool, cfg)
+      expect(new Set(form.map((f) => f.id)).size, `${cfg.id} distinct`).toBe(form.length)
+      expect(form.length, `${cfg.id} never exceeds pool`).toBeLessThanOrEqual(pool.length)
+    }
+  })
 })
 
 describe('scaledScore', () => {

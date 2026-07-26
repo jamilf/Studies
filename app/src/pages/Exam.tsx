@@ -142,6 +142,17 @@ export default function Exam() {
               vendor's equating)
             </li>
           </ul>
+          {/* A bank smaller than a form still runs, but the blueprint weighting
+              cannot hold and the score is off a short paper. Say so up front
+              rather than presenting a "90-question" result that isn't one. */}
+          {all.length < cert.exam.questions && (
+            <p className="rounded-crisp border-l-2 border-warn-line bg-warn-tint px-4 py-3 text-sm leading-relaxed text-ink">
+              <span className="font-display font-semibold text-warn">Short question bank.</span>{' '}
+              This cert has {all.length} questions, so a full {cert.exam.questions}-question form can't be built yet.
+              You'll get {all.length} — every question in the bank, with the blueprint weighting relaxed to fill it.
+              Treat the score as rough.
+            </p>
+          )}
           <button
             onClick={start}
             className="rounded-crisp bg-accent hover:bg-accent-deep text-paper px-6 py-2.5 text-sm font-semibold transition-colors"
