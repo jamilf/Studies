@@ -1,0 +1,29 @@
+-- Content review fixes: Network+ (N10-009) wave 2 expansion migrations
+--   20260726000120_expand_netplus_d2.sql   (Domain 2, Network Implementation)
+--   20260726000121_expand_netplus_d3.sql   (Domain 3, Network Operations)
+--   20260726000122_expand_netplus_d4.sql   (Domain 4, Network Security)
+--   20260726000123_expand_netplus_d5.sql   (Domain 5, Network Troubleshooting)
+--   20260726000124_expand_netplus_d1a.sql  (Domain 1, Networking Concepts, part A)
+--   20260726000125_expand_netplus_d1b.sql  (Domain 1, Networking Concepts, part B)
+--
+-- Review procedure followed per docs/CONTENT_OPTIMISATION_PROMPT.md Scope A:
+--   Pass 1 - every question stem, choices array, answer index/array and
+--            explanation read in full; every port number, protocol behavior,
+--            acronym expansion, subnet calculation and answer-key index
+--            checked against source material (E1/E2/E3).
+--   Pass 2 - domain/objective tags cross-checked against the N10-009
+--            blueprint (D1=8 objectives 1.1-1.8, D2=4 objectives 2.1-2.4,
+--            D3=5 objectives 3.1-3.5, D4=4 objectives 4.1-4.4, D5=5
+--            objectives 5.1-5.5) and against app/src/lib/certs.ts domain
+--            names (E4); id ranges and content cross-scanned across all six
+--            files for near-identical repeats (E6).
+--   Pass 3 - flashcard fronts checked for topic-label-only phrasing (W4);
+--            explanations checked for a refutation of the leading
+--            distractor (W3); distractor plausibility and prose specificity
+--            spot-checked throughout (W1/W2).
+--
+-- RESULT: no fixes required. All 698 items (314 questions + 384 flashcards)
+-- were reviewed and no E1-E6 or W1-W5 issues were found. See the manifest
+-- delivered in chat for the full item-by-item accounting. This file is
+-- intentionally left with no UPDATE/DELETE statements, per fix rule 7
+-- ("if you find nothing to fix in a file, say so - do not invent edits").
