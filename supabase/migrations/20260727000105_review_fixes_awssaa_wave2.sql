@@ -1,0 +1,64 @@
+-- Review-fix migration for Scope A wave 2: AWS SAA-C03 (awssaa) study-bank
+-- expansion migrations 20260726000160-20260726000163 (domains 1-4, ~353 new
+-- items: flashcards sa-f-200..217/300..308/400..465/500..543, acronyms
+-- sa-a-100..105/120..121/140..154/160..172, feynman sa-y-050..051/060..061/
+-- 070..075/080..089, questions sa-q-200..221/300..310/400..470/500..555).
+--
+-- Full three-pass review per docs/CONTENT_OPTIMISATION_PROMPT.md:
+--   Pass 1 (E1/E2/E3): every AWS-service-capability claim (storage class
+--     pricing/durability/retrieval times, KMS/HSM behavior, VPC/NACL/SG
+--     mechanics, EC2 instance families and features, RDS/Aurora/DynamoDB/
+--     ElastiCache mechanics, networking/Route 53/CloudFront/Direct Connect
+--     behavior, Kinesis/Glue/DMS/MSK/EMR mechanics, and every cost/pricing
+--     figure in the Domain 4 cost-optimization items) verified against AWS
+--     knowledge; every mcq/multi answer index counted against its choices
+--     array; every matching array's right-side text verified to semantically
+--     match its left-side item at the same index; every ordering array
+--     verified to encode the true correct sequence; every numeric worked
+--     example (Kinesis shard math in sa-q-453, Lambda GB-second cost math in
+--     sa-q-516, S3 storage-class price ordering in sa-q-511) independently
+--     recomputed.
+--   Pass 2 (E4/E6): every `objective` tag cross-checked against the official
+--     task-statement map in 20260715000115_retag_awssaa_objectives.sql's
+--     header (1.1-1.3, 2.1-2.2, 3.1-3.5, 4.1-4.4); cross-file scan for
+--     near-identical items testing the same fact (none found - the four
+--     files were deliberately scoped to disjoint topics per their header
+--     comments, and cost-domain items that share an underlying fact with a
+--     performance-domain item, e.g. gp3-vs-gp2 in sa-f-400/sa-f-507, test a
+--     different discriminating point with different wording, not a
+--     duplicate).
+--   Pass 3 (W1-W4): spot-checked flashcard fronts (all are retrieval
+--     questions, not topic labels), explanations (all name and refute the
+--     most tempting distractor), and distractors (all drawn from the same
+--     sibling-concept category as the correct answer) - no generic/vague
+--     prose, no unrefuted plausible distractors, no label-only fronts found.
+--
+-- RESULT: no E1-E6 errors and no W1-W5 weaknesses were found across any of
+-- the ~353 items in the four files. This content is unusually clean for a
+-- machine-generated batch: header-comment item counts were independently
+-- re-derived by enumerating each file's ID ranges and matched exactly (see
+-- per-file counts in the manifest reply), every answer-key index and
+-- matching/ordering array checked out, and no factual drift was found in
+-- any AWS service-capability claim checked, including the more error-prone
+-- Domain 4 cost/pricing figures (S3 minimum-storage-duration windows,
+-- Glacier retrieval-tier timings and relative pricing, gp3/io2 Block Express
+-- specs, Savings Plan discount percentages, Lambda GB-second billing
+-- mechanics, DynamoDB WCU/RCU definitions, data-transfer pricing hierarchy,
+-- public IPv4 charging change).
+--
+-- Per Fix rules for Scope A, rule 7: nothing was fixed, so no UPDATE/DELETE
+-- statements follow. No edits were invented to appear busy.
+--
+-- One item worth flagging for the orchestrator's awareness (not fixed, since
+-- it is not clearly an in-scope error): sa-f-521/sa-a-165(no)/sa-q-526/
+-- sa-q-535 describe "DynamoDB Reserved Capacity" as a purchasable 1-/3-year
+-- commitment. AWS has been moving away from offering DynamoDB Reserved
+-- Capacity for new purchases; if the live product has fully deprecated new
+-- purchases by the time this bank is used, these items would become
+-- outdated-but-still-conceptually-testable (Provisioned-vs-On-Demand cost
+-- trade-offs remain exam-relevant regardless). Left as-is because reviewer
+-- confidence in the exact current deprecation status/date was not high
+-- enough to satisfy the "never introduce a claim you are not certain is
+-- exam-accurate" precision rule in reverse (i.e. certain enough to delete/
+-- rewrite exam-accurate-at-authoring-time content). Recommend the
+-- orchestrator confirm current AWS product state before the next wave.
