@@ -1,0 +1,28 @@
+-- Content review fixes for A+ Core 1 (220-1101) wave 2 expansion files:
+--   20260726000110_expand_aplus1_d1.sql   (Domain 1, objectives 1.1-1.4)
+--   20260726000111_expand_aplus1_d2a.sql  (Domain 2, objectives 2.1-2.4)
+--   20260726000112_expand_aplus1_d2b.sql  (Domain 2, objectives 2.5-2.8)
+--   20260726000113_expand_aplus1_d3a.sql  (Domain 3, objectives 3.1-3.3)
+--   20260726000114_expand_aplus1_d3b.sql  (Domain 3, objectives 3.4-3.7)
+--   20260726000115_expand_aplus1_d4.sql   (Domain 4, objectives 4.1-4.2)
+--   20260726000116_expand_aplus1_d5a.sql  (Domain 5, objectives 5.1-5.3)
+--   20260726000117_expand_aplus1_d5b.sql  (Domain 5, objectives 5.4-5.7)
+--
+-- Full review manifest reported separately. Every item in the 785-item scope
+-- (354 questions, 431 flashcards) was read; answer-key indexes on every
+-- ordering/matching/multi item were re-derived and counted against their
+-- choices arrays. This file records the single confirmed defect found: an
+-- E6 true duplicate acronym flashcard for ONT introduced independently by
+-- two sibling files in the same wave.
+
+-- a1-f-432 [E6]: True duplicate of a1-f-326 ('20260726000111_expand_aplus1_d2a.sql').
+-- Both are acronym-deck cards defining ONT (Optical Network Terminal) as the
+-- fiber demarcation device that converts the ISP's optical signal to Ethernet
+-- at the customer premises - same fact, near-identical wording. Each file's
+-- header independently claims ONT as one of its "new" acronym cards, so the
+-- two were never cross-checked against each other. Keeping a1-f-326: CompTIA's
+-- 220-1101 objective 2.2 ("Compare and contrast common networking hardware")
+-- explicitly lists the ONT among its networking-hardware devices, making 2.2
+-- the more blueprint-accurate home for this card than 2.7 (Internet connection
+-- types), where a1-f-432 duplicated it.
+delete from public.flashcards where id = 'a1-f-432';
